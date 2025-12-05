@@ -69,7 +69,7 @@
 import React from 'react'
 import Image from "next/image";
 import tower1 from "../public/tower1.png"
-import tower2 from "../public/towe2.png"
+import tower2 from "../public/tower2.png"
 import person from "../public/anishsir.png"
 import circle from "../public/spinner.png"
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -88,11 +88,11 @@ const ManBehindBusiness = () => {
 
 
   return (
-    <div className="relative w-full  min-h-screen bg-[#BA1D0B]/99 overflow-hidden ">
+    <div className="relative w-full  h-screen bg-[#BA1D0B]/99 overflow-hidden ">
       <Image
         src={person}
         alt="The Man"
-        className="absolute bottom-0 -left-[100px] z-10 pt-100px "
+        className="absolute bottom-0 -left-20 z-10 pt-100px "
         width={527}
         height={446}
       />
@@ -107,14 +107,14 @@ const ManBehindBusiness = () => {
       <Image
         src={tower1}
         alt="Tower Left"
-        className="absolute  bottom-0 left-0    opacity-40 "
+        className="absolute  bottom-0 -left-20 opacity-[0.70] "
         width={299}
         height={719}
       />
       <Image
         src={tower2}
         alt="Tower Right"
-        className="absolute bottom-0 -right-[107px]  opacity-40 "
+        className="absolute bottom-0 -right-[107px]  opacity-[0.70] "
         width={367}
         height={704}
       />
@@ -130,7 +130,7 @@ const ManBehindBusiness = () => {
             // style={{ opacity: line1Opacity }} 
             className="text-white"
           >
-            A powerful belief: "The size of the fish doesn't matter; the pond it swims in matters the most."
+           <span>A powerful belief: &quot;The size of the fish doesn&apos;t matter; the pond it swims in matters the most.&quot;</span>
           </motion.span>
           {" "}
           <motion.span 
