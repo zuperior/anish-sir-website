@@ -1,157 +1,121 @@
-// "use client";
-// import React from 'react'
-// import Image from "next/image";
-// import tower1 from "../public/tower1.png"
-// import tower2 from "../public/towe2.png"
-// import person from "../public/anishsir.png"
-// import circle from "../public/spinner.png"
-// import { motion, useScroll, useTransform } from "framer-motion";
-
-
-// const ManBehindBusiness = () => {
-//   // Detect scroll progress of the section
-//   const { scrollYProgress } = useScroll({
-    
-//     offset: ["start end", "end start"],
-//   });
-
-//   // Map scroll progress (0 to 1) → rotation (0° to 180°)
-//   const rotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
-
-//   return (
-//     <div className="relative w-full min-h-screen bg-[#BA1D0B]/99 overflow-hidden ">
-//       <Image
-//         src={person}
-//         alt="The Man"
-//         className="absolute bottom-0 left-0 z-10 pt-100px "
-//         width={527}
-//         height={446}
-//       />
-//       <motion.div
-//         style={{ rotate }}
-//         className="absolute bottom-0 right-0"
-//       >
-//         <Image src={circle} alt="circle" width={426} height={426} />
-//       </motion.div>
-//       <Image
-//         src={tower1}
-//         alt="Tower Left"
-//         className="absolute  bottom-0 left-0 -ml-[76px] -mb-[22px] opacity-40 "
-//         width={299}
-//         height={719}
-//       />
-
-//       {/* Tower Right */}
-//       <Image
-//         src={tower2}
-//         alt="Tower Right"
-//         className="absolute bottom-0 right-0 -mr-[107px] -mb-1 opacity-40 "
-//         width={367}
-//         height={704}
-//       />
-//       <div className="w-full  text-center flex flex-col items-center gap-[15px] ">
-//         <h2 className=" text-[50px]  font-bold text-white pt-[100px] ">
-//           The Man behind the Business
-//         </h2>
-//         <p className="w-[1000px] h-[106px] text-white/90 opacity-100">
-//           A powerful beliefThe size of the fish doesn matter; the pond it swims in matters the most This is why he thrives in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.
-//         </p>
-//       </div>
-
-//     </div>
-//   );
-// }
-
-
-// export default ManBehindBusiness
 
 "use client";
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import Image from "next/image";
 import tower1 from "../public/tower1.png"
 import tower2 from "../public/tower2.png"
 import person from "../public/anishsir.png"
 import circle from "../public/spinner.png"
 import { motion, useScroll, useTransform } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 
 const ManBehindBusiness = () => {
+  const containerRef = useRef(null);
+   const paragraphRef = useRef<HTMLParagraphElement>(null);
+  
   const { scrollYProgress } = useScroll({
-    offset: ["start end", "end start"],
+    target: containerRef,
+    offset: ["start start", "end end"],
   });
+  
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-30, 0]
+  );
+    useEffect(() => {
+    if (paragraphRef.current) {
+      // Split text into words
+      const text = paragraphRef.current.textContent || "";
+      const words = text.split(" ");
+      
+      // Clear original text and wrap each word in a span
+      paragraphRef.current.innerHTML = words
+        .map((word) => `<span class="word">${word}</span>`)
+        .join(" ");
 
-  // Clockwise rotation jab scroll down (0° to 720° for multiple rotations)
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
-  // const line1Opacity = useTransform(scrollYProgress, [0.2, 0.35], [0.3, 1]);
-  // const line2Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0.3, 1]);
-  // const line3Opacity = useTransform(scrollYProgress, [0.5, 0.65], [0.3, 1]);
+      // Animate each word
+      gsap.fromTo(
+        paragraphRef.current.querySelectorAll(".word"),
+        {
+          opacity: 0.1,
+        },
+        {
+          opacity: 1,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: paragraphRef.current,
+            start: "top 80%",
+            end: "bottom 60%",
+            scrub: 1,
+          },
+        }
+      );
+    }
 
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
+ 
   return (
-    <div className="relative w-full  h-screen bg-[#BA1D0B]/99 overflow-hidden ">
+    <div ref={containerRef} className="relative w-full h-screen bg-[#BA1D0B]/99 overflow-hidden"
+     >
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat  z-0"
+        style={{
+          backgroundImage: `url('/Wall-texture.png')`,
+           opacity: 0.3 // Apni image ka path yahan daalein
+        }}
+      />
       <Image
         src={person}
         alt="The Man"
-        className="absolute bottom-0 -left-20 z-10 pt-100px "
+        className="absolute bottom-0 -left-20 z-10 pt-100px"
         width={527}
         height={446}
       />
       <motion.div
-        style={{ 
-          rotate
+        style={{
+          rotate,
+          transformOrigin: "center center",
         }}
-        className="absolute -bottom-[130px] right-[300px] "
+        className="absolute -bottom-[130px] right-[350px]"
       >
         <Image src={circle} alt="circle" width={426} height={426} />
       </motion.div>
       <Image
         src={tower1}
         alt="Tower Left"
-        className="absolute  bottom-0 -left-20 opacity-[0.70] "
+        className="absolute bottom-0 -left-20 opacity-[0.70]"
         width={299}
         height={719}
       />
       <Image
         src={tower2}
         alt="Tower Right"
-        className="absolute bottom-0 -right-[107px]  opacity-[0.70] "
+        className="absolute bottom-0 -right-[107px] opacity-[0.70]"
         width={367}
         height={704}
       />
-      <div className="w-full h-[183px] text-center flex flex-col items-center gap-[15px] ">
-        <h2 className="text-[65px] font-clash-display font-medium text-white pt-[100px] ">
+      <div className="w-full h-[183px] text-center flex flex-col items-center gap-[15px]">
+        <h2 className="text-[52px] font-clash-display font-medium text-white pt-[100px]">
           The Man behind the Business
         </h2>
-        {/* <p className= "text-[25px] w-[1100px] h-[106px] font-clash-grotesk text-white/70 opacity-100 leading-[1.1] tracking-[-0.02em] font-medium">
-         A powerful belief: "The size of the fish doesn't matter; the pond it swims in matters the most." This is why he thrives in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.
-        </p> */}
-        <p className="text-[20px] w-[1000px] h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium">
-          <motion.span 
-            // style={{ opacity: line1Opacity }} 
-            className="text-white"
-          >
-           <span>A powerful belief: &quot;The size of the fish doesn&apos;t matter; the pond it swims in matters the most.&quot;</span>
-          </motion.span>
-          {" "}
-          <motion.span 
-            // style={{ opacity: line2Opacity }} 
-            className="text-white"
-          >
-            This is why he thrives in fast-paced, high-growth cities;
-          </motion.span>
-          {" "}
-          <motion.span 
-            // style={{ opacity: line3Opacity }} 
-            className="text-white"
-          >
-            environments that challenge him, push him, and align with his ambition to build something global.
-          </motion.span>
+        <p 
+           ref={paragraphRef}
+          className="text-[20px] text-[#FFFFFF]/70 w-[1000px] min-h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium"
+        >
+         Anish lives by  A powerful belief: &quot;The size of the fish doesn&apos;t matter; the pond it swims in matters the most.&quot;
+          This is why he thrives in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.
         </p>
       </div>
-
     </div>
   );
 }
 
-
-export default ManBehindBusiness
+export default ManBehindBusiness;
