@@ -1,4 +1,4 @@
-import { Geist, Krona_One, Nata_Sans } from "next/font/google";
+import { Geist, Krona_One, Nata_Sans, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 
 export const geistSans = Geist({
@@ -43,6 +43,11 @@ export const clashGrotesk = localFont({
 
 export const nataSans = Nata_Sans({
   variable: "--font-nata-sans",
-  subsets: ["latin" ],
+  subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
+
+export const raleway = Raleway({
+  subsets: ['latin'],
+  variable: '--font-raleway',
+});
