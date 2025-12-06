@@ -174,3 +174,8 @@ body {
 /*        FONT UTILITIES         */
 /* ----------------------------- */
 
+/* GIF Static - stops animation */
+.bg-gif-static {
+  animation: none !important;
+}
+
