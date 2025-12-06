@@ -1,4 +1,4 @@
-import { Geist, Krona_One } from "next/font/google";
+import { Geist, Krona_One, Nata_Sans } from "next/font/google";
 import localFont from "next/font/local";
 
 export const geistSans = Geist({
@@ -40,3 +40,9 @@ export const clashGrotesk = localFont({
   variable: "--font-clash-grotesk",
   display: "swap",
 });
+
+export const nataSans = Nata_Sans({
+  variable: "--font-nata-sans",
+  subsets: ["latin" ],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+})
