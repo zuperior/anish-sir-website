@@ -14,16 +14,16 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      {/* <HeroStats /> */}
-      {/* <ManBehindBusiness /> */}
+      <HeroStats />
+      <ManBehindBusiness />
       <RootedInValues />
-      {/* <HobbiesSection /> */}
-      {/* <SpiritualPractitioner /> */}
-      {/* <BeYourOwnBoss /> */}
-      {/* <LargestTradingFloor /> */}
-      {/* <BookLoverSection /> */}
-      {/* <SubscribeAndLearn /> */}
-      {/* <Footer /> */}
+      <HobbiesSection />
+      <SpiritualPractitioner />
+      <BeYourOwnBoss />
+      <LargestTradingFloor />
+      <BookLoverSection />
+      <SubscribeAndLearn />
+      <Footer />
     </main>
   );
 }
