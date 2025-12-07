@@ -179,3 +179,16 @@ body {
   animation: none !important;
 }
 
+
+
+.perspective {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
