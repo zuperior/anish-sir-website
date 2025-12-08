@@ -25,7 +25,7 @@ const HeroSection = () => {
 
       {/* Center Content */}
       <div className="flex items-center justify-center h-full w-full">
-        <div className="h-[260px] w-full  flex items-center justify-between px-[50px]">
+        <div className="h-[260px] w-full flex items-center justify-between px-[50px]">
           {/* Box 1 */}
           <div className="w-[500px] h-[260px] flex flex-col justify-start gap-[25px]">
             <motion.p
@@ -35,7 +35,7 @@ const HeroSection = () => {
                 duration: 0.8,
                 delay: 1.6, // ← Adjust if TextAnimate duration differs
               }}
-              className="text-[#FFC3BD] text-[22px] leading-[0.9em] pl-7 mt-2"
+              className="text-[#FFC3BD] text-[22px] leading-[0.9em] pl-[25px] font-nata-sans"
             >
               Investor, Educator & CEO
             </motion.p>
@@ -49,8 +49,8 @@ const HeroSection = () => {
           </div>
 
           {/* Box 2 */}
-          <div className="w-[300px] h-[166px] flex items-start justify-center -mt-10">
-            <motion.div className="flex flex-col gap-0 text-[30px] font-medium font-clash-display text-right">
+          <div className="flex items-start justify-center">
+            <motion.div className="flex flex-col gap-0 text-[32px] font-medium font-clash-display text-right">
               {links.map((link, index) => {
                 let delay = 0;
 
@@ -65,7 +65,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay }}
-                    className="text-[#ffffff]/25 hover:text-[#FFDAD6]/45 transition-colors duration-300"
+                    className="text-[#ffffff]/25 hover:text-[#FFDAD6]/45 transition-colors duration-300 -tracking-[0.04em] leading-[1.3em]"
                   >
                     {link}
                   </motion.a>

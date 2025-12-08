@@ -44,7 +44,7 @@ const RootedInValues = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px]  overflow-hidden">
+    <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px] overflow-hidden">
       {/* 🔽 Image overlays ON TOP of white bg */}
       <Image
         src="/noiseBG.png"
@@ -55,9 +55,9 @@ const RootedInValues = () => {
       {/* Overlay white */}
       <div className="absolute inset-0 bg-[#f5f3f0e6] z-0" />
 
-      <div className="flex flex-col gap-[15px] ">
+      <div className="flex-center flex-col gap-[15px] w-full">
         {/* 🔼 Text stays above image */}
-        <h2 className="font-clash-display w-full max-w-[1000px] mx-auto text-[52px] font-medium text-center relative z-10">
+        <h2 className="font-clash-display text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium text-center relative z-10">
           Rooted in Values, guided by Role Models
         </h2>
 
@@ -73,10 +73,10 @@ const RootedInValues = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-[984px] h-[500px] mx-auto grid grid-cols-3 gap-[10px] relative z-10 ">
-        <div className="w-full h-full">
+      <div className="w-full max-w-[984px] h-[500px] mx-auto flex items-stretch gap-2.5 relative z-10 ">
+        
           <motion.div
-            className="w-full h-full relative"
+            className="flex-1 h-full relative flex justify-end items-end"
             initial={{ x: -150, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
@@ -86,11 +86,10 @@ const RootedInValues = () => {
               alt=""
               height={213}
               width={322}
-              className="bottom-0 absolute"
             />
           </motion.div>
-        </div>
-        <div className="relative w-[375px] h-[500px] group perspective">
+        
+        <div className="relative w-[375px] h-[500px]! group perspective">
           <div className="absolute inset-0 preserve-3d">
             {/* Front Image */}
             <div className="absolute inset-0 backface-hidden transition-all duration-700 origin-bottom group-hover:rotate-x-180">
@@ -117,7 +116,7 @@ const RootedInValues = () => {
         </div>
 
         <motion.div
-          className="w-full h-full flex items-start relative"
+          className="flex-1 h-full flex items-start relative"
           initial={{ x: 150, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -127,7 +126,6 @@ const RootedInValues = () => {
             alt=""
             height={295}
             width={267}
-            className="top-0 right-0 absolute"
           />
         </motion.div>
       </div>
