@@ -1,7 +1,32 @@
 "use client";
 import Image from "next/image";
-import { TextAnimate } from "./ui/text-animate";
+
 import { motion } from "framer-motion";
+
+interface TextAnimateProps {
+  as?: React.ElementType;
+  animation: string;
+  className?: string;
+  children: React.ReactNode;
+}
+
+const TextAnimate = ({
+  as: Component = "div",
+  animation,
+  className,
+  children,
+}: TextAnimateProps) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const HeroSection = () => {
   const links = [
@@ -44,7 +69,7 @@ const HeroSection = () => {
               animation="blurInUp"
               className="text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona h-[216px]"
             >
-              ANISH SINGH THAKUR
+              ANISH SINGH THAKUR <span className="text-red-500">.</span>
             </TextAnimate>
           </div>
 

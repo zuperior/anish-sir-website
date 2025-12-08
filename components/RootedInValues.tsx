@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const bgGif =
+  "https://framerusercontent.com/images/AVsssNQRylEZc5orEWvz8Q1wQT4.gif";
+
 const RootedInValues = () => {
   const paraRef = useRef<HTMLParagraphElement>(null);
 
@@ -47,10 +50,10 @@ const RootedInValues = () => {
     <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px] overflow-hidden">
       {/* 🔽 Image overlays ON TOP of white bg */}
       <Image
-        src="/noiseBG.png"
+        src={bgGif}
         alt="bg"
         fill
-        className="object-cover absolute inset-0 opacity-[0.45] mix-blend-normal"
+        className="object-cover absolute inset-0 opacity-[0.25] bg-gif-static"
       />
       {/* Overlay white */}
       <div className="absolute inset-0 bg-[#f5f3f0e6] z-0" />
@@ -74,41 +77,41 @@ const RootedInValues = () => {
       </div>
 
       <div className="w-full max-w-[984px] h-[500px] mx-auto flex items-stretch gap-2.5 relative z-10 ">
-        
-          <motion.div
-            className="flex-1 h-full relative flex justify-end items-end"
-            initial={{ x: -150, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+        <motion.div
+          className="flex-1 h-full relative flex justify-end items-end"
+          initial={{ x: -150, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <Image src="/manWithMic.png" alt="" height={213} width={322} />
+        </motion.div>
+
+        <div className="relative w-[375px] h-[500px] perspective group">
+          {/* Card wrapper rotates */}
+          <div
+            className="
+      absolute inset-0 
+      preserve-3d 
+       card-flip card-flip-delayed
+      group-hover:rotate-x-180
+    "
           >
-            <Image
-              src="/manWithMic.png"
-              alt=""
-              height={213}
-              width={322}
-            />
-          </motion.div>
-        
-        <div className="relative w-[375px] h-[500px]! group perspective">
-          <div className="absolute inset-0 preserve-3d">
-            {/* Front Image */}
-            <div className="absolute inset-0 backface-hidden transition-all duration-700 origin-bottom group-hover:rotate-x-180">
+            {/* Front Side */}
+            <div className="absolute inset-0 backface-hidden">
               <Image
-                src="/airplane.png"
+                src="/airplane.jpg"
                 alt="front"
-                width={375}
-                height={500}
-                className="rounded-lg"
+                fill
+                className="rounded-lg object-cover"
               />
             </div>
 
-            {/* Back Image */}
-            <div className="absolute inset-0 rotate-x-180 backface-hidden transition-all duration-700 origin-bottom group-hover:rotate-x-0">
+            {/* Back Side */}
+            <div className="absolute inset-0 rotate-x-180 backface-hidden">
               <Image
-                src="/royalRoyce.png"
+                src="/royalRoyce.jpg"
                 alt="back"
-                width={375}
-                height={500}
+                fill
                 className="rounded-lg object-cover"
               />
             </div>
@@ -122,10 +125,11 @@ const RootedInValues = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <Image
-            src="/satguru.png"
+            src="/satguru.jpg"
             alt=""
             height={295}
             width={267}
+            className="rounded-lg"
           />
         </motion.div>
       </div>

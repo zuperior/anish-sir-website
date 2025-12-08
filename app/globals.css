@@ -181,9 +181,9 @@ body {
 }
 
 
-
+/* ---- 3D Flip Utilities ---- */
 .perspective {
-  perspective: 1200px;
+  perspective: 1000px;
 }
 
 .preserve-3d {
@@ -194,7 +194,21 @@ body {
   backface-visibility: hidden;
 }
 
-.flex-center{
+.rotate-x-180 {
+  transform: rotateX(180deg);
+}
+
+.card-flip {
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  /* smooth + slow */
+}
+
+.card-flip-delayed {
+  transition-delay: 0.15s;
+  /* optional, adds a tiny wait before flip */
+}
+
+.flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,6 +217,7 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   scrollbar-width: none;
 }
