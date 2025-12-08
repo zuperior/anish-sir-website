@@ -14,10 +14,12 @@ export default function LargestTradingFloor() {
   const leftCardRef = useRef<HTMLDivElement>(null);
   const centerCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
+  const leftImageRef = useRef<HTMLDivElement>(null);
+  const rightImageRef = useRef<HTMLDivElement>(null);
 
-  const leftImage = "/airplane.png";
-  const centerImage = "/card1.png";
-  const rightImage = "/Content.png";
+  const leftImage = "/card1.png";
+  const centerImage = "/center.png";
+  const rightImage = "/right.png";
 
   const text = `"Anish Singh Thakur is a globally respected trading educator and the visionary Founder & CEO of Booming Bulls, one of the world's largest and most impactful trading education ecosystems. Trusted by over 3 million learners globally, he has built a high-performance platform"`;
 
@@ -63,28 +65,58 @@ export default function LargestTradingFloor() {
       gsap.fromTo(
         leftCardRef.current,
         { width: "350px" },
-        { width: "600px", duration: 0.6, ease: "power2.inOut" }
+        { width: "575px", duration: 0.6, ease: "power2.inOut" }
       );
 
       gsap.fromTo(
         rightCardRef.current,
         { width: "350px" },
-        { width: "70px", duration: 0.6, ease: "power2.inOut" }
+        { width: "120px", duration: 0.6, ease: "power2.inOut" }
       );
+
+      // Animate right image border radius
+      if (rightImageRef.current) {
+        gsap.to(rightImageRef.current, {
+          borderTopRightRadius: "0px",
+          borderBottomRightRadius: "0px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
     } else if (viewState === "rightExpanded") {
       setViewState("default");
 
       gsap.fromTo(
         rightCardRef.current,
-        { width: "600px" },
+        { width: "575px" },
         { width: "350px", duration: 0.6, ease: "power2.inOut" }
       );
 
       gsap.fromTo(
         leftCardRef.current,
-        { width: "70px" },
+        { width: "120px" },
         { width: "350px", duration: 0.6, ease: "power2.inOut" }
       );
+
+      // Restore left image border radius
+      if (leftImageRef.current) {
+        gsap.to(leftImageRef.current, {
+          borderTopLeftRadius: "16px",
+          borderBottomLeftRadius: "16px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
+
+      // Restore right image border radius
+      if (rightImageRef.current) {
+        gsap.to(rightImageRef.current, {
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
     }
   };
 
@@ -97,35 +129,65 @@ export default function LargestTradingFloor() {
       gsap.fromTo(
         rightCardRef.current,
         { width: "350px" },
-        { width: "600px", duration: 0.6, ease: "power2.inOut" }
+        { width: "575px", duration: 0.6, ease: "power2.inOut" }
       );
 
       gsap.fromTo(
         leftCardRef.current,
         { width: "350px" },
-        { width: "70px", duration: 0.6, ease: "power2.inOut" }
+        { width: "120px", duration: 0.6, ease: "power2.inOut" }
       );
+
+      // Animate left image border radius
+      if (leftImageRef.current) {
+        gsap.to(leftImageRef.current, {
+          borderTopLeftRadius: "0px",
+          borderBottomLeftRadius: "0px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
     } else if (viewState === "leftExpanded") {
       setViewState("default");
 
       gsap.fromTo(
         leftCardRef.current,
-        { width: "600px" },
+        { width: "575px" },
         { width: "350px", duration: 0.6, ease: "power2.inOut" }
       );
 
       gsap.fromTo(
         rightCardRef.current,
-        { width: "70px" },
+        { width: "120px" },
         { width: "350px", duration: 0.6, ease: "power2.inOut" }
       );
+
+      // Restore left image border radius
+      if (leftImageRef.current) {
+        gsap.to(leftImageRef.current, {
+          borderTopLeftRadius: "16px",
+          borderBottomLeftRadius: "16px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
+
+      // Restore right image border radius
+      if (rightImageRef.current) {
+        gsap.to(rightImageRef.current, {
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
+          duration: 0.6,
+          ease: "power2.inOut"
+        });
+      }
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#151515] flex items-center justify-center p-4 sm:p-6 lg:p-2">
+    <div className="min-h-screen bg-[#151515] flex items-center justify-center p-4 md:p-4">
       <div className="max-w-7xl w-full">
-        <div className="text-center mb-6 sm:mb-8 px-2">
+        <div className="text-center mb-6 md:mb-2 px-2">
           <h1 className="text-2xl sm:text-3xl md:text-[52px] font-medium text-white my-2 px-2">
             Asia&apos;s Largest Trading Floor
           </h1>
@@ -189,18 +251,20 @@ export default function LargestTradingFloor() {
                 ref={leftCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <Image
-                  src={leftImage}
-                  alt="Left view"
-                  fill
-                  className="object-cover rounded-r-2xl"
-                />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-r-2xl pointer-events-none"></div>
+                <div ref={leftImageRef} className="w-full h-full rounded-2xl overflow-hidden relative">
+                  <Image
+                    src={leftImage}
+                    alt="Left view"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
               </div>
 
               <div
                 ref={centerCardRef}
-                className="w-[600px] h-[350px] shrink-0 relative group"
+                className="w-[575px] h-[350px] shrink-0 relative group"
               >
                 <Image
                   src={centerImage}
@@ -215,13 +279,15 @@ export default function LargestTradingFloor() {
                 ref={rightCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <Image
-                  src={rightImage}
-                  alt="Right view"
-                  fill
-                  className="object-cover rounded-l-2xl"
-                />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-l-2xl pointer-events-none"></div>
+                <div ref={rightImageRef} className="w-full h-full rounded-2xl overflow-hidden relative">
+                  <Image
+                    src={rightImage}
+                    alt="Right view"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
               </div>
             </div>
           </div>
@@ -264,7 +330,7 @@ export default function LargestTradingFloor() {
             <button
               onClick={nextSlide}
               disabled={viewState === "leftExpanded"}
-              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border  border-red-800
+              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border  
       flex items-center justify-center 
       transition-all duration-300
       ${

@@ -7,13 +7,13 @@ import Image from "next/image";
  
    const slides = [
      {
-       image: "/card1.png",
+       image: "/airplane.png",
        title: "FITNESS, DISCIPLINE& DAILY RITUALS",
        content:
          "A strong advocate of physical excellence, he never compromises on his workout. Whether he is in India or Dubai, travelling or teaching, fitness remains a non-negotiable foundation of his routine. He also writes daily journal entries, reflecting on his performance, thoughts, and goals. ",
      },
      {
-       image: "/card1.png",
+       image: "/Content.png",
        title: "A MINDSET BUILT FOR GROWTH",
        content:
          "Anish lives by a powerful belief: The size of the fish doesn't matter; the pond it swims in matters the most. This is why he chooses to live in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.",
@@ -25,7 +25,7 @@ import Image from "next/image";
          "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.  A movement that stands for:  • courage  • discipline  • mindset  • self-belief  • financial literacy  • personal transformation  His goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
      },
      {
-       image: "/card1.png",
+       image: "/spritiual1.png",
        title: "A LEADER WHO BUILDS LEADERS",
        content:
          "For Anish, success is not personal, it is collective. He believes deeply in training, upgrading, and empowering his team to stay aligned with global standards. He invests his time into mentoring his people, ensuring they grow in knowledge, mindset, and discipline, just like his students.",
@@ -44,7 +44,7 @@ import Image from "next/image";
                <div
                  key={i}
                  onMouseEnter={() => setActive(i)}
-                 className={`relative rounded-4xl overflow-hidden cursor-pointer transition-all duration-400`}
+                 className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-400`}
                  style={{
                    width: isActive ? "480px " : "240px",
                    height: "550px",
