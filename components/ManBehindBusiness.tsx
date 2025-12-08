@@ -69,7 +69,7 @@ const ManBehindBusiness = () => {
 
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-[#BA1D0B]/99 overflow-hidden"
+    <div ref={containerRef} className="relative w-full h-screen bg-[#BA1D0B] overflow-hidden"
     >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat  z-0"
@@ -101,7 +101,7 @@ const ManBehindBusiness = () => {
           rotate: smoothRotate,
           transformOrigin: "center center",
         }}
-        className="absolute -bottom-[130px] right-[350px]"
+        className="absolute -bottom-[130px] right-[124px]"
       >
         <Image src={circle} alt="circle" width={426} height={426} />
       </motion.div>
@@ -119,8 +119,8 @@ const ManBehindBusiness = () => {
         width={367}
         height={704}
       />
-      <div className="w-full h-[183px] text-center flex flex-col items-center gap-[15px]">
-        <h2 className="text-[52px] font-clash-display font-medium text-white pt-[100px]">
+      <div className="w-full h-[183px] text-center flex flex-col items-center gap-[15px] z-10 relative">
+        <h2 className="text-[52px] -tracking-[0.01em] font-clash-display font-medium text-white pt-[100px]">
           The Man behind the Business
         </h2>
         <p
