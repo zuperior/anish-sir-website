@@ -1,5 +1,5 @@
 import BeYourOwnBoss from "@/components/BeYourOwnBoss";
-import BookLoverSection from "@/components/BookLoverSection";
+import BookLoverSection from "@/components/BookLoverSection/index";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import HeroStats from "@/components/HeroStats";
