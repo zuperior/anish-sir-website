@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { clashDisplay, clashGrotesk, geistSans, kronaOne, nataSans, raleway } from "./_fonts";
+import { clashDisplay, clashGrotesk, delicious, geistSans, kronaOne, nataSans, raleway } from "./_fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${clashDisplay.className} ${geistSans.variable} ${kronaOne.variable} ${clashGrotesk.variable} ${clashDisplay.variable} ${nataSans.variable} ${raleway.variable}`}>
+    <html lang="en" className={`${clashDisplay.className} ${geistSans.variable} ${kronaOne.variable} ${clashGrotesk.variable} ${clashDisplay.variable} ${nataSans.variable} ${raleway.variable} ${delicious.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

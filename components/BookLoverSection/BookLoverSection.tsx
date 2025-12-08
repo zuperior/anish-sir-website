@@ -334,7 +334,7 @@ const BookLoverSection = () => {
   // IMAGE HELPERS (Unchanged)
   //-------------------------------------------
   const getBookImage = (id: number, type: string) =>
-    `/Books images/${id}-book-${type}.png`;
+    `/books/${id}-book-${type}.png`;
 
   const getBookSpacing = (bookId: number) => {
     const bookIndex = bookId - 1;
@@ -373,7 +373,7 @@ const BookLoverSection = () => {
       className="bg-[#151515] w-full flex justify-center items-center px-4"
       style={{
         position: "relative",
-        minHeight: "500px"
+        minHeight: "320px"
       }}
     >
   

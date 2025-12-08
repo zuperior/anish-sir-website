@@ -1,11 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Delicious_Handrawn } from "next/font/google";
 import Link from "next/link";
-const delicious = Delicious_Handrawn({
-  weight: "400",
-  subsets: ["latin"],
-});
+import Image from "next/image";
 
 const AmazonButton = () => {
   const [index, setIndex] = useState(0);
@@ -22,42 +18,49 @@ const AmazonButton = () => {
   }, [isHover]);
 
   const normalImages = [
-    "/Books images/buy-from-amazon-btn1.svg",
-    "/Books images/buy-from-amazon-btn2.svg",
+    "/books/buy-from-amazon-btn1.svg",
+    "/books/buy-from-amazon-btn2.svg",
   ];
 
   const hoverImages = [
-    "/Books images/buy-from-amazon-btn1-hover.svg",
-    "/Books images/buy-from-amazon-btn2-hover.svg",
+    "/books/buy-from-amazon-btn1-hover.svg",
+    "/books/buy-from-amazon-btn2-hover.svg",
   ];
 
   return (
-    <div
+    <Link
       className="relative w-[191px] h-[62px] cursor-pointer select-none flex items-center justify-center"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
+      href={"#"} // To Do: Add Amazon link
     >
       {!isHover && (
-        <img
+        <Image
+          width={191}
+          height={62}
           src={normalImages[index]}
-          className="absolute inset-0 w-[191px] h-[62px] object-contain"
+          className="absolute inset-0 object-contain"
+          alt=""
         />
       )}
 
       {isHover && (
-        <img
+        <Image
+          width={191}
+          height={62}
           src={hoverImages[index]}
-          className="absolute inset-0 w-[191px] h-[62px] object-contain"
+          className="absolute inset-0 object-contain"
+          alt=""
         />
       )}
 
       <button
         className={`absolute inset-0 flex items-center justify-center text-xl pointer-events-none transition-colors duration-150
-          ${isHover ? "text-black" : "text-white"} ${delicious.className}`}
+          ${isHover ? "text-black" : "text-white"} font-delicious`}
       >
         Buy From Amazon
       </button>
-    </div>
+    </Link>
   );
 };
 

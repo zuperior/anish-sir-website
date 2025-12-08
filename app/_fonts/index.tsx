@@ -1,4 +1,4 @@
-import { Geist, Krona_One, Nata_Sans, Raleway } from "next/font/google";
+import { Delicious_Handrawn, Geist, Krona_One, Nata_Sans, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 
 export const geistSans = Geist({
@@ -50,4 +50,10 @@ export const nataSans = Nata_Sans({
 export const raleway = Raleway({
   subsets: ['latin'],
   variable: '--font-raleway',
+});
+
+export const delicious = Delicious_Handrawn({
+  weight: "400",
+  variable: "--font-delicious",
+  subsets: ["latin"],
 });
