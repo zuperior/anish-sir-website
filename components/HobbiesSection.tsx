@@ -33,7 +33,7 @@ import Image from "next/image";
    ];
  
    return (
-     <div className="min-h-screen bg-black flex items-center justify-center p-7">
+     <div className="min-h-screen bg-[#151515] flex items-center justify-center p-7">
        <div className="w-full ">
          {/* SLIDER */}
          <div className="flex gap-4 items-center justify-center overflow-hidden">
@@ -75,19 +75,6 @@ import Image from "next/image";
              );
            })}
          </div>
- 
-         {/* DOTS
-         <div className="flex justify-center gap-2 mt-8">
-           {slides.map((_, i) => (
-             <button
-               key={i}
-               onMouseEnter={() => setActive(i)}
-               className={`h-2 rounded-full transition-all duration-400  ${
-                 i === active ? "w-22 bg-red-500" : "w-2 bg-white"
-               }`}
-             />
-           ))}
-         </div> */}
        </div>
      </div>
    );
