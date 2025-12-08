@@ -1,14 +1,11 @@
 'use client'
 
-// To Do: Add images to the boxes and style them better
-// To Do: Optimize GSAP animations
-// To Do: Set proper inital positions for images from framer
-// To Do: Figure out overflow issues with boxes
-
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import { footerImageConfig } from "@/utils/footerConfig";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,34 +16,26 @@ const Footer: React.FC = () => {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    boxesRef.current.forEach((box) => {
+    boxesRef.current.forEach((box, i) => {
       if (!box) return;
 
-      const initial = {
-        opacity: 0,
-        scale: 0.3 + Math.random() * 0.5,
-        rotationX: -30 + Math.random() * 60,
-        rotationY: -30 + Math.random() * 60,
-        rotationZ: -30 + Math.random() * 60,
-        x: -200 + Math.random() * 400,
-        y: -150 + Math.random() * 300,
-      };
+      const { initial, trigger } = footerImageConfig[i];
 
       gsap.fromTo(
         box,
-        { ...initial },
+        { ...initial, opacity: 0 },
         {
           opacity: 1,
+          x: 0,
+          y: 0,
           scale: 1,
           rotationX: 0,
           rotationY: 0,
           rotationZ: 0,
-          x: 0,
-          y: 0,
           scrollTrigger: {
-            trigger: sectionRef.current,      // trigger based on section
-            start: "top 50%",                 // start when section top hits 50% of viewport
-            end: "bottom 80%",                // end before section bottom leaves viewport
+            trigger,
+            start: "top center",
+            end: "bottom center",
             scrub: true,
           },
         }
@@ -55,19 +44,28 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#151515] w-full h-[3800px] relative">
-      <div className="sticky top-0 w-full h-screen flex flex-col justify-center items-center gap-2.5">
+    <section ref={sectionRef} className="bg-[#151515] w-full h-[320vh] relative">
+      <div className="sticky top-0 w-full h-screen flex flex-col justify-center items-center gap-2.5 z-0">
+        
         {/* Grid for 10 boxes */}
-        <div className="grid grid-cols-5 gap-x-2.5 gap-y-2.5 w-full overflow-hidden">
+        <div className="grid grid-cols-5 gap-x-5 gap-y-5 w-full overflow-hidden opacity-75">
           {Array.from({ length: 10 }).map((_, i) => (
             <div
               key={i}
               ref={(el: HTMLDivElement | null) => {
                 boxesRef.current[i] = el;
               }}
-              className="w-full aspect-square bg-gray-800 flex items-center justify-center text-white font-bold"
+              className="w-full aspect-square bg-gray-800 relative overflow-hidden"
             >
-              Box {i + 1}
+              <Image 
+                src={`/footer/${i + 1}.jpg`}
+                alt={`footer-img-${i + 1}`}
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "top center",
+                }}
+              />
             </div>
           ))}
         </div>
@@ -86,6 +84,13 @@ const Footer: React.FC = () => {
             Connect with Anish
           </Link>
         </div>
+      </div>
+
+      <div className="relative w-px" id="triggers">
+        <div className="h-screen" id="trigger1" />
+        <div className="h-screen absolute top-[350px]" id="trigger2" />
+        <div className="h-screen absolute top-[580px]" id="trigger3" />
+        <div className="h-screen absolute bottom-40" id="trigger4" />
       </div>
     </section>
   );
