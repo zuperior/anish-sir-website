@@ -7,7 +7,7 @@ import Image from "next/image";
  
    const slides = [
      {
-       image: "/airplane.png",
+       image: "/airplane.jpg",
        title: "FITNESS, DISCIPLINE& DAILY RITUALS",
        content:
          "A strong advocate of physical excellence, he never compromises on his workout. Whether he is in India or Dubai, travelling or teaching, fitness remains a non-negotiable foundation of his routine. He also writes daily journal entries, reflecting on his performance, thoughts, and goals. ",

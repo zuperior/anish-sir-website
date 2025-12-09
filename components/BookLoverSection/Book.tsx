@@ -14,7 +14,7 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const getBookImage = (id: number, type: string) =>
-    `/books/${id}-book-${type}.png`;
+    `/books/${id}-Book-${type}.png`;
 
   useEffect(() => {
     // Animation from closed to open state or vice versa

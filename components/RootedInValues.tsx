@@ -83,7 +83,7 @@ const RootedInValues = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <Image src="/manWithMic.png" alt="" height={213} width={322} />
+          <Image src="/manWithMic.png" alt="" height={213} width={322} className="rounded-lg" />
         </motion.div>
 
         <div className="relative w-[375px] h-[500px] perspective group">
