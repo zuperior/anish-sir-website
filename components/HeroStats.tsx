@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Tooltip } from "@/components/ui/tooltip-card";
-import { BoomingBullsTooltip } from "./ui/boomingbulls-tootltip";
+import { LinkPreview } from "@/components/ui/link-preview";
 import BlurText from "./ui/shadcn-io/blur-text";
 
 const bgGif =
@@ -83,12 +82,14 @@ const HeroStats: React.FC = () => {
              font-clash-display min-w-[1090px] text-center"
         >
           Anish Singh Thakur is a globally respected trading educator and the visionary Founder & CEO of{" "}
-          <Tooltip
-            content={<BoomingBullsTooltip />}
-            containerClassName="text-[#BB2215] font-normal px-3 text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer"
+          <LinkPreview
+            url="https://www.youtube.com/@BoomingBulls"
+            isStatic={true}
+            imageSrc="/Anish-Singh-Thakur-youtube.png"
+            className="text-[#BB2215] no-underline! font-normal px-3 text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
           >
-            <span>Booming Bulls</span>
-          </Tooltip>
+            Booming Bulls
+          </LinkPreview>
           one of the world’s largest and most impactful trading education ecosystems. Trusted by over 3 Million learners globally, he has built a high-performance platform
         </BlurText>
 
