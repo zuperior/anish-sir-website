@@ -73,7 +73,7 @@ const ManBehindBusiness = () => {
 
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-[#BA1D0B] overflow-hidden"
+    <div ref={containerRef} className="relative w-full h-screen bg-[#BA1D0B] overflow-hidden" id='projects'
     >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat  z-0"

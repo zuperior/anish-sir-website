@@ -47,7 +47,7 @@ const RootedInValues = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px] overflow-hidden">
+    <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px] overflow-hidden" id="personal">
       {/* 🔽 Image overlays ON TOP of white bg */}
       <Image
         src={bgGif}

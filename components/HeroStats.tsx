@@ -52,6 +52,7 @@ const HeroStats: React.FC = () => {
   return (
     <section
       aria-label="Hero with stats"
+      id="about"
       className="relative overflow-hidden min-h-[735px] flex items-center justify-center py-24 px-8"
     >
       {/* Background pattern */}

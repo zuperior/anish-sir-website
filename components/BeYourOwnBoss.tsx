@@ -20,7 +20,7 @@ const BeYourOwnBoss = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-black text-white">
+    <div className="flex h-screen bg-black text-white" id="beYourOwnBoss">
       <BeYourOwnBossSidebar
         activeSection={activeSection}
         setActiveSection={setActiveSection}

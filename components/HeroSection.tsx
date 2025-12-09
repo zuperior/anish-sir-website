@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-
 import { motion } from "framer-motion";
 
 interface TextAnimateProps {
@@ -30,24 +28,17 @@ const TextAnimate = ({
 
 const HeroSection = () => {
   const links = [
-    "About me",
-    "Personal",
-    "Projects",
-    "Be Your Own Boss",
-    "Resources",
+    {title:"About me", id:"about"},
+    {title:"Personal", id:"personal"},
+    {title:"Projects", id:"projects"},
+    {title:"Be Your Own Boss", id:"beYourOwnBoss"},
+    {title:"Resources", id:"resources"},
   ];
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {/* Background Image */}
-      <Image
-        alt="Hero Section Image"
-        src="/heroSection.png"
-        fill
-        priority
-        className="object-cover absolute top-0 left-0 -z-10"
-      />
-
+    <div
+      className="relative h-screen w-full overflow-hidden bg-[url('/heroSection.png')] bg-cover bg-top bg-no-repeat"
+    >
       {/* Center Content */}
       <div className="flex items-center justify-center h-full w-full">
         <div className="h-[260px] w-full flex items-center justify-between px-[50px]">
@@ -69,7 +60,7 @@ const HeroSection = () => {
               animation="blurInUp"
               className="text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona h-[216px]"
             >
-              ANISH SINGH THAKUR <span className="text-red-500">.</span>
+              ANISH SINGH THAKUR<span className="text-[#BB2215]">.</span>
             </TextAnimate>
           </div>
 
@@ -85,14 +76,14 @@ const HeroSection = () => {
 
                 return (
                   <motion.a
-                    key={link}
-                    href="#"
+                    key={link.title}
+                    href={`#${link.id}`}
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay }}
                     className="text-[#ffffff]/25 hover:text-[#FFDAD6]/45 transition-colors duration-300 -tracking-[0.04em] leading-[1.3em]"
                   >
-                    {link}
+                    {link.title}
                   </motion.a>
                 );
               })}

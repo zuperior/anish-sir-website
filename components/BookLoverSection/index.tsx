@@ -130,7 +130,7 @@ const Index = () => {
   }, []);;
 
   return (
-    <section className="bg-[#151515] relative w-full">
+    <section className="bg-[#151515] relative w-full" id="resources">
       {/* Sticky Div */}
       <div className="w-full sticky top-0 flex-center flex-col gap-[70px] py-20">
         <div className="w-full flex flex-col items-center gap-2.5">
@@ -163,12 +163,12 @@ const Index = () => {
       </div>
 
       {/* Trigger Sections */}
-      <div ref={trigger1Ref} className="h-[400px]" id="bookTrigger1" />
-      <div ref={trigger2Ref} className="h-[400px]" id="bookTrigger2" />
-      <div ref={trigger3Ref} className="h-[400px]" id="bookTrigger3" />
-      <div ref={trigger4Ref} className="h-[400px]" id="bookTrigger4" />
-      <div ref={trigger5Ref} className="h-[400px]" id="bookTrigger5" />
-      <div ref={trigger6Ref} className="h-[400px]" id="bookTrigger6" />
+      <div ref={trigger1Ref} className="h-[80vh]" id="bookTrigger1" />
+      <div ref={trigger2Ref} className="h-[80vh]" id="bookTrigger2" />
+      <div ref={trigger3Ref} className="h-[80vh]" id="bookTrigger3" />
+      <div ref={trigger4Ref} className="h-[80vh]" id="bookTrigger4" />
+      <div ref={trigger5Ref} className="h-[80vh]" id="bookTrigger5" />
+      <div ref={trigger6Ref} className="h-[80vh]" id="bookTrigger6" />
     </section>
   );
 };
