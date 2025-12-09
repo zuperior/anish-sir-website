@@ -77,20 +77,28 @@ const HeroStats: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-6xl text-center text-black px-8 py-12">
-        <BlurText stepDuration={0.25} delay={50} easing={(t) => t} className="mx-auto text-[1.9rem] sm:text-2xl md:text-3xl lg:text-4xl 
+        <BlurText
+          stepDuration={0.25}
+          delay={50}
+          easing={(t) => t}
+          preserveSegments={["Booming Bulls"]}
+          className="mx-auto text-[1.9rem] sm:text-2xl md:text-3xl lg:text-4xl 
              leading-[1.2em] tracking-[-0.04em] font-medium mb-7 
              font-clash-display min-w-[1090px] text-center"
         >
-          Anish Singh Thakur is a globally respected trading educator and the visionary Founder & CEO of{" "}
+          Anish Singh Thakur is a globally respected trading educator and the
+          visionary Founder & CEO of{" "}
           <LinkPreview
             url="https://www.youtube.com/@BoomingBulls"
             isStatic={true}
             imageSrc="/Anish-Singh-Thakur-youtube.png"
-            className="text-[#BB2215] no-underline! font-normal px-3 text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
+            className="text-[#BB2215] no-underline! font-normal px-2 text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
           >
             Booming Bulls
           </LinkPreview>
-          one of the world’s largest and most impactful trading education ecosystems. Trusted by over 3 Million learners globally, he has built a high-performance platform
+          one of the world’s largest and most impactful trading education
+          ecosystems. Trusted by over 3 Million learners globally, he has built
+          a high-performance platform
         </BlurText>
 
         <div className="flex items-center justify-between gap-8 px-4 py-13 font-clash-display">

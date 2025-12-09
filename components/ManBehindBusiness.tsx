@@ -105,7 +105,7 @@ const ManBehindBusiness = () => {
           rotate: smoothRotate,
           transformOrigin: "center center",
         }}
-        className="absolute -bottom-[130px] right-[124px]"
+        className="absolute -bottom-[130px] right-[300px]"
       >
         <Image src={circle} alt="circle" width={426} height={426} />
       </motion.div>

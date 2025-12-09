@@ -80,7 +80,7 @@ export default function LargestTradingFloor() {
           borderTopRightRadius: "0px",
           borderBottomRightRadius: "0px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
     } else if (viewState === "rightExpanded") {
@@ -104,7 +104,7 @@ export default function LargestTradingFloor() {
           borderTopLeftRadius: "16px",
           borderBottomLeftRadius: "16px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
 
@@ -114,7 +114,7 @@ export default function LargestTradingFloor() {
           borderTopRightRadius: "16px",
           borderBottomRightRadius: "16px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
     }
@@ -144,7 +144,7 @@ export default function LargestTradingFloor() {
           borderTopLeftRadius: "0px",
           borderBottomLeftRadius: "0px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
     } else if (viewState === "leftExpanded") {
@@ -168,7 +168,7 @@ export default function LargestTradingFloor() {
           borderTopLeftRadius: "16px",
           borderBottomLeftRadius: "16px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
 
@@ -178,7 +178,7 @@ export default function LargestTradingFloor() {
           borderTopRightRadius: "16px",
           borderBottomRightRadius: "16px",
           duration: 0.6,
-          ease: "power2.inOut"
+          ease: "power2.inOut",
         });
       }
     }
@@ -251,7 +251,10 @@ export default function LargestTradingFloor() {
                 ref={leftCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <div ref={leftImageRef} className="w-full h-full rounded-2xl overflow-hidden relative">
+                <div
+                  ref={leftImageRef}
+                  className="w-full h-full rounded-2xl overflow-hidden relative"
+                >
                   <Image
                     src={leftImage}
                     alt="Left view"
@@ -279,7 +282,10 @@ export default function LargestTradingFloor() {
                 ref={rightCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <div ref={rightImageRef} className="w-full h-full rounded-2xl overflow-hidden relative">
+                <div
+                  ref={rightImageRef}
+                  className="w-full h-full rounded-2xl overflow-hidden relative"
+                >
                   <Image
                     src={rightImage}
                     alt="Right view"
@@ -294,70 +300,44 @@ export default function LargestTradingFloor() {
           {/* nav buttons */}
           <div className="flex items-center justify-center gap-4 sm:gap-6">
             {/* LEFT BUTTON */}
-            <button
-              onClick={prevSlide}
-              disabled={viewState === "rightExpanded"}
-              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border 
-      flex items-center justify-center 
-      transition-all duration-300 
-      ${
-        viewState === "rightExpanded"
-          ? " text-white/90 cursor-not-allowed opacity-50"
-          : " text-white  hover:text-white/30 "
-      }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 48 48"
-                width="48"
-                height="48"
-                className="w-8 h-8 sm:w-12 sm:h-12"
-              >
-                <g
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                >
-                  <line x1="30" y1="24" x2="14" y2="24" />
-                  <polyline points="20,18 14,24 20,30" />
-                </g>
-              </svg>
-            </button>
+            <Image
+              src="/leftArrow.png"
+              alt="Prev Slide"
+              width={50}
+              height={50}
+              onClick={viewState === "rightExpanded" ? undefined : prevSlide}
+              className={`
+    w-12 h-12 sm:w-14 sm:h-14 object-contain
+    transition-all duration-300
+    ${
+      viewState === "rightExpanded"
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:opacity-50 cursor-pointer"
+    }
+  `}
+            />
 
             {/* RIGHT BUTTON */}
-            <button
-              onClick={nextSlide}
-              disabled={viewState === "leftExpanded"}
-              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border  
+            <Image
+              src="/rightArrow.png"
+              alt="Next Slide"
+              width={50}
+              height={50}
+              onClick={viewState === "leftExpanded" ? undefined : nextSlide}
+              className={`
+      w-12 h-12 sm:w-14 sm:h-14 rounded-full border  
       flex items-center justify-center 
       transition-all duration-300
       ${
         viewState === "leftExpanded"
-          ? " text-white/90 cursor-not-allowed opacity-50"
-          : " text-white  hover:text-white/30"
-      }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 48 48"
-                width="48"
-                height="48"
-                className="w-8 h-8 sm:w-12 sm:h-12"
-              >
-                <g
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                >
-                  <line x1="14" y1="24" x2="30" y2="24" />
-                  <polyline points="24,18 30,24 24,30" />
-                </g>
-              </svg>
-            </button>
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:opacity-70 cursor-pointer"
+      }
+  `}
+              style={{
+                pointerEvents: viewState === "leftExpanded" ? "none" : "auto",
+              }}
+            />
           </div>
         </div>
       </div>

@@ -20,17 +20,17 @@ const SubscribeAndLearn = () => {
     });
 
   return (
-    <section className="h-screen min-h-[800px] text-white w-full flex flex-col gap-12.5 relative items-center justify-center bg-[#151515] px-12.5">
+    <section className="h-screen w-full flex flex-col gap-12.5 relative items-center justify-center bg-[#151515] px-12.5">
       {/* header */}
       <div className="flex-center flex-col gap-[15px]">
         <div className="flex-center gap-5">
           <div className="h-px w-[60px] bg-white/40" />
-          <h1 className="text-xl -tracking-[0.01em] leading-[0.8em]">
+          <h1 className="text-xl text-white -tracking-[0.01em] leading-[0.8em]">
             Podcasts
           </h1>
           <div className="h-px w-[60px] bg-white/40" />
         </div>
-        <h2 className="text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium">
+        <h2 className="text-[52px] -tracking-[0.01em] leading-[1.2em] text-white font-medium">
           Subscribe & Learn
         </h2>
       </div>
@@ -50,31 +50,30 @@ const SubscribeAndLearn = () => {
         <div className="flex items-center justify-between">
           <Link
             href="https://www.youtube.com/@BoomingBulls/"
-            className="flex-center gap-2.5 text-base -tracking-[0.03em] leading-[0.9em]"
+            className="flex-center gap-2.5 text-base -tracking-[0.03em] leading-[0.9em] text-white"
           >
             Subscribe Youtube
             <ArrowUpRight size={14} color="#BB2215" />
           </Link>
 
           <div className="flex-center gap-2.5">
-            <button
+            
+            <Image
+              src="/leftArrow.png"
+              alt="Next Slide"
+              height={50}
+              width={50}
               onClick={() => scroll("left")}
-              className="w-[50px] h-[50px] rounded-full flex-center border border-[#525252] hover:border-[#BFBFBF]/50 group"
-            >
-              <ArrowLeft
-                size={16}
-                className="group-hover:text-[#BFBFBF] text-[#525252]"
-              />
-            </button>
-            <button
+              className=" w-[50px] h-[50px] cursor-pointer"
+            />
+            <Image
+              src="/rightArrow.png"
+              alt="Next Slide"
+              height={50}
+              width={50}
               onClick={() => scroll("right")}
-              className="w-[50px] h-[50px] rounded-full flex-center border border-[#525252] hover:border-[#BFBFBF]/50 group"
-            >
-              <ArrowRight
-                size={16}
-                className="group-hover:text-[#BFBFBF] text-[#525252]"
-              />
-            </button>
+              className=" w-[50px] h-[50px]  cursor-pointer"
+            />
           </div>
         </div>
       </div>
@@ -83,7 +82,7 @@ const SubscribeAndLearn = () => {
 };
 
 const PlayCutout = () => (
-  <svg width="58" height="58" viewBox="0 0 58 58">
+  <svg width="48" height="48" viewBox="0 0 58 58">
     <defs>
       <mask id="playCutout">
         <circle cx="29" cy="29" r="29" fill="white" />

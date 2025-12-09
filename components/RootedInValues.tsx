@@ -33,7 +33,7 @@ const RootedInValues = () => {
       wordSpans,
       { color: "rgba(0,0,0,0.2)" },
       {
-        color: "rgba(0,0,0,0.7)",
+        color: "rgba(0,0,0,1)",
         stagger: 0.07,
         ease: "none",
         scrollTrigger: {
