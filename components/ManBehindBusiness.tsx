@@ -30,40 +30,44 @@ const ManBehindBusiness = () => {
     damping: 30,
     restDelta: 0.001
   });
+
+
+
   useEffect(() => {
-    if (paragraphRef.current) {
-      // Split text into words
-      const text = paragraphRef.current.textContent || "";
-      const words = text.split(" ");
+    if (!paragraphRef.current) return;
 
-      // Clear original text and wrap each word in a span
-      paragraphRef.current.innerHTML = words
-        .map((word) => `<span class="word">${word}</span>`)
-        .join(" ");
+    const paragraph = paragraphRef.current;
 
-      // Animate each word
+    // Wrap words only if not already wrapped
+    if (!paragraph.querySelector(".word")) {
+      const words = paragraph.textContent?.split(" ") || [];
+      paragraph.innerHTML = words
+        .map(word => `<span class="word">${word} </span>`)
+        .join("");
+    }
+
+    // Wait for DOM to update
+    requestAnimationFrame(() => {
+      const wordSpans = paragraph.querySelectorAll(".word");
       gsap.fromTo(
-        paragraphRef.current.querySelectorAll(".word"),
-        {
-          opacity: 0.1,
-        },
+        wordSpans,
+        { opacity: 0.1 },
         {
           opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
-            trigger: paragraphRef.current,
-            start: "top 70%",
-            end: "bottom 50%",
+            trigger: paragraph,
+            start: "top 80%",
+            end: "bottom 60%",
             scrub: 0.2,
-            toggleActions: "Play Play Reverse Reverse",
-
+            toggleActions: "play play reverse reverse", // lowercase
           },
         }
       );
-    }
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 

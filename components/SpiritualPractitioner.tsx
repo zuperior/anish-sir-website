@@ -12,42 +12,44 @@ gsap.registerPlugin(ScrollTrigger);
 function SpiritualPractitioner() {
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
+
   useEffect(() => {
-    if (paragraphRef.current) {
-      // Split text into words
-      const text = paragraphRef.current.textContent || "";
-      const words = text.split(" ");
+    if (!paragraphRef.current) return;
 
-      // Clear original text and wrap each word in a span
-      paragraphRef.current.innerHTML = words
-        .map((word) => `<span class="word">${word}</span>`)
-        .join(" ");
+    const paragraph = paragraphRef.current;
 
-      // Animate each word
+    // Wrap words only if not already wrapped
+    if (!paragraph.querySelector(".word")) {
+      const words = paragraph.textContent?.split(" ") || [];
+      paragraph.innerHTML = words
+        .map(word => `<span class="word">${word} </span>`)
+        .join("");
+    }
+
+    // Wait for DOM to update
+    requestAnimationFrame(() => {
+      const wordSpans = paragraph.querySelectorAll(".word");
       gsap.fromTo(
-        paragraphRef.current.querySelectorAll(".word"),
-        {
-          opacity: 0.1,
-        },
+        wordSpans,
+        { opacity: 0.1 },
         {
           opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
-            trigger: paragraphRef.current,
+            trigger: paragraph,
             start: "top 80%",
             end: "bottom 60%",
             scrub: 0.2,
-            toggleActions:"Play Play Reverse Reverse",
+            toggleActions: "play play reverse reverse", // lowercase
           },
         }
       );
-    }
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
-
   return (
     <div className=" relative h-[750px] bg-[#F2EFE9]/90 flex items-center justify-center text-black">
 
@@ -60,7 +62,7 @@ function SpiritualPractitioner() {
           backgroundRepeat: 'no-repeat'
         }}
       />
-     <div
+      <div
         className="absolute inset-0  bg-[#F2EFE9]/90"></div>
       <div className=" flex sticky top-0 z-1 w-full max-w-[1350px]  
             flex-none flex-row justify-center items-center 
@@ -89,7 +91,7 @@ function SpiritualPractitioner() {
           <div className="flex flex-row flex-none justify-end items-center self-stretch gap-[10px] w-min min-w-[267px] h-auto p-0 relative overflow-visible">
             <motion.div className="absolute bottom-[-25px] left-[5px] right-[-38px] h-[330px] z-2 rounded-[10px] flex-none bg-gray-200"
               initial={{ x: -200, opacity: 0 }}
-               whileInView={{ x: 0, opacity: 1 }}
+              whileInView={{ x: 0, opacity: 1 }}
               transition={{
                 duration: 0.8,
                 ease: "easeOut",
@@ -110,13 +112,13 @@ function SpiritualPractitioner() {
             <div className="flex flex-row flex-none justify-center items-center gap-0 w-min h-min p-0 relative overflow-visible">
               <motion.div className="flex flex-row flex-none justify-center items-center gap-[10px] w-[400px] h-[550px] p-0 relative overflow-visible z-[1]"
                 initial={{ x: 400, opacity: 0 }}
-               whileInView={{ x: 0, opacity: 1 }}
+                whileInView={{ x: 0, opacity: 1 }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
                   delay: 0.4
                 }}
-                 viewport={{ once: true }}
+                viewport={{ once: true }}
               >
                 <div className="h-full relative rounded-2xl flex-[1_0_0] w-1px">
                   <div className="absolute inset-0">
@@ -139,3 +141,6 @@ function SpiritualPractitioner() {
   );
 }
 export default SpiritualPractitioner;
+
+
+

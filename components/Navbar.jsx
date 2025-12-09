@@ -45,7 +45,7 @@ const Navbar = () => {
                 alt="Menu"
                 width={20}
                 height={14}
-                className="group-hover:brightness-0 group-hover:invert transition-all duration-300"
+                className="transition-all duration-300 group-hover:invert group-hover:brightness-0"
               />
             </div>
 
