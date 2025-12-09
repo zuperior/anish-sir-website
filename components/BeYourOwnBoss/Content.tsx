@@ -118,17 +118,17 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
             website: "www.boomingbulls.com"
         },
         "market-genius": {
-            icon: "/icons/market-genius-logo.png",
+            icon: "/icons/market-genius.png",
             title: "Market Genius",
-            logo: "/icons/market-genius-logo.png",
+            logo: "/icons/market-genius.png",
             description: "Market Genius is the trading-market updates hub of the Booming Bulls ecosystem, delivering timely, data-backed alerts, market analysis, and trade",
             fullDescription: "Market Genius is the trading-market updates hub of the Booming Bulls ecosystem, delivering timely, data-backed alerts, market analysis, and trade setup notifications to help traders stay informed and act with clarity.",
             website: "www.marketgenius.com"
         },
         "traders-cafe": {
-            icon: "/icons/Traders-cafe-logo.png",
+            icon: "/icons/traders-cafe.png",
             title: "Trader's Cafe",
-            logo: "/icons/Traders-cafe-logo.png",
+            logo: "/icons/traders-cafe.png",
             description: "Trader's Café is a vibrant concept brought to life under the vision of Anish Sir and the Booming Bulls ecosystem. It is India's first trading-themed café.",
             fullDescription: "Trader's Café is a vibrant concept brought to life under the vision of Anish Sir and the Booming Bulls ecosystem. It is India's first trading-themed café where market learners and professionals come together to experience trading, discussions, and collaboration in a creative, community-driven space.",
             website: "https://www.instagram.com/thetraderscafe__"
