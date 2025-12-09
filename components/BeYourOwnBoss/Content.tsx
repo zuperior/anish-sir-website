@@ -310,10 +310,10 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
                                         style={cardGradient}
                                     >
                                         <div className="flex items-start gap-3 mb-4">
-                                            <div className="relative w-10 h-10 shrink-0">
+                                            <div className="relative w-13 h-14 shrink-0">
                                                 <Image src={data.logo} alt={title} fill className="object-contain w-11 h-[55px]" />
                                             </div>
-                                            <h5 className="font-medium text-white/80 text-[19px] leading-[1.2em] font-clash-display tracking-[-0.02em]">
+                                            <h5 className="font-medium text-white/80 text-[19px] leading-[1.2em] font-clash-display tracking-[-0.02em] pt-5">
                                                 {title}
                                             </h5>
                                         </div>
@@ -377,11 +377,11 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
             >
                 <div className="flex items-start gap-1 mb-2">
                     {IconComponent ? <IconComponent /> : icon}
-                    <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] flex-1">
+                    <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] pt-[5px] flex-1 text-white/80">
                         {title} <span className="text-white/60">↗</span>
                     </span>
                 </div>
-                <p className="text-white/70 text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] max-w-[300px]">
+                <p className="text-white/65 font-normal text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] max-w-[300px]">
                     {text}
                 </p>
             </div>
@@ -462,7 +462,7 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         };
 
         return (
-            <div className="flex-1 bg-black pt-[65px] pb-16 px-4 lg:px-6 overflow-y-hidden">
+            <div className="flex-1 bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar">
                 <div className="max-w-5xl xl:max-w-6xl mx-auto">
                     <FullView cardId={cardMap[activeSection]} activeSection={activeSection} />
                 </div>
@@ -477,12 +477,12 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
             </h2>
 
             {activeSection === "OVERVIEW" && (
-                <div className="absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-50">
+                <div className="absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-20">
                     <Image src="/anish-sir-beyourownboss.png" alt="Anish Sir" fill className="object-cover object-right opacity-100 brightness-110 translate-x-4" priority />
                 </div>
             )}
 
-            <div className="pt-0 px-8 relative z-10">
+            <div className="pt-0 px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar">
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5">
                         <section>

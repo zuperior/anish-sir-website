@@ -15,35 +15,43 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
     menuItems,
 }) => {
     return (
-        <div className="relative w-80 bg-[#8A1A0E] p-8 pl-[34px] pt-[50px] flex flex-col justify-start max-w-[300px] overflow-hidden">
+        <div
+            className="
+        relative
+        w-[260px] md:w-[280px] lg:w-80
+        bg-[#8A1A0E]
+        p-6 md:p-7 lg:p-8 pl-[34px] pt-10 md:pt-[50px]
+        flex flex-col
+        max-w-[300px]
+        overflow-y-auto
+        overflow-x-hidden
+        no-scrollbar
+      "
+        >
             {/* Background Texture Layer */}
             <div
                 className="absolute inset-0 bg-cover bg-center opacity-80 pointer-events-none mix-blend-screen"
-                style={{
-                    backgroundImage: "url('/Photo-wall-texture.png')",
-                }}
-            ></div>
+                style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}
+            />
 
-            {/* Top Section */}
-            <div className="relative z-10">
+            {/* Top + Menu wrapper (flex-grow) */}
+            <div className="relative z-10 flex flex-col grow">
                 {/* Projects Title */}
-                <h1 className="text-4xl font-normal leading-[1.3em] tracking-[-0.08em] mb-12 text-white/70 font-krona">
+                <h1 className="text-3xl md:text-4xl font-normal leading-[1.3em] tracking-[-0.08em] mb-8 md:mb-10 text-white/70 font-krona pt-4">
                     Projects.
                 </h1>
 
-                {/* Menu Items */}
-                <nav className="pt-10">
+                <nav className="grow pt-12">
                     {menuItems.map((item, index) => {
                         const isActive = activeSection === item;
 
                         return (
                             <div key={item} className="w-full">
-                                {/* Menu Item */}
                                 <div
                                     onClick={() => setActiveSection(item)}
                                     className={`
                     group flex items-center justify-between cursor-pointer 
-                    text-[18px] leading-[1.4em] tracking-[-0.02em] font-semibold font-clash-display 
+                    text-[16px] md:text-[18px] leading-[1.4em] tracking-[-0.02em] font-semibold font-clash-display 
                     py-1.5 transition-all
                     ${isActive
                                             ? "text-white"
@@ -53,7 +61,6 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                                 >
                                     <span>{item}</span>
 
-                                    {/* Arrow */}
                                     {isActive ? (
                                         <ArrowRight className="w-4 h-4 -rotate-45 text-white transition-all duration-300" />
                                     ) : (
@@ -69,9 +76,8 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                                     )}
                                 </div>
 
-                                {/* Separator Line – NOT after last item */}
                                 {index !== menuItems.length - 1 && (
-                                    <div className="w-full h-px bg-[#F2EFE9]/75 group-hover:bg-white/30 transition opacity-30"></div>
+                                    <div className="w-full h-px bg-[#F2EFE9]/75 group-hover:bg-white/30 transition opacity-30" />
                                 )}
                             </div>
                         );
@@ -80,8 +86,8 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
             </div>
 
             {/* Bottom Section */}
-            <div className="space-y-6 mt-[94px]">
-                {/* Social Icons */}
+            <div className="relative z-10 space-y-6 mt-8 md:mt-6">
+                {/* Social Icons (pl-6 unchanged) */}
                 <div className="flex gap-6 pl-6">
                     <a
                         href="https://www.instagram.com/anishsinghthakur"
@@ -168,7 +174,6 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                     </a>
                 </div>
 
-                {/* Connect Button */}
                 <button className="w-full bg-white text-black font-medium py-4 rounded-full hover:bg-gray-100 transition font-clash-grotesk text-[18px] leading-[0.9em] tracking-[-0.03em]">
                     Connect with Anish
                 </button>
