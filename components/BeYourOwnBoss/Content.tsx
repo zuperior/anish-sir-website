@@ -397,13 +397,13 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         },
         {
             id: "market-genius",
-            icon: <Image src="/market-genius.png" width={25} height={32} alt="Market Genius" className="inline-block mr-2 mb-1" />,
+            icon: <Image src="/icons/market-genius.png" width={25} height={32} alt="Market Genius" className="inline-block mr-2 mb-1" />,
             title: "Market Genius",
             text: "Market Genius is the trading-market updates hub of the Booming Bulls ecosystem, delivering timely, data-backed alerts, market analysis, and trade"
         },
         {
             id: "traders-cafe",
-            icon: <Image src="/icons/traders-cafe-logo.png" width={32} height={32} alt="Trader's Cafe" className="inline-block mr-2 mb-1" />,
+            icon: <Image src="/icons/traders-cafe.png" width={32} height={32} alt="Trader's Cafe" className="inline-block mr-2 mb-1" />,
             title: "Trader's Cafe",
             text: "Trader's Café is a vibrant concept brought to life under the vision of Anish Sir and the Booming Bulls ecosystem. It is India's first trading-themed"
         }
