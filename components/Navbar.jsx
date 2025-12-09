@@ -33,7 +33,7 @@ const Navbar = () => {
               }
             > */}
             <div
-              className={`absolute top-0 right-0 bg-white hover:bg-[#BB2215] rounded-full h-[44px] w-[44px] flex justify-center items-center cursor-pointer transition-transform duration-300 ${
+              className={`group absolute top-0 right-0 bg-white hover:bg-[#BB2215] rounded-full h-[44px] w-[44px] flex justify-center items-center cursor-pointer transition-transform duration-300 ${
                 isMenuOpen
                   ? "-translate-x-[300px] translate-y-[30px]"
                   : "translate-x-0 translate-y-0"
@@ -81,36 +81,36 @@ const Navbar = () => {
                   >
                     About ME
                   </Link>
-                  <a
+                  <Link
                     href="#"
                     className=" relative   text-[#FFFFFF]/25 w-[120px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Projects
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className=" relative   text-[#FFFFFF]/25 w-[127px] [41px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Personal
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className=" relative  text-[#FFFFFF]/25  w-[262px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Be Your Own Boss
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className=" relative   text-[#FFFFFF]/25 w-[157px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Resources
-                  </a>
+                  </Link>
                 </div>
                 <div className="relative w-full flex flex-col h-[91px] gap-[25px]">
                   <div className="w-[191px] p-0  justify-center items-center  self-center flex flex-row h-[20px] gap-[25px]">
                     <a
                       href="#"
-                      className="transition-all duration-200 hover:invert hover:brightness-0"
+                      className="opacity-65 transition-all duration-300 hover:opacity-100"
                     >
                       <Image
                         src={InstagramIcon}
@@ -121,7 +121,7 @@ const Navbar = () => {
                     </a>
                     <a
                       href="#"
-                      className="transition-all duration-200 hover:invert hover:brightness-0"
+                      className="opacity-65 transition-all duration-300 hover:opacity-100"
                     >
                       <Image
                         src={FacebookIcon}
@@ -132,7 +132,7 @@ const Navbar = () => {
                     </a>
                     <a
                       href="#"
-                      className="transition-all duration-200 hover:invert hover:brightness-0"
+                      className="opacity-65 transition-all duration-300 hover:opacity-100"
                     >
                       <Image
                         src={TelegramIcon}
@@ -143,7 +143,7 @@ const Navbar = () => {
                     </a>
                     <a
                       href="#"
-                      className="transition-all duration-200 hover:invert hover:brightness-0"
+                      className="opacity-65 transition-all duration-300 hover:opacity-100"
                     >
                       <Image
                         src={TwitterIcon}
@@ -154,7 +154,7 @@ const Navbar = () => {
                     </a>
                     <a
                       href="#"
-                      className="transition-all duration-200 hover:invert hover:brightness-0"
+                      className="opacity-65 transition-all duration-300 hover:opacity-100"
                     >
                       <Image
                         src={YoutubeIcon}
