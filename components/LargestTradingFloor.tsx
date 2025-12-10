@@ -17,9 +17,9 @@ export default function LargestTradingFloor() {
   const leftImageRef = useRef<HTMLDivElement>(null);
   const rightImageRef = useRef<HTMLDivElement>(null);
 
-  const leftImage = "/card1.png";
+  const leftImage = "/left.jpg";
   const centerImage = "/center.png";
-  const rightImage = "/right.png";
+  const rightImage = "/right.jpg";
 
   const text = `"Anish Singh Thakur is a globally respected trading educator and the visionary Founder & CEO of Booming Bulls, one of the world's largest and most impactful trading education ecosystems. Trusted by over 3 million learners globally, he has built a high-performance platform"`;
 
