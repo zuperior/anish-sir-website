@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import { LenisWrapper } from "../components/LenisWrapper";
 
 export const metadata: Metadata = {
-  title: "Passion. Purpose. Progress.",
+  title: "Anish Singh Thakur",
   description: "Explore the professional work and journey of Anish Singh Thakur."
 };
 
