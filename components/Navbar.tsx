@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 import Group from "../public/Group.svg";
 import Link from "next/link";
@@ -13,17 +15,30 @@ import YoutubeIcon from "../public/Youtube.svg";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isInBeYourOwnBoss, setIsInBeYourOwnBoss] = useState(false);
+  const router = useRouter();
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    if (window.lenis) {
-      window.lenis.scrollTo(href);
-    }
+  const handleNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+
+  const hash = href; // like "#about"
+
+  // If already on homepage —
+  if (window.location.pathname === "/") {
+    if (window.lenis) window.lenis.scrollTo(hash);
     setIsMenuOpen(false);
-  };
+    return;
+  }
+
+  // If on another page —
+  router.push("/" + hash);
+
+  // Wait for next tick, then scroll after route loads
+  setTimeout(() => {
+    if (window.lenis) window.lenis.scrollTo(hash);
+  }, 500);
+
+  setIsMenuOpen(false);
+};
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +72,8 @@ const Navbar = () => {
         <div className="w-full flex justify-between items-center py-[15px] px-[50px] relative">
           {/* Logo */}
           <Link
-            href="#"
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
             className={`font-krona text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215] transition-opacity duration-300 ${
               isInBeYourOwnBoss ? "opacity-0" : "opacity-100"
             }`}
@@ -218,6 +234,7 @@ const Navbar = () => {
                   <div className="bg-white w-full h-[46px] gap-2.5 py-[15px] px-[25px] rounded-[100px] flex justify-center items-center">
                     <Link
                       href="/connect-with-me"
+                      onClick={() => setIsMenuOpen(false)}
                       className=" font-clash-grotesk font-medium text-black text-[18px] tracking-[-0.03em] leading-[0.9]"
                     >
                       Connect With Anish{" "}
