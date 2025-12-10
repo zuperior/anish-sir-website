@@ -627,7 +627,7 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
                                             {businessesDetailedData[item.id]?.fullDescription}
                                         </motion.p>
                                         {businessesDetailedData[item.id]?.website && (
-                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "").replace("t.me/", "")}`} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
+                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
                                                 {businessesDetailedData[item.id].website}
                                                 <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
