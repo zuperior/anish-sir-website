@@ -31,8 +31,6 @@ const ManBehindBusiness = () => {
     restDelta: 0.001
   });
 
-
-
   useEffect(() => {
     if (!paragraphRef.current) return;
 
@@ -79,17 +77,17 @@ const ManBehindBusiness = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat  z-0"
         style={{
           backgroundImage: "url('/Wall-texture.png')",
-          opacity: 0.3// Apni image ka path yahan daalein
+          opacity: 0.3
         }}
       />
       <motion.div
-        initial={{ x: -150, opacity: 0 }}        // left se start
-        whileInView={{ x: 0, opacity: 1 }}       // apni real position pe aa jaye
+        initial={{ x: -150, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
         transition={{
           duration: 1.2,
           ease: "easeOut"
         }}
-        viewport={{ once: true }}                // refresh ke baad sirf once chale
+        viewport={{ once: true }}
         className="absolute bottom-0 -left-20 z-10"
       >
         <Image
@@ -103,9 +101,9 @@ const ManBehindBusiness = () => {
       <motion.div
         style={{
           rotate: smoothRotate,
-          transformOrigin: "center center",
+          transformOrigin: "50% 50%"
         }}
-        className="absolute -bottom-[130px] right-[300px]"
+        className="absolute bottom-[-130px] right-[360px]  "
       >
         <Image src={circle} alt="circle" width={426} height={426} />
       </motion.div>
