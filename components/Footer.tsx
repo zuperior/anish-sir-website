@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
           rotationZ: 0,
           scrollTrigger: {
             trigger,
-            start: "top center",
+            start: "top bottom",
             end: "bottom center",
             scrub: true,
           },

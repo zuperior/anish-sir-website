@@ -14,40 +14,48 @@ const RootedInValues = () => {
   const paraRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const element = paraRef.current;
-    if (!element) return;
+    if (!paraRef.current) return;
 
-    const text = element.innerText;
-    const words = text.split(" ");
+    const paragraph = paraRef.current;
 
-    element.innerHTML = words
-      .map(
-        (word) =>
-          `<span class="word opacity-[0.97] whitespace-normal">${word} </span>`
-      )
-      .join("");
+    // Wrap words only if not already wrapped
+    if (!paragraph.querySelector(".word")) {
+      const words = paragraph.textContent?.split(" ") || [];
+      paragraph.innerHTML = words
+        .map((word) => `<span class="word">${word} </span>`)
+        .join("");
+    }
 
-    const wordSpans = element.querySelectorAll(".word");
+    // Wait for DOM to update
+    requestAnimationFrame(() => {
+      const wordSpans = paragraph.querySelectorAll(".word");
+      gsap.fromTo(
+        wordSpans,
+        { opacity: 0.1 },
+        {
+          opacity: 1,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: paragraph,
+            start: "top 80%",
+            end: "bottom 60%",
+            scrub: 0.2,
+            toggleActions: "play play reverse reverse", // lowercase
+          },
+        }
+      );
+    });
 
-    gsap.fromTo(
-      wordSpans,
-      { color: "rgba(0,0,0,0.2)" },
-      {
-        color: "rgba(0,0,0,1)",
-        stagger: 0.07,
-        ease: "none",
-        scrollTrigger: {
-          trigger: element,
-          start: "top 80%",
-          end: "top 30%",
-          scrub: true,
-        },
-      }
-    );
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (
-    <div className="relative w-full h-[933px] py-[100px] flex flex-col gap-[50px] overflow-hidden" id="personal">
+    <div
+      className="relative w-full py-[100px] flex flex-col gap-[50px] overflow-hidden"
+      id="personal"
+    >
       {/* 🔽 Image overlays ON TOP of white bg */}
       <Image
         src={bgGif}
@@ -58,7 +66,7 @@ const RootedInValues = () => {
       {/* Overlay white */}
       <div className="absolute inset-0 bg-[#f5f3f0e6] z-0" />
 
-      <div className="flex-center flex-col gap-[15px] w-full">
+      <div className="flex-center flex-col gap-[15px] w-full relative">
         {/* 🔼 Text stays above image */}
         <h2 className="font-clash-display text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium text-center relative z-10">
           Rooted in Values, guided by Role Models
@@ -66,7 +74,7 @@ const RootedInValues = () => {
 
         <p
           ref={paraRef}
-          className="w-full font-medium max-w-[1050px] mx-auto text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 whitespace-nowrap"
+          className="font-medium w-[1050px] mx-auto text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 text-black/70"
         >
           Anish draws inspiration from Anthony Robbins and Sadhguru, two figures
           who shaped his thinking around human potential, inner mastery, and
@@ -83,19 +91,18 @@ const RootedInValues = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <Image src="/manWithMic.png" alt="" height={213} width={322} className="rounded-lg" />
+          <Image
+            src="/manWithMic.png"
+            alt=""
+            height={213}
+            width={322}
+            className="rounded-lg"
+          />
         </motion.div>
 
         <div className="relative w-[375px] h-[500px] perspective group">
           {/* Card wrapper rotates */}
-          <div
-            className="
-      absolute inset-0 
-      preserve-3d 
-       card-flip card-flip-delayed
-      group-hover:rotate-x-180
-    "
-          >
+          <div className="absolute inset-0 preserve-3d card-flip card-flip-delayed group-hover:rotate-x-180">
             {/* Front Side */}
             <div className="absolute inset-0 backface-hidden">
               <Image
