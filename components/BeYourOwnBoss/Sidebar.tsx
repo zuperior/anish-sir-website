@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface SidebarProps {
     activeSection: string;
@@ -174,9 +175,11 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                     </a>
                 </div>
 
-                <button className="w-full bg-white text-black font-medium py-4 rounded-full hover:bg-gray-100 transition font-clash-grotesk text-[18px] leading-[0.9em] tracking-[-0.03em]">
-                    Connect with Anish
-                </button>
+                <Link href="/connect-with-me">
+                    <button className="w-full bg-white text-black font-medium py-4 rounded-full hover:bg-gray-100 transition font-clash-grotesk text-[18px] leading-[0.9em] tracking-[-0.03em] cursor-pointer">
+                        Connect with Anish
+                    </button>
+                </Link>
             </div>
         </div>
     );

@@ -6,6 +6,11 @@ import React, { CSSProperties, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { gsap, ScrollTrigger } from "gsap/all";
+declare global {
+    interface Window {
+        lenisDisabled?: boolean;
+    }
+}
 
 interface ContentProps {
     activeSection: string;
@@ -153,14 +158,14 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         "exness": {
             title: "Exness (Broker)",
             icon: "ex",
-            description: "I have worked with several platforms over the years, but Exness has consistently stood out for its reliability, transparency, and smooth trading experience.",
+            description: "Anish has worked with several platforms over the years, but he has found that Exness consistently stands out for its reliability, transparency, and seamless trading experience. Its stable execution, competitive spreads, and accurate pricing make it his preferred choice for disciplined trading and informed market analysis.",
             fullDescription: "Exness is a highly trusted global trading platform known for its stability, transparency, and smooth trading experience. With tight spreads, fast execution, and reliable pricing, it provides traders with the precision and consistency they need for disciplined market participation. Whether during high volatility or normal sessions, Exness delivers a dependable environment that supports serious analysis and responsible trading. Its user-friendly interface, quick withdrawals, and honest fee structure make it stand out as one of the most preferred platforms for professional and self-directed traders. Built on clarity and trust, Exness offers a seamless trading experience that aligns perfectly with the principles of discipline, logic, and structure making it a reliable choice for anyone committed to long-term trading success.",
             website: "https://www.exness.global/"
         },
         "funding-friday": {
             title: "FundingFriday (PropFirm)",
             icon: "ff",
-            description: "FundedFriday is Anish Sir's preferred prop firm, trusted for transparent rules, disciplined trading, and consistent payouts.",
+            description: "FundedFriday is Anish Sir's preferred prop firm, valued for its clear guidelines, trader-friendly structure, and consistent payout integrity. It offers a dependable pathway for committed traders to demonstrate skill, access larger capital, and building long-term trading discipline.",
             fullDescription: "Funded Friday is a trusted prop firm that gives disciplined traders a real opportunity to trade larger capital through a simple, transparent, and fair evaluation process. It rewards skill, consistency, and proper risk management making it an ideal platform for serious traders who want to grow responsibly without relying on luck or shortcuts. With clear rules, reliable payouts, and no hidden conditions, Funded Friday offers a supportive, trader-first environment. Proudly featured in Yahoo, Benzinga, Insider Monkey, and MarketWatch, it stands out as a professional and credible prop-firm choice for traders committed to long-term success.",
             website: "https://fundedfriday.com/"
         },
@@ -168,7 +173,7 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
             title: "MaziFinance (Broker)",
             icon: "mf",
             description: "MaziFinance is a trusted platform for trading and financial services.",
-            fullDescription: "MaziFinance is a trusted prop firm that gives disciplined traders a real opportunity to trade larger capital through a simple, transparent, and fair evaluation process. It rewards skill, consistency, and proper risk management making it an ideal platform for serious traders who want to grow responsibly without relying on luck or shortcuts. With clear rules, reliable payouts, and no hidden conditions, MaziFinance offers a supportive, trader-first environment.",
+            fullDescription: "MaziFinance is a trading platform offering access to Forex and CFD markets with a user-friendly interface and smooth execution environment. It provides multiple trading instruments, straightforward account setup, and convenient funding options for new and experienced traders. While the platform aims to deliver an accessible trading experience, users are encouraged to review its regulatory standing and conduct proper due diligence to ensure it aligns with their trading and risk-management expectations.",
             website: "https://mazifinance.com/"
         }
     };
@@ -415,19 +420,19 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
             id: "exness",
             icon: <Image src="/icons/exness.png" width={30} height={30} alt="Exness" className="inline-block mr-2 mb-1" />,
             title: "Exness (Broker)",
-            text: "I have worked with several platforms over the years, but Exness has consistently stood out for its reliability, transparency, and smooth trading."
+            text: "Anish has worked with several platforms over the years, but he has found that Exness consistently stands out for its reliability, transparency, and seamless trading experience. Its stable execution, competitive spreads, and accurate pricing make it his preferred choice for disciplined trading and informed market analysis."
         },
         {
             id: "funding-friday",
             icon: <Image src="/icons/funding-friday.png" width={33} height={23} alt="FundingFriday" className="inline-block mr-2 mb-1" />,
             title: "FundingFriday (PropFirm)",
-            text: "FundedFriday is Anish Sir's preferred prop firm, trusted for transparent rules, disciplined trading, and consistent payouts."
+            text: "FundedFriday is Anish Sir's preferred prop firm, valued for its clear guidelines, trader-friendly structure, and consistent payout integrity. It offers a dependable pathway for committed traders to demonstrate skill, access larger capital, and building long-term trading discipline."
         },
         {
             id: "mazi-finance",
             icon: <Image src="/icons/mazi-finance.png" width={27} height={31} alt="MaziFinance" className="inline-block mr-2 mb-1" />,
             title: "MaziFinance (Broker)",
-            text: "Booming Bulls Academy is the best stock market institute that provides the most simplified and to-the-point stock market"
+            text: "MaziFinance is a platform Anish appreciates for its user-centric design, reliable trade execution, and responsive support framework. Its balanced combination of technology, accessibility, and straightforward pricing makes it a solid choice for traders seeking a smooth and efficient trading environment."
         }
     ];
 
@@ -460,28 +465,34 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         if (!container) return;
 
         const handleWheel = (e: WheelEvent) => {
-            // Stop Lenis from hijacking scroll
-            if (window.lenis) {
-                window.lenis.stop();
-            }
-            // Allow native scroll
             e.stopPropagation();
-        };
 
-        const handleMouseLeave = () => {
-            setTimeout(() => {
+            const scrollTop = container.scrollTop;
+            const scrollHeight = container.scrollHeight;
+            const clientHeight = container.clientHeight;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            const isAtTop = scrollTop === 0;
+
+            // Only enable Lenis when at edges and trying to scroll beyond
+            if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
                 if (window.lenis) {
-                    window.lenis.start();
+                    window.lenisDisabled = false;
                 }
-            }, 100);
+            } else {
+                // Keep Lenis disabled while scrolling content
+                if (window.lenis) {
+                    window.lenisDisabled = true;
+                }
+            }
         };
 
-        container.addEventListener("wheel", handleWheel, true);
-        container.addEventListener("mouseleave", handleMouseLeave);
+        container.addEventListener("wheel", handleWheel, { passive: false });
 
         return () => {
-            container.removeEventListener("wheel", handleWheel, true);
-            container.removeEventListener("mouseleave", handleMouseLeave);
+            container.removeEventListener("wheel", handleWheel);
+            if (window.lenis) {
+                window.lenisDisabled = false; // Reset on unmount
+            }
         };
     }, [activeSection]);
 
