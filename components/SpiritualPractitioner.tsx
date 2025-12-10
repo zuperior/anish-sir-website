@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import spritual from "../public/spritiual1.png"
+import spritual from "../public/spritual.png"
 import content from "../public/Content.png"
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
