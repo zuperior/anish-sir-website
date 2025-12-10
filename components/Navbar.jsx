@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Lenis from "lenis";
 
 import Group from "../public/Group.svg";
 import Link from "next/link";
@@ -12,13 +13,59 @@ import YoutubeIcon from "../public/Youtube.svg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isInBeYourOwnBoss, setIsInBeYourOwnBoss] = useState(false);
+  const lenisRef = useRef(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    lenisRef.current = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, []);
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(href);
+    }
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("beYourOwnBoss");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        setIsInBeYourOwnBoss(rect.top < window.innerHeight && rect.bottom > 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className=" fixed  top-2.5 left-1/2 -translate-x-1/2 w-full h-[74px] z-50 will-change-transform">
+    <div className="fixed top-2.5 left-1/2 -translate-x-1/2 w-full h-[74px] z-50 will-change-transform">
       <div className="flex-none w-auto h-auto relative opacity-100">
-        <div className="w-full   flex justify-between items-center py-[15px] px-[50px] relative">
+        <div className="w-full flex justify-between items-center py-[15px] px-[50px] relative">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
+          <a href="#" className={`flex items-center gap-2.5 transition-opacity duration-300 ${isInBeYourOwnBoss ? "opacity-0" : "opacity-100"}`}>
             <p className="font-krona text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215]">
               ANISH.
             </p>
@@ -33,11 +80,10 @@ const Navbar = () => {
               }
             > */}
             <div
-              className={`group absolute top-0 right-0 bg-white hover:bg-[#BB2215] rounded-full h-11 w-11 flex justify-center items-center cursor-pointer transition-transform duration-300 ${
-                isMenuOpen
-                  ? "-translate-x-[300px] translate-y-[30px]"
-                  : "translate-x-0 translate-y-0"
-              }`}
+              className={`group absolute top-0 right-0 bg-white hover:bg-[#BB2215] rounded-full h-11 w-11 flex justify-center items-center cursor-pointer transition-transform duration-300 ${isMenuOpen
+                ? "-translate-x-[300px] translate-y-[30px]"
+                : "translate-x-0 translate-y-0"
+                }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Image
@@ -77,30 +123,35 @@ const Navbar = () => {
                 <div className="relative  w-full h-52 pr-[15px] flex flex-col gap-0">
                   <Link
                     href="#about"
+                    onClick={(e) => handleNavClick(e, "#about")}
                     className=" relative text-[#FFFFFF]/25  w-[147px] [41px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     About me
                   </Link>
                   <Link
                     href="#projects"
+                    onClick={(e) => handleNavClick(e, "#projects")}
                     className=" relative   text-[#FFFFFF]/25 w-[120px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Projects
                   </Link>
                   <Link
                     href="#personal"
+                    onClick={(e) => handleNavClick(e, "#personal")}
                     className=" relative   text-[#FFFFFF]/25 w-[127px] [41px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Personal
                   </Link>
                   <Link
                     href="#beYourOwnBoss"
+                    onClick={(e) => handleNavClick(e, "#beYourOwnBoss")}
                     className=" relative  text-[#FFFFFF]/25  w-[262px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Be Your Own Boss
                   </Link>
                   <Link
                     href="#resources"
+                    onClick={(e) => handleNavClick(e, "#resources")}
                     className=" relative   text-[#FFFFFF]/25 w-[157px] [42px] text-[32px] font-medium leading-[1.3]  tracking-[-0.04em] font-clash-display hover:text-[#FFDAD6]/70"
                   >
                     Resources
