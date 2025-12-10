@@ -78,8 +78,7 @@ const Footer: React.FC = () => {
 
           <Link
             className="py-[15px] px-[25px] rounded-full bg-white font-clash-grotesk font-medium text-black text-xl tracking-tight leading-[0.9em]"
-            href={"https://instagram.com/anishsinghthakur"}
-            target="_blank"
+            href={"/connect-with-me"}
           >
             Connect with Anish
           </Link>

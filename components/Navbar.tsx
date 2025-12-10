@@ -217,7 +217,7 @@ const Navbar = () => {
                   </div>
                   <div className="bg-white w-full h-[46px] gap-2.5 py-[15px] px-[25px] rounded-[100px] flex justify-center items-center">
                     <Link
-                      href="#"
+                      href="/connect-with-me"
                       className=" font-clash-grotesk font-medium text-black text-[18px] tracking-[-0.03em] leading-[0.9]"
                     >
                       Connect With Anish{" "}
