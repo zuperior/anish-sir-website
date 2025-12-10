@@ -1,8 +1,6 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Lenis from "lenis";
-
 import Group from "../public/Group.svg";
 import Link from "next/link";
 import InstagramIcon from "../public/Instagram.svg";
@@ -14,35 +12,11 @@ import YoutubeIcon from "../public/Youtube.svg";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isInBeYourOwnBoss, setIsInBeYourOwnBoss] = useState(false);
-  const lenisRef = useRef(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 2.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    lenisRef.current = lenis;
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy();
-  }, []);
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(href);
+    if (window.lenis) {
+      window.lenis.scrollTo(href);
     }
     setIsMenuOpen(false);
   };

@@ -66,7 +66,7 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                                     ) : (
                                         <ArrowRight
                                             className="
-                        w-1 h-4 -rotate-45 
+                        w-4 h-4 -rotate-45 
                         opacity-0 
                         text-white/55
                         group-hover:opacity-100 

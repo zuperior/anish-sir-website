@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { clashDisplay, clashGrotesk, delicious, geistSans, kronaOne, nataSans, raleway } from "./_fonts";
-import Navbar from "../components/Navbar"
+import Navbar from "../components/Navbar";
+import { LenisWrapper } from "../components/LenisWrapper";
 
 export const metadata: Metadata = {
   title: "Passion. Purpose. Progress.",
@@ -19,8 +20,10 @@ export default function RootLayout({
       className={`${clashDisplay.className} ${geistSans.variable} ${kronaOne.variable} ${clashGrotesk.variable} ${clashDisplay.variable} ${nataSans.variable} ${raleway.variable} ${delicious.variable}`}
     >
       <body className="antialiased">
-        <Navbar />
-        {children}
+        <LenisWrapper>
+          <Navbar />
+          {children}
+        </LenisWrapper>
       </body>
     </html>
   );

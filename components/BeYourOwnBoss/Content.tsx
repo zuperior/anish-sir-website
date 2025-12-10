@@ -15,6 +15,7 @@ interface ContentProps {
 export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, onSectionChange }) => {
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const gsapInstanceRef = useRef<any>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const element = descriptionRef.current;
@@ -454,6 +455,36 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         }
     ];
 
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleWheel = (e: WheelEvent) => {
+            // Stop Lenis from hijacking scroll
+            if (window.lenis) {
+                window.lenis.stop();
+            }
+            // Allow native scroll
+            e.stopPropagation();
+        };
+
+        const handleMouseLeave = () => {
+            setTimeout(() => {
+                if (window.lenis) {
+                    window.lenis.start();
+                }
+            }, 100);
+        };
+
+        container.addEventListener("wheel", handleWheel, true);
+        container.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+            container.removeEventListener("wheel", handleWheel, true);
+            container.removeEventListener("mouseleave", handleMouseLeave);
+        };
+    }, [activeSection]);
+
     if (["BOOMING BULLS", "BB FINSERV", "BOOMING REALM"].includes(activeSection)) {
         const cardMap: Record<string, string> = {
             "BOOMING BULLS": "booming-bulls-group",
@@ -462,7 +493,8 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         };
 
         return (
-            <div className="flex-1 bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar">
+            <div ref={scrollContainerRef}
+                className="flex-1 bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar">
                 <div className="max-w-5xl xl:max-w-6xl mx-auto">
                     <FullView cardId={cardMap[activeSection]} activeSection={activeSection} />
                 </div>
@@ -482,7 +514,11 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
                 </div>
             )}
 
-            <div className="pt-0 px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar">
+            <div
+                ref={scrollContainerRef}
+                className="pt-0 px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar"
+                style={{ pointerEvents: "auto" }}
+            >
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5">
                         <section>
