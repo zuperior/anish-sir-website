@@ -28,8 +28,11 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
         if (gsapInstanceRef.current) {
             gsapInstanceRef.current.kill();
         }
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
+        ScrollTrigger.getAll().forEach((trigger) => {
+            if (trigger.vars.id === "boss-text-trigger") {
+                trigger.kill();
+            }
+        });
         if (!element || !["BOOMING BULLS", "BB FINSERV", "BOOMING REALM"].includes(activeSection)) {
             return;
         }
@@ -48,6 +51,7 @@ export const BeYourOwnBossContent: React.FC<ContentProps> = ({ activeSection, on
 
             const tl = gsap.timeline({
                 scrollTrigger: {
+                    id: "boss-text-trigger",
                     trigger: element,
                     start: "top 85%",
                     end: "top 30%",
