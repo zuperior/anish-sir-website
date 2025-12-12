@@ -52,7 +52,7 @@ const HeroStats: React.FC = () => {
     <section
       aria-label="Hero with stats"
       id="about"
-      className="relative overflow-hidden min-h-[735px] flex items-center justify-center py-24 px-8"
+      className="relative overflow-hidden min-h-[735px] flex items-center justify-center py-12 md:py-24 px-1 lg:px-8"
     >
       {/* Background pattern */}
       <div
@@ -82,7 +82,7 @@ const HeroStats: React.FC = () => {
           delay={50}
           easing={(t) => t}
           preserveSegments={["Booming Bulls"]}
-          className="mx-auto text-[1.9rem] sm:text-2xl md:text-3xl lg:text-4xl 
+          className="mx-auto text-[23px] sm:text-2xl md:text-3xl lg:text-4xl 
              leading-[1.2em] tracking-[-0.04em] font-medium mb-7 
              font-clash-display min-w-[1090px] text-center"
         >
@@ -101,46 +101,105 @@ const HeroStats: React.FC = () => {
           a high-performance platform
         </BlurText>
 
-        <div className="flex items-center justify-between gap-8 px-4 py-13 font-clash-display">
-          <div className="flex-1 min-w-0 flex items-center gap-4">
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+        {/* Mobile + Tablet (0 - <lg): stacked with dividers */}
+        <div className="flex flex-col items-center gap-4 px-4 py-13 font-clash-display lg:hidden">
+          {/* Students */}
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-4">
+              {/* number bigger on md (tablet) */}
+              <div className="text-3xl md:text-4xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+                <Counter target={75} suffix="k+" />
+              </div>
+              {/* label bigger on md */}
+              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+                Students Mentored
+              </span>
+            </div>
+            <div className="flex justify-center w-full">
+              <div className="w-px h-6 bg-linear-to-b from-[#545454] to-black" />
+            </div>
+          </div>
+
+          {/* Views */}
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-4">
+              <div className="text-3xl md:text-4xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+                <Counter target={336} suffix="M+" />
+              </div>
+              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+                Youtube Views
+              </span>
+            </div>
+            <div className="flex justify-center w-full">
+              <div className="w-px h-6 bg-linear-to-b from-[#545454] to-black" />
+            </div>
+          </div>
+
+          {/* Videos */}
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-4">
+              <div className="text-3xl md:text-4xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+                <Counter target={100} suffix="+" />
+              </div>
+              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+                Youtube Videos
+              </span>
+            </div>
+          </div>
+        </div>
+
+
+        {/* Desktop (>= lg): row with vertical dividers */}
+        <div className="hidden lg:flex items-center justify-center gap-12 px-4 py-13 font-clash-display">
+          {/* Students */}
+          <div className="flex items-center gap-4">
+            <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={75} suffix="k+" />
             </div>
-            <span className="text-gray-700 font-clash-display text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
+            <span className="text-gray-700 text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
               Students Mentored
             </span>
           </div>
 
-          <div
-            className="w-0.5 h-[29px] bg-linear-to-b from-[#545454] to-black mx-4 z-20"
-            style={{ mixBlendMode: "normal" }}
-            aria-hidden
-          />
+          {/* Divider */}
+          <div className="flex items-center">
+            <div
+              className="w-0.5 h-[29px] bg-linear-to-b from-[#545454] to-black"
+              style={{ mixBlendMode: "normal" }}
+              aria-hidden
+            />
+          </div>
 
-          <div className="flex-1 min-w-0 flex items-center gap-4">
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+          {/* Views */}
+          <div className="flex items-center gap-4">
+            <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={336} suffix="M+" />
             </div>
-            <div className="text-gray-700 font-clash-display text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
+            <span className="text-gray-700 text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
               Youtube Views
-            </div>
+            </span>
           </div>
 
-          <div
-            className="w-0.5 h-[29px] bg-linear-to-b from-[#545454] to-black mx-4 z-20"
-            style={{ mixBlendMode: "normal" }}
-            aria-hidden
-          />
+          {/* Divider */}
+          <div className="flex items-center">
+            <div
+              className="w-0.5 h-[29px] bg-linear-to-b from-[#545454] to-black"
+              style={{ mixBlendMode: "normal" }}
+              aria-hidden
+            />
+          </div>
 
-          <div className="flex-1 min-w-0 flex items-center gap-4">
-            <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
+          {/* Videos */}
+          <div className="flex items-center gap-4">
+            <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={100} suffix="+" />
             </div>
-            <div className="text-gray-700 font-clash-display text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
+            <span className="text-gray-700 text-[22px] leading-[1.2em] tracking-[-0.05em] min-w-max">
               Youtube Videos
-            </div>
+            </span>
           </div>
         </div>
+
       </div>
     </section>
   );
