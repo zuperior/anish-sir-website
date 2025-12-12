@@ -28,22 +28,19 @@ const TextAnimate = ({
 
 const HeroSection = () => {
   const links = [
-    {title:"About me", id:"about"},
-    {title:"Personal", id:"personal"},
-    {title:"Projects", id:"projects"},
-    {title:"Be Your Own Boss", id:"beYourOwnBoss"},
-    {title:"Resources", id:"resources"},
+    { title: "About me", id: "about" },
+    { title: "Personal", id: "personal" },
+    { title: "Projects", id: "projects" },
+    { title: "Be Your Own Boss", id: "beYourOwnBoss" },
+    { title: "Resources", id: "resources" },
   ];
 
   return (
-    <div
-      className="relative h-screen w-full overflow-hidden bg-[url('/heroSection.png')] bg-cover bg-top bg-no-repeat"
-    >
+    <div className="relative h-screen w-full overflow-hidden bg-[url('/heroSection.png')] bg-cover bg-top bg-no-repeat">
       {/* Center Content */}
       <div className="flex items-center justify-center h-full w-full">
-        <div className="h-[260px] w-full flex items-center justify-between px-[50px]">
-          {/* Box 1 */}
-          <div className="w-[500px] h-[260px] flex flex-col justify-start gap-[25px]">
+        <div className="h-full w-full flex items-center justify-between lg:p-[50px] p-5">
+          <div className="h-[198px] w-full lg:w-[500px] lg:h-[260px] flex flex-col justify-start gap-[25px] bg-[#210402]/88 lg:bg-transparent mt-auto lg:mt-0">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -51,21 +48,21 @@ const HeroSection = () => {
                 duration: 0.8,
                 delay: 1.6, // ← Adjust if TextAnimate duration differs
               }}
-              className="text-[#FFC3BD] text-[22px] leading-[0.9em] pl-[25px] font-nata-sans"
+              className="text-[#FFC3BD] text-[16px] lg:text-[22px] leading-[0.9em] pl-6 lg:pl-[25px] font-nata-sans h-[15px] p-4 lg:p-0"
             >
               Investor, Educator & CEO
             </motion.p>
             <TextAnimate
               as={"div"}
               animation="blurInUp"
-              className="text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona h-[216px]"
+              className="text-[48px] lg:text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona px-5 lg:px-0 w-[253px] h-[158px] lg:w-full lg:h-[216px] "
             >
               ANISH SINGH THAKUR<span className="text-[#BB2215]">.</span>
             </TextAnimate>
           </div>
 
-          {/* Box 2 */}
-          <div className="flex items-start justify-center">
+         
+          <div className="hidden lg:flex  items-start justify-center">
             <motion.div className="flex flex-col gap-0 text-[32px] font-medium font-clash-display text-right">
               {links.map((link, index) => {
                 let delay = 0;
@@ -91,6 +88,10 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+{/*  */}
+
+
     </div>
   );
 };
