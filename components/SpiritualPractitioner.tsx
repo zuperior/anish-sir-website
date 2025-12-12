@@ -63,7 +63,7 @@ function SpiritualPractitioner() {
         }}
       />
       <div
-        className="absolute inset-0  bg-[#F2EFE9]/90"></div>
+        className="absolute inset-0  bg-white/70"></div>
       <div className=" flex sticky top-0 z-1 w-full max-w-[1350px]  
             flex-none flex-row justify-center items-center 
             gap-0 py-[100px] overflow-hidden ">

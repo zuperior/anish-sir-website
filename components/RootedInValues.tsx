@@ -64,7 +64,7 @@ const RootedInValues = () => {
         className="object-cover absolute inset-0 opacity-[0.25] bg-gif-static"
       />
       {/* Overlay white */}
-      <div className="absolute inset-0 bg-[#f5f3f0e6] z-0" />
+      <div className="absolute inset-0 bg-white/8 0 z-0" />
 
       <div className="flex-center flex-col gap-[15px] w-full relative">
         {/* 🔼 Text stays above image */}
