@@ -61,10 +61,10 @@ const RootedInValues = () => {
         src={bgGif}
         alt="bg"
         fill
-        className="object-cover absolute inset-0 opacity-[0.25] bg-gif-static"
+        className="object-cover absolute inset-0 opacity-[0.10] bg-gif-static"
       />
       {/* Overlay white */}
-      <div className="absolute inset-0 bg-white/80 z-0" />
+      <div className="absolute inset-0 bg-[#F2EFE9]/90 z-0" />
 
       <div className="flex-center flex-col gap-[15px] w-full relative">
         {/* 🔼 Text stays above image */}
