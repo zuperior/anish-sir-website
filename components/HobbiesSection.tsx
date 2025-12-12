@@ -33,9 +33,10 @@ export default function HobbiesSection() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#151515] flex items-center justify-center py-5">
-      <div className="w-full ">
-        <div className="flex gap-3 items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-[#151515] flex items-center justify-center py-5 px-4">
+      <div className="w-full max-w-7xl">
+        {/* Desktop/Tablet View - Horizontal Cards */}
+        <div className="hidden md:flex gap-3 items-center justify-center overflow-hidden">
           {slides.map((s, i) => {
             const isActive = i === active;
             return (
@@ -44,11 +45,10 @@ export default function HobbiesSection() {
                 onMouseEnter={() => setActive(i)}
                 className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-400`}
                 style={{
-                  width: isActive ? "500px " : "260px",
+                  width: isActive ? "500px" : "260px",
                   height: "550px",
                 }}
               >
-                {/* BG IMAGE */}
                 <Image
                   src={s.image}
                   alt={s.title}
@@ -56,24 +56,49 @@ export default function HobbiesSection() {
                   className={`object-cover transition-all duration-400`}
                 />
 
-                {/* CONTENT */}
                 <div
                   className={`absolute bottom-0 left-0 right-0 text-white font-clash-grotesk transition-all duration-400 ${
                     isActive
-                      ? "opacity-100 translate-y-0 pointer-events-none  bg-linear-to-t from-black to-transparent px-10 pb-10"
+                      ? "opacity-100 translate-y-0 pointer-events-none bg-gradient-to-t from-black to-transparent px-10 pb-10"
                       : "opacity-0 translate-y-6"
                   }`}
                 >
                   <h2 className="text-4xl font-medium leading-tight uppercase mb-3">
                     {s.title}
                   </h2>
-                  <p className="text-white/70 font-medium  text-base leading-5">
+                  <p className="text-white/70 font-medium text-base leading-5">
                     {s.content}
                   </p>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile View - Vertical Stacked Cards */}
+        <div className="md:hidden space-y-4">
+          {slides.map((s, i) => (
+            <div
+              key={i}
+              className="relative rounded-3xl overflow-hidden h-[500px]"
+            >
+              <Image
+                src={s.image}
+                alt={s.title}
+                fill
+                className="object-cover"
+              />
+
+              <div className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
+                <h2 className="text-2xl sm:text-3xl font-medium leading-tight uppercase mb-3">
+                  {s.title}
+                </h2>
+                <p className="text-white/70 font-medium text-sm sm:text-base leading-relaxed">
+                  {s.content}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
