@@ -54,7 +54,7 @@ function SpiritualPractitioner() {
     <div className=" relative h-[750px] bg-[#F2EFE9]/90 flex items-center justify-center text-black">
 
       <div
-        className="absolute inset-0 opacity-[0.15] z-0"
+        className="absolute inset-0 opacity-[0.3] z-0"
         style={{
           backgroundImage: "url('/sparkles.gif')",
           backgroundSize: 'cover',
