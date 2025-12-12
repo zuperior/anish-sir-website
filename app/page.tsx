@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <HeroStats />
-      {/* <ManBehindBusiness />
+      <ManBehindBusiness />
       <RootedInValues />
       <HobbiesSection />
       <SpiritualPractitioner />
@@ -23,7 +23,7 @@ export default function Home() {
       <LargestTradingFloor />
       <BookLoverSection />
       <SubscribeAndLearn />
-      <Footer /> */}
+      <Footer />
     </main>
   );
 }
