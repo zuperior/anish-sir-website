@@ -1,10 +1,10 @@
 import BeYourOwnBoss from "@/components/BeYourOwnBoss";
-// import BookLoverSection from "@/components/BookLoverSection/index";
+import BookLoverSection from "@/components/BookLoverSection/index";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import HeroStats from "@/components/HeroStats";
 import HobbiesSection from "@/components/HobbiesSection";
-// import LargestTradingFloor from "@/components/LargestTradingFloor";
+import LargestTradingFloor from "@/components/LargestTradingFloor";
 import ManBehindBusiness from "@/components/ManBehindBusiness";
 import RootedInValues from "@/components/RootedInValues";
 import SpiritualPractitioner from "@/components/SpiritualPractitioner";
@@ -20,8 +20,8 @@ export default function Home() {
       <HobbiesSection />
       <SpiritualPractitioner />
       <BeYourOwnBoss />
-      {/* <LargestTradingFloor /> */}
-      {/* <BookLoverSection /> */}
+      <LargestTradingFloor />
+      <BookLoverSection />
       <SubscribeAndLearn />
       <Footer />
     </main>
