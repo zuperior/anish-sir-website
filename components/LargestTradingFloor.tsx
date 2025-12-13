@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,46 +10,52 @@ export default function LargestTradingFloor() {
   const [viewState, setViewState] = useState<
     "default" | "leftExpanded" | "rightExpanded"
   >("default");
+  const [mobileSlide, setMobileSlide] = useState(0);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const leftCardRef = useRef<HTMLDivElement>(null);
   const centerCardRef = useRef<HTMLDivElement>(null);
   const rightCardRef = useRef<HTMLDivElement>(null);
-  const leftImageRef = useRef<HTMLDivElement>(null);
-  const rightImageRef = useRef<HTMLDivElement>(null);
 
   const leftImage = "/left.jpg";
   const centerImage = "/center.png";
   const rightImage = "/right.jpg";
 
+  const images = [leftImage, centerImage, rightImage];
+
   const text = `"Anish Singh Thakur is a globally respected trading educator and the visionary Founder & CEO of Booming Bulls, one of the world's largest and most impactful trading education ecosystems. Trusted by over 3 million learners globally, he has built a high-performance platform"`;
 
   useEffect(() => {
-    if (paragraphRef.current) {
-      const text = paragraphRef.current.textContent || "";
-      const words = text.split(" ");
+    if (!paragraphRef.current) return;
 
-      paragraphRef.current.innerHTML = words
-        .map((word) => `<span class="word">${word}</span>`)
-        .join(" ");
+    const paragraph = paragraphRef.current;
 
+    // Wrap words only if not already wrapped
+    if (!paragraph.querySelector(".word")) {
+      const words = paragraph.textContent?.split(" ") || [];
+      paragraph.innerHTML = words
+        .map((word) => `<span class="word">${word} </span>`)
+        .join("");
+    }
+
+    // Wait for DOM to update
+    requestAnimationFrame(() => {
+      const wordSpans = paragraph.querySelectorAll(".word");
       gsap.fromTo(
-        paragraphRef.current.querySelectorAll(".word"),
-        {
-          opacity: 0.1,
-        },
+        wordSpans,
+        { opacity: 0.1 },
         {
           opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
-            trigger: paragraphRef.current,
+            trigger: paragraph,
             start: "top 80%",
             end: "bottom 60%",
             scrub: 0.2,
-            toggleActions: "Play Play Reverse Reverse",
+            toggleActions: "play play reverse reverse",
           },
         }
       );
-    }
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -62,61 +68,13 @@ export default function LargestTradingFloor() {
     if (viewState === "default") {
       setViewState("leftExpanded");
 
-      gsap.fromTo(
-        leftCardRef.current,
-        { width: "350px" },
-        { width: "575px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      gsap.fromTo(
-        rightCardRef.current,
-        { width: "350px" },
-        { width: "120px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      // Animate right image border radius
-      if (rightImageRef.current) {
-        gsap.to(rightImageRef.current, {
-          borderTopRightRadius: "0px",
-          borderBottomRightRadius: "0px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
+      animateCard(leftCardRef.current, "350px", "575px");
+      animateCard(rightCardRef.current, "350px", "120px");
     } else if (viewState === "rightExpanded") {
       setViewState("default");
 
-      gsap.fromTo(
-        rightCardRef.current,
-        { width: "575px" },
-        { width: "350px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      gsap.fromTo(
-        leftCardRef.current,
-        { width: "120px" },
-        { width: "350px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      // Restore left image border radius
-      if (leftImageRef.current) {
-        gsap.to(leftImageRef.current, {
-          borderTopLeftRadius: "16px",
-          borderBottomLeftRadius: "16px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
-
-      // Restore right image border radius
-      if (rightImageRef.current) {
-        gsap.to(rightImageRef.current, {
-          borderTopRightRadius: "16px",
-          borderBottomRightRadius: "16px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
+      animateCard(rightCardRef.current, "575px", "350px");
+      animateCard(leftCardRef.current, "120px", "350px");
     }
   };
 
@@ -126,135 +84,78 @@ export default function LargestTradingFloor() {
     if (viewState === "default") {
       setViewState("rightExpanded");
 
-      gsap.fromTo(
-        rightCardRef.current,
-        { width: "350px" },
-        { width: "575px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      gsap.fromTo(
-        leftCardRef.current,
-        { width: "350px" },
-        { width: "120px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      // Animate left image border radius
-      if (leftImageRef.current) {
-        gsap.to(leftImageRef.current, {
-          borderTopLeftRadius: "0px",
-          borderBottomLeftRadius: "0px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
+      animateCard(rightCardRef.current, "350px", "575px");
+      animateCard(leftCardRef.current, "350px", "120px");
     } else if (viewState === "leftExpanded") {
       setViewState("default");
 
-      gsap.fromTo(
-        leftCardRef.current,
-        { width: "575px" },
-        { width: "350px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      gsap.fromTo(
-        rightCardRef.current,
-        { width: "120px" },
-        { width: "350px", duration: 0.6, ease: "power2.inOut" }
-      );
-
-      // Restore left image border radius
-      if (leftImageRef.current) {
-        gsap.to(leftImageRef.current, {
-          borderTopLeftRadius: "16px",
-          borderBottomLeftRadius: "16px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
-
-      // Restore right image border radius
-      if (rightImageRef.current) {
-        gsap.to(rightImageRef.current, {
-          borderTopRightRadius: "16px",
-          borderBottomRightRadius: "16px",
-          duration: 0.6,
-          ease: "power2.inOut",
-        });
-      }
+      animateCard(leftCardRef.current, "575px", "350px");
+      animateCard(rightCardRef.current, "120px", "350px");
     }
   };
 
+  const animateCard = (element: HTMLElement, from: string, to: string) => {
+    element.style.transition = "width 0.6s cubic-bezier(0.65, 0, 0.35, 1)";
+    element.style.width = to;
+  };
+
+  const nextMobileSlide = () => {
+    setMobileSlide((prev) => (prev + 1) % images.length);
+  };
+
+  const prevMobileSlide = () => {
+    setMobileSlide((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
-    <div className="min-h-screen bg-[#151515] flex items-center justify-center p-4 md:p-4">
-      <div className="max-w-7xl w-full">
-        <div className="text-center mb-6 md:mb-2 px-2">
-          <h1 className="text-2xl sm:text-3xl md:text-[52px] font-medium text-white my-2 px-2">
+    <div className="md:min-h-screen bg-[#151515] flex items-center justify-center md:p-4 overflow-hidden">
+      <div className="max-w-7xl w-full my-8 md:my-2">
+        <div className="text-center mb-8 lg:mb-2 px-4">
+          <h1 className="text-[52px] font-medium text-white leading-tight mb-4 ">
             Asia&apos;s Largest Trading Floor
           </h1>
           <p
             ref={paragraphRef}
-            className="max-w-5xl text-sm md:text-[20px] font-medium mx-auto leading-tight px-2 text-[rgba(255,255,255,0.7)]"
+            className="text-[16px] lg:text-[20px] font-medium mx-auto leading-tight px-2 text-[rgba(255,255,255,0.7)]"
           >
             {text}
           </p>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:gap-6">
-          {/* Mobile: Single card view */}
-          <div className="block sm:hidden w-full px-4">
-            <div className="relative w-full h-[300px]">
-              <Image
-                src={centerImage}
-                alt="Trading floor view"
-                fill
-                className="object-cover rounded-2xl"
-              />
-            </div>
-          </div>
-
-          {/* Tablet: Two cards */}
-          <div className="hidden sm:block lg:hidden">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-[200px] h-[250px] shrink-0 relative transition-all duration-500 ease-in-out">
-                <Image
-                  src={leftImage}
-                  alt="Left view"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
-              </div>
-
-              <div className="w-[300px] h-[250px] shrink-0 relative transition-all duration-500 ease-in-out">
-                <Image
-                  src={centerImage}
-                  alt="Center view"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
-              </div>
-
-              <div className="w-[200px] h-[250px] shrink-0 relative transition-all duration-500 ease-in-out">
-                <Image
-                  src={rightImage}
-                  alt="Right view"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
+          {/* Mobile & Tablet */}
+          <div className="block lg:hidden w-full p-4">
+            <div className="relative w-full h-[350px] overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out h-full"
+                style={{ transform: `translateX(-${mobileSlide * 100}%)` }}
+              >
+                {images.map((img, index) => (
+                  <div
+                    key={index}
+                    className="w-full h-full flex-shrink-0 px-2 relative"
+                  >
+                    <Image
+                      src={img}
+                      alt={`Trading floor view ${index + 1}`}
+                      fill
+                      className="object-cover rounded-2xl"
+                      sizes="(max-width: 1024px) 100vw"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Desktop: Three cards with GSAP animations */}
+          {/* Desktop */}
           <div className="hidden lg:block">
             <div className="relative h-[400px] flex items-center justify-center gap-5 overflow-hidden">
               <div
                 ref={leftCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <div
-                  ref={leftImageRef}
-                  className="w-full h-full rounded-2xl overflow-hidden relative"
-                >
+                <div className="w-full h-full rounded-2xl overflow-hidden relative">
                   <Image
                     src={leftImage}
                     alt="Left view"
@@ -262,7 +163,6 @@ export default function LargestTradingFloor() {
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
               </div>
 
               <div
@@ -275,17 +175,13 @@ export default function LargestTradingFloor() {
                   fill
                   className="object-cover rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
               </div>
 
               <div
                 ref={rightCardRef}
                 className="w-[350px] h-[350px] shrink-0 relative group overflow-hidden"
               >
-                <div
-                  ref={rightImageRef}
-                  className="w-full h-full rounded-2xl overflow-hidden relative"
-                >
+                <div className="w-full h-full rounded-2xl overflow-hidden relative">
                   <Image
                     src={rightImage}
                     alt="Right view"
@@ -293,51 +189,63 @@ export default function LargestTradingFloor() {
                     className="object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
               </div>
             </div>
           </div>
-          {/* nav buttons */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6">
-            {/* LEFT BUTTON */}
-            <Image
-              src="/leftArrow.png"
-              alt="Prev Slide"
-              width={50}
-              height={50}
-              onClick={viewState === "rightExpanded" ? undefined : prevSlide}
-              className={`
-    w-12 h-12 sm:w-14 sm:h-14 object-contain
-    transition-all duration-300
-    ${
-      viewState === "rightExpanded"
-        ? "opacity-50 cursor-not-allowed"
-        : "hover:opacity-50 cursor-pointer"
-    }
-  `}
-            />
 
-            {/* RIGHT BUTTON */}
-            <Image
-              src="/rightArrow.png"
-              alt="Next Slide"
-              width={50}
-              height={50}
-              onClick={viewState === "leftExpanded" ? undefined : nextSlide}
-              className={`
-      w-12 h-12 sm:w-14 sm:h-14 rounded-full border  
-      flex items-center justify-center 
-      transition-all duration-300
-      ${
-        viewState === "leftExpanded"
-          ? "opacity-50 cursor-not-allowed"
-          : "hover:opacity-70 cursor-pointer"
-      }
-  `}
-              style={{
-                pointerEvents: viewState === "leftExpanded" ? "none" : "auto",
-              }}
-            />
+          {/* Navigation */}
+          <div className="flex items-center justify-center gap-4 sm:gap-6">
+            <div className="hidden lg:block">
+              <Image
+                src="/leftArrow.png"
+                alt="Prev Slide"
+                width={56}
+                height={56}
+                onClick={viewState === "rightExpanded" ? undefined : prevSlide}
+                className={`transition-all duration-300 ${
+                  viewState === "rightExpanded"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:opacity-50 cursor-pointer"
+                }`}
+              />
+            </div>
+
+            <div className="block lg:hidden">
+              <Image
+                src="/leftArrow.png"
+                alt="Prev Slide"
+                width={56}
+                height={56}
+                onClick={prevMobileSlide}
+                className="hover:opacity-70 cursor-pointer transition-all duration-300"
+              />
+            </div>
+
+            <div className="hidden lg:block">
+              <Image
+                src="/rightArrow.png"
+                alt="Next Slide"
+                width={56}
+                height={56}
+                onClick={viewState === "leftExpanded" ? undefined : nextSlide}
+                className={`transition-all duration-300 ${
+                  viewState === "leftExpanded"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:opacity-70 cursor-pointer"
+                }`}
+              />
+            </div>
+
+            <div className="block lg:hidden">
+              <Image
+                src="/rightArrow.png"
+                alt="Next Slide"
+                width={56}
+                height={56}
+                onClick={nextMobileSlide}
+                className="hover:opacity-70 cursor-pointer transition-all duration-300"
+              />
+            </div>
           </div>
         </div>
       </div>

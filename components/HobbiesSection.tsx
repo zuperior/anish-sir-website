@@ -80,7 +80,7 @@ export default function HobbiesSection() {
           {slides.map((s, i) => (
             <div
               key={i}
-              className="relative rounded-3xl overflow-hidden h-[500px]"
+              className="relative rounded-3xl overflow-hidden h-[550px]"
             >
               <Image
                 src={s.image}
@@ -90,10 +90,10 @@ export default function HobbiesSection() {
               />
 
               <div className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
-                <h2 className="text-2xl sm:text-3xl font-medium leading-tight uppercase mb-3">
+                <h2 className="text-[36px] md:text-[52px] font-medium leading-tight uppercase mb-3">
                   {s.title}
                 </h2>
-                <p className="text-white/70 font-medium text-sm sm:text-base leading-relaxed">
+                <p className="text-white/70 font-medium text-[16px] md:leading-relaxed">
                   {s.content}
                 </p>
               </div>
