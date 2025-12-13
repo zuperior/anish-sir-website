@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { BeYourOwnBossSidebar } from "./BeYourOwnBoss/Sidebar";
-import { BeYourOwnBossContent } from "./BeYourOwnBoss/Content";
+import { BeYourOwnBossContent } from "./BeYourOwnBoss/Content/index";
 
 const BeYourOwnBoss = () => {
   const [activeSection, setActiveSection] = useState("OVERVIEW");
