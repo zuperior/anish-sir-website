@@ -300,33 +300,54 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     }
 
     return (
-        <div className="flex-1 bg-black pt-[65px] pb-20 relative">
+        <div className="flex-1 bg-black pt-[65px] pb-20 relative h-full overflow-hidden">
             <h2 className="text-4xl leading-[1.2em] tracking-[-0.02em] font-medium text-center mb-5 font-clash-display text-white">{heading}</h2>
 
             {activeSection === "OVERVIEW" && (
-                <div className="absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-20">
+                <div className="hidden lg:block absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-20">
                     <Image src="/anish-sir-beyourownboss.png" alt="Anish Sir" fill className="object-cover object-right opacity-100 brightness-110 translate-x-4" priority />
                 </div>
             )}
 
             <div ref={scrollContainerRef} className="pt-0 px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
                 {activeSection === "OVERVIEW" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
-                            <div className="flex flex-wrap gap-[15px]">
+                            <div
+                                className="
+    flex gap-[15px]
+    overflow-x-auto no-scrollbar
+    pr-[50px]
+    lg:flex-wrap lg:overflow-visible lg:pr-0
+  "
+                            >
                                 {myBusinesses.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
                             </div>
                         </section>
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
-                            <div className="flex flex-wrap gap-[15px]">
+                            <div
+                                className="
+    flex gap-[15px]
+    overflow-x-auto no-scrollbar
+    pr-[50px]
+    lg:flex-wrap lg:overflow-visible lg:pr-0
+  "
+                            >
                                 {favouriteBrokers.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
                             </div>
                         </section>
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Telegram Channels</p>
-                            <div className="flex flex-wrap gap-[15px]">
+                            <div
+                                className="
+    flex gap-[15px]
+    overflow-x-auto no-scrollbar
+    pr-[50px]
+    lg:flex-wrap lg:overflow-visible lg:pr-0
+  "
+                            >
                                 {telegramChannels.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
                             </div>
                         </section>
@@ -370,7 +391,15 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                     <div className="space-y-5">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
-                            <div className="flex flex-wrap gap-[15px]">
+                            <div
+                                className="
+    flex gap-[15px]
+    overflow-x-auto no-scrollbar
+    pr-[70px]
+    lg:flex-wrap lg:overflow-visible lg:pr-0
+  "
+                            >
+
                                 {favouriteBrokers.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
                             </div>
                         </section>

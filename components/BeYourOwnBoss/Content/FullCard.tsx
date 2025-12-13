@@ -221,17 +221,41 @@ export const FullCard = React.memo(({ cardId, activeSection }: { cardId: string;
 
             {data.stats && data.stats.length > 0 && (
                 <div className="flex items-center justify-center gap-12 py-1 font-clash-display">
-                    {data.stats.map((stat: { value: string; label: string }, idx: number) => (
-                        <React.Fragment key={idx}>
-                            <div className="flex items-center gap-4">
-                                <div className="text-xl md:text-2xl lg:text-3xl font-semibold font-raleway leading-[1em] tracking-[-0.05em]">
-                                    <Counter target={parseInt(stat.value)} suffix={stat.value.replace(/\d+/g, '')} />
-                                </div>
-                                <span className="text-white/55 font-clash-display text-[16px] leading-[1.2em] tracking-[-0.05em] whitespace-nowrap">{stat.label}</span>
-                            </div>
-                            {idx < data.stats.length - 1 && <div className="w-0.5 h-[29px] bg-linear-to-b from-white/60 to-white/30" style={{ mixBlendMode: "normal" }} aria-hidden />}
-                        </React.Fragment>
-                    ))}
+                    {data.stats && data.stats.length > 0 && (
+                        <div
+                            className="
+      flex flex-col items-center justify-center
+      gap-6
+      py-2
+
+      sm:flex-row
+      sm:gap-12
+    "
+                        >
+                            {data.stats.map((stat: { value: string; label: string }, idx: number) => (
+                                <React.Fragment key={idx}>
+                                    <div className="flex items-center gap-3">
+                                        <div className="text-2xl font-semibold font-raleway leading-[1em] tracking-[-0.05em]">
+                                            <Counter
+                                                target={parseInt(stat.value)}
+                                                suffix={stat.value.replace(/\d+/g, "")}
+                                            />
+                                        </div>
+
+                                        <span className="text-white/55 font-clash-display text-sm leading-[1.2em] tracking-[-0.02em] whitespace-nowrap">
+                                            {stat.label}
+                                        </span>
+                                    </div>
+
+                                    {/* divider only on desktop */}
+                                    {idx < data.stats.length - 1 && (
+                                        <div className="hidden sm:block w-px h-[29px] bg-linear-to-b from-white/60 to-white/30" />
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    )}
+
                 </div>
             )}
 

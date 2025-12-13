@@ -20,16 +20,24 @@ const BeYourOwnBoss = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-black text-white" id="beYourOwnBoss">
+    <div
+      id="beYourOwnBoss"
+      className="h-screen bg-black text-white flex flex-col lg:flex-row"
+    >
+      {/* Sidebar (handles desktop + mobile internally) */}
       <BeYourOwnBossSidebar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
         menuItems={menuItems}
       />
-      <BeYourOwnBossContent
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
+
+      {/* Content */}
+      <div className="flex-1 overflow-hidden">
+        <BeYourOwnBossContent
+          activeSection={activeSection}
+          onSectionChange={setActiveSection}
+        />
+      </div>
     </div>
   );
 };
