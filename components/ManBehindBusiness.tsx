@@ -88,7 +88,7 @@ const ManBehindBusiness = () => {
           ease: "easeOut"
         }}
         viewport={{ once: true }}
-        className="absolute bottom-0 -left-20 z-10"
+        className="absolute bottom-0 -left-20 z-10  w-[299px] h-[253px] lg:w-[527px] lg:h-[446px]"
       >
         <Image
           src={person}
@@ -103,31 +103,27 @@ const ManBehindBusiness = () => {
           rotate: smoothRotate,
           transformOrigin: "50% 50%"
         }}
-        className="absolute bottom-[-130px] right-28  "
+        className="absolute  bottom-[-50px] lg:bottom-[-130px]  right-0 lg:right-28  "
       >
-        <Image src={circle} alt="circle" width={426} height={426} />
+        <Image src={circle} alt="circle" width={426} height={426} className="w-[201px] h-[201px] lg:w-[426px] lg:h-[426px]" />
       </motion.div>
       <Image
         src={tower1}
         alt="Tower Left"
-        className="absolute bottom-0 -left-20 opacity-[0.70]"
-        width={299}
-        height={719}
+        className="absolute bottom-0 -left-20 opacity-[0.70] w-[215px] h-[450px] lg:w-[299px] lg:h-[719px] "
       />
       <Image
         src={tower2}
         alt="Tower Right"
-        className="absolute bottom-0 -right-[107px] opacity-[0.70]"
-        width={367}
-        height={704}
+        className="absolute bottom-0  -right-[62px] lg:-right-[107px] opacity-[0.70] w-[191px] h-[367px]  lg:w-[367px] lg:h-[704px]"
       />
-      <div className="w-full h-[183px] text-center flex flex-col items-center gap-[15px] z-10 relative">
-        <h2 className="text-[52px] -tracking-[0.01em] font-clash-display font-medium text-white pt-[100px]">
+      <div className=" w-full   h-[259px] lg:h-[183px] text-center flex flex-col items-center gap-[15px] z-10 relative">
+        <h2 className=" text-[38px] lg:text-[52px] -tracking-[0.01em] font-clash-display font-medium text-white pt-[100px] px-[15px] lg:px-0">
           The Man behind the Business
         </h2>
         <p
           ref={paragraphRef}
-          className="text-[20px] text-[#FFFFFF]/70 w-[1000px] min-h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium"
+          className=" text-[12px] lg:text-[20px] text-[#FFFFFF]/70 w-full  lg:w-[1000px] min-h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium px-[15px] lg:px-0"
         >
           Anish lives by a powerful belief: “The size of the fish doesn’t matter; the pond it swims in matters the most.”  This is why he chooses to live in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.
         </p>

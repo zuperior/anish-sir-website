@@ -64,18 +64,16 @@ function SpiritualPractitioner() {
       />
       <div
         className="absolute inset-0  bg-[#F2EFE9]/90"></div>
-      <div className=" flex sticky top-0 z-1 w-full max-w-[1350px]  
-            flex-none flex-row justify-center items-center 
-            gap-0 py-[100px] overflow-hidden ">
+      <div className="flex sticky top-0 z-1 w-full max-w-[1350px] flex-none flex-col lg:flex-row justify-center items-center gap-0 py-[100px] overflow-hidden">
 
         {/* Left Section */}
-        <div className="flex-1 w-full h-[422px] flex flex-col gap-[25px] justify-start outline-none ">
-          <h2 className="text-[52px] font-clash-display font-medium h-[125px] tracking-[-0.01em] leading-[1.2]">
+        <div className="flex-1 w-full h-auto lg:h-[422px] flex flex-col gap-[15px] lg:gap-[25px] justify-start outline-none py-0 lg:py-0 px-5 lg:px-0">
+          <h2 className="text-[20px] h-auto font-clash-display font-medium lg:text-[52px] lg:h-[125px] tracking-[-0.01em] leading-[1.2]">
             A Spiritual Practitioner<br />at Heart
           </h2>
           <p
             ref={paragraphRef}
-            className="w-[575px] h-[172px] font-clash-grotesk text-[20px] font-medium  text-[#000000]/70 leading-[1.1] tracking[-0.02em]"
+            className="w-full h-auto font-clash-grotesk text-[12px] lg:w-[575px] lg:h-[172px] lg:text-[20px] font-medium text-[#000000]/70 leading-[1.1] tracking[-0.02em]"
           >
             Spirituality plays a subtle yet powerful role in his life. He begins every
             morning with meditation, grounding himself before stepping into the
@@ -84,10 +82,52 @@ function SpiritualPractitioner() {
             in his student. This practice keeps him centered, focused, and
             emotionally balanced, qualities he also instills in his students.
           </p>
+
+          {/* Mobile Images - Inside left section, below paragraph */}
+          <div className="lg:hidden flex flex-row justify-end items-end gap-[10px] w-full h-[300px] relative mt-[20px]">
+            {/* Left image - Temple/spiritual image */}
+            <motion.div
+              className="absolute -bottom-18 left-0 w-[160px] h-[160px] rounded-[8px] z-[15] md:left-1/2 md:-translate-x-[130px]"
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: 0.2
+              }}
+              viewport={{ once: true }}
+            >
+              <Image
+                src={spritual}
+                alt="Temple Image"
+                className="w-full h-full object-cover rounded-[8px]"
+              />
+            </motion.div>
+
+            {/* Right image - Family/group photo */}
+            <motion.div
+              className="absolute bottom-0 w-[200px] h-[300px] rounded-xl z-[2]"
+              style={{ left: '100px' }}
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: 0.4
+              }}
+              viewport={{ once: true }}
+            >
+              <Image
+                src={content}
+                alt="Family Image"
+                className="w-full h-full object-cover rounded-xl md:left-1/2 md:translate-x-[250px]"
+              />
+            </motion.div>
+          </div>
         </div>
 
-        {/* Right Section - Image Grid */}
-        <div className="flex flex-row flex-none justify-end items-end gap-[10px] w-min h-min p-0 relative overflow-visible">
+        {/* Right Section - Desktop Image Grid (unchanged) */}
+        <div className="hidden lg:flex flex-row flex-none justify-end items-end gap-[10px] w-min h-min p-0 relative overflow-visible">
           <div className="flex flex-row flex-none justify-end items-center self-stretch gap-[10px] w-min min-w-[267px] h-auto p-0 relative overflow-visible">
             <motion.div className="absolute bottom-[-25px] left-[5px] right-[-38px] h-[330px] z-2 rounded-[10px] flex-none bg-gray-200"
               initial={{ x: -200, opacity: 0 }}
