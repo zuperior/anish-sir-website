@@ -318,7 +318,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 </div>
             )}
 
-            <div ref={scrollContainerRef} className="pt-0 px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
+            <div ref={scrollContainerRef} className="pt-0 px-4 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5 pb-20">
                         <section>
