@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect, forwardRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,44 +14,82 @@ const videos = [
 
 const SubscribeAndLearn = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const scroll = (dir: "left" | "right") =>
-    sliderRef.current?.scrollBy({
-      left: dir === "left" ? -540 : 540,
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateButtons = () => {
+    if (!sliderRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+
+    setCanScrollLeft(scrollLeft > 5);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    if (!sliderRef.current || !cardRef.current) return;
+
+    const cardWidth =
+      cardRef.current.getBoundingClientRect().width + 15; // gap
+
+    sliderRef.current.scrollBy({
+      left: dir === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
     });
+  };
+
+  useEffect(() => {
+    updateButtons();
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    slider.addEventListener("scroll", updateButtons);
+    window.addEventListener("resize", updateButtons);
+
+    return () => {
+      slider.removeEventListener("scroll", updateButtons);
+      window.removeEventListener("resize", updateButtons);
+    };
+  }, []);
 
   return (
-    <section className="h-screen min-h-[800px] text-white w-full flex flex-col gap-12.5 relative items-center justify-center bg-[#151515] px-12.5">
+    <section className="md:h-screen lg:min-h-[800px] min-h-screen text-white w-full flex flex-col gap-12.5 relative items-center justify-center bg-[#151515] md:px-12.5 px-[15px] py-10 overflow-hidden">
       {/* header */}
       <div className="flex-center flex-col gap-[15px]">
-        <div className="flex-center gap-5">
-          <div className="h-px w-[60px] bg-white/40" />
-          <h1 className="text-xl -tracking-[0.01em] leading-[0.8em]">
+        <div className="flex-center md:gap-5 gap-3">
+          <div className="h-px md:w-[60px] w-10 bg-white/40" />
+          <h1 className="md:text-xl text-base -tracking-[0.01em] leading-[0.8em]">
             Podcasts
           </h1>
-          <div className="h-px w-[60px] bg-white/40" />
+          <div className="h-px md:w-[60px] w-10 bg-white/40" />
         </div>
-        <h2 className="text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium">
+        <h2 className="lg:text-[52px] md:text-[40px] text-[32px] -tracking-[0.01em] leading-[1.2em] font-medium">
           Subscribe & Learn
         </h2>
       </div>
 
       {/* video slider */}
-      <div className="w-full flex flex-col gap-12.5">
+      <div className="w-full flex flex-col gap-12.5 overflow-visible">
         <div
           ref={sliderRef}
-          className="flex gap-5 overflow-x-scroll no-scrollbar scroll-smooth"
+          className="flex md:gap-5 gap-[15px] overflow-x-scroll no-scrollbar scroll-smooth snap-x snap-mandatory"
         >
-          {videos.map((v) => (
-            <VideoThumbnail key={v.id} id={v.id} />
+          {videos.map((v, i) => (
+            <VideoThumbnail
+              key={v.id}
+              id={v.id}
+              ref={i === 0 ? cardRef : null}
+            />
           ))}
         </div>
 
-        {/* navigation and subscribe buttons */}
+        {/* navigation and subscribe */}
         <div className="flex items-center justify-between">
           <Link
             href="https://www.youtube.com/@BoomingBulls/"
-            className="flex-center gap-2.5 text-base -tracking-[0.03em] leading-[0.9em]"
+            className="flex-center md:gap-2.5 gap-1.5 md:text-base text-sm -tracking-[0.03em] leading-[0.9em]"
           >
             Subscribe Youtube
             <ArrowUpRight size={14} color="#BB2215" />
@@ -60,19 +98,23 @@ const SubscribeAndLearn = () => {
           <div className="flex-center gap-2.5">
             <Image
               src="/leftArrow.png"
-              alt="Next Slide"
+              alt="Prev Slide"
               height={50}
               width={50}
-              onClick={() => scroll("left")}
-              className=" w-[50px] h-[50px] cursor-pointer"
+              onClick={() => canScrollLeft && scroll("left")}
+              className={`md:w-[50px] md:h-[50px] w-9 h-9 cursor-pointer transition-opacity ${
+                canScrollLeft ? "opacity-100" : "opacity-30 pointer-events-none"
+              }`}
             />
             <Image
               src="/rightArrow.png"
               alt="Next Slide"
               height={50}
               width={50}
-              onClick={() => scroll("right")}
-              className=" w-[50px] h-[50px]  cursor-pointer"
+              onClick={() => canScrollRight && scroll("right")}
+              className={`md:w-[50px] md:h-[50px] w-9 h-9 cursor-pointer transition-opacity ${
+                canScrollRight ? "opacity-100" : "opacity-30 pointer-events-none"
+              }`}
             />
           </div>
         </div>
@@ -82,15 +124,30 @@ const SubscribeAndLearn = () => {
 };
 
 const PlayCutout = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none" overflow="visible"><path d="M 25 50 C 11.193 50 0 38.807 0 25 C 0 11.193 11.193 0 25 0 C 38.807 0 50 11.193 50 25 C 50 38.807 38.807 50 25 50 Z M 23.609 16.15 C 22.65 15.51 21.417 15.45 20.401 15.994 C 19.384 16.538 18.75 17.597 18.75 18.75 L 18.75 31.25 C 18.75 32.403 19.384 33.462 20.401 34.006 C 21.417 34.55 22.65 34.49 23.609 33.85 L 32.984 27.6 C 33.854 27.02 34.376 26.045 34.376 25 C 34.376 23.955 33.854 22.98 32.984 22.4 Z" fill="rgb(187, 34, 21)"></path></svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="50"
+    height="50"
+    fill="none"
+    overflow="visible"
+  >
+    <path
+      d="M25 50C11.193 50 0 38.807 0 25S11.193 0 25 0s25 11.193 25 25-11.193 25-25 25ZM23.609 16.15c-.959-.64-2.192-.7-3.208-.156-1.017.544-1.651 1.603-1.651 2.756v12.5c0 1.153.634 2.212 1.651 2.756 1.016.544 2.249.484 3.208-.156l9.375-6.25c.87-.58 1.392-1.555 1.392-2.6s-.522-2.02-1.392-2.6l-9.375-6.25Z"
+      fill="rgb(187,34,21)"
+    />
+  </svg>
 );
 
-const VideoThumbnail = ({ id }: { id: string }) => (
+const VideoThumbnail = forwardRef<
+  HTMLAnchorElement,
+  { id: string }
+>(({ id }, ref) => (
   <Link
+    ref={ref}
     href={`https://www.youtube.com/watch?v=${id}`}
     target="_blank"
     rel="noopener noreferrer"
-    className="w-[525px] h-[325px] shrink-0 rounded-[15px] overflow-hidden group relative block"
+    className="w-4/5 md:w-[420px] lg:w-[525px] aspect-525/325 shrink-0 rounded-[15px] overflow-hidden group relative block snap-start"
   >
     <Image
       src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
@@ -104,6 +161,8 @@ const VideoThumbnail = ({ id }: { id: string }) => (
       </div>
     </div>
   </Link>
-);
+));
+
+VideoThumbnail.displayName = "VideoThumbnail";
 
 export default SubscribeAndLearn;
