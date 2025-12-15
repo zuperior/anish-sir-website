@@ -134,13 +134,13 @@ const Index = () => {
       {/* Sticky Div */}
       <div className="w-full sticky top-0 flex-center flex-col gap-[70px] py-20">
         <div className="w-full flex flex-col items-center gap-2.5">
-          <h2 className="-tracking-[0.01em] leading-[1.2em] font-medium text-[52px] text-white text-center">
+          <h2 className="-tracking-[0.01em] leading-[1.2em] md:w-full w-[180px] lg:w-full font-medium md:text-[47px] text-[20px] lg:text-[52px] text-white text-center">
             Lover of Books & Writer at Heart
           </h2>
 
           <p
             ref={paragraphRef}
-            className="text-[#ffffff]/70 w-full max-w-[1050px] text-center text-xl font-medium leading-[1.1em] tracking-[-0.02em]"
+            className="text-[#ffffff]/70 w-full max-w-[1050px] text-center md:text-xl text-xs lg:text-xl font-medium leading-[1.1em] tracking-[-0.02em]"
           >
             &quot;Anish Singh Thakur is a globally respected trading educator
             and the visionary Founder & CEO of Booming Bulls, one of the
@@ -150,7 +150,7 @@ const Index = () => {
           </p>
         </div>
         {/* Book Container */}
-        <div ref={bookContainerRef} className="flex-center gap-5 relative">
+        <div ref={bookContainerRef} className="flex-center md:gap-4 gap-2 lg:gap-5 relative">
           <Book id={1} open={openBook === 1} />
           <Book id={2} open={openBook === 2} />
           <Book id={3} open={openBook === 3} />

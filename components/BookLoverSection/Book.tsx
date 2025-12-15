@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 
@@ -12,58 +12,95 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
   const spineRef = useRef<HTMLDivElement>(null);
   const frontRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const getBookImage = (id: number, type: string) =>
     `/books/${id}-Book-${type}.png`;
 
+  // Check for mobile on mount and resize
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Set responsive dimensions based on screen size
+    const containerWidth = isMobile ? "30px" : "44px";
+    const openContainerWidth = isMobile ? "160px" : "235px";
+    
+    const spineRotation = isMobile ? -35 : -40;
+    const frontRotation = isMobile ? 25 : 30;
+    const frontLeftOpen = isMobile ? "18px" : "22px";
+    const frontLeftClosed = isMobile ? "3px" : "4px";
+    const frontRotationClosed = 90;
+
     // Animation from closed to open state or vice versa
     if (spineRef.current && frontRef.current && containerRef.current) {
       if (open) {
         // Animate to open state
-        gsap.timeline().to(containerRef.current, {
-          width: "235px",
-          duration: 0.8,
-          ease: "power2.inOut",
-        }, 0)
+        gsap.timeline()
+          .to(containerRef.current, {
+            width: openContainerWidth,
+            duration: 0.8,
+            ease: "power2.inOut",
+          }, 0)
           .to(spineRef.current, {
-            rotationY: -40,
+            rotationY: spineRotation,
             duration: 0.8,
             ease: "power2.inOut",
           }, 0)
           .to(frontRef.current, {
-            rotationY: 30,
-            left: "22px",
+            rotationY: frontRotation,
+            left: frontLeftOpen,
             duration: 0.8,
             ease: "power2.inOut",
           }, 0);
       } else {
         // Animate to closed state
-        gsap.timeline().to(containerRef.current, {
-          width: "44px",
-          duration: 0.8,
-          ease: "power2.inOut",
-        }, 0)
+        gsap.timeline()
+          .to(containerRef.current, {
+            width: containerWidth,
+            duration: 0.8,
+            ease: "power2.inOut",
+          }, 0)
           .to(spineRef.current, {
             rotationY: 0,
             duration: 0.8,
             ease: "power2.inOut",
           }, 0)
           .to(frontRef.current, {
-            rotationY: 90,
-            left: "4px",
+            rotationY: frontRotationClosed,
+            left: frontLeftClosed,
             duration: 0.8,
             ease: "power2.inOut",
           }, 0);
       }
     }
-  }, [open]);
+  }, [open, isMobile]);
+
+  // Responsive dimensions
+  const containerHeight = isMobile ? "180px" : "267px";
+  const spineWidth = isMobile ? "30px" : "44px";
+  const frontWidth = isMobile ? "150px" : "235px";
+  
+  // Image dimensions - maintain aspect ratio
+  const spineImageWidth = isMobile ? 30 : 44;
+  const spineImageHeight = isMobile ? 180 : 267;
+  const frontImageWidth = isMobile ? 160 : 235;
+  const frontImageHeight = isMobile ? 180 : 267;
 
   return (
     <div
       ref={containerRef}
-      className="relative h-[267px]"
+      className="relative"
       style={{
+        height: containerHeight,
+        width: isMobile ? "10px" : "44px",
         perspective: "1400px",
         transformStyle: "preserve-3d",
       }}
@@ -71,8 +108,9 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
       {/* SPINE */}
       <div
         ref={spineRef}
-        className="absolute top-0 left-0 h-full w-11 z-10"
+        className="absolute top-0 left-0 h-full z-10"
         style={{
+          width: spineWidth,
           transformOrigin: "right center",
           transformStyle: "preserve-3d",
         }}
@@ -80,17 +118,20 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
         <Image
           src={getBookImage(id, "side")}
           alt="Book side"
-          width={44}
-          height={267}
+          width={spineImageWidth}
+          height={spineImageHeight}
           className="h-full w-full object-cover"
+          priority={id <= 3} // Priority load first few books
         />
       </div>
 
       {/* FRONT */}
       <div
         ref={frontRef}
-        className="absolute top-0 h-full w-[235px]"
+        className="absolute top-0 h-full"
         style={{
+          width: frontWidth,
+          left: isMobile ? "10px" : "4px",
           transformOrigin: "left center",
           transformStyle: "preserve-3d",
           backfaceVisibility: "hidden",
@@ -99,9 +140,10 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
         <Image
           src={getBookImage(id, "front")}
           alt="Book front"
-          width={235}
-          height={267}
+          width={frontImageWidth}
+          height={frontImageHeight}
           className="h-full w-full object-cover"
+          priority={id <= 3} // Priority load first few books
         />
       </div>
     </div>
