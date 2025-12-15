@@ -300,8 +300,17 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     }
 
     return (
-        <div className="flex-1 bg-black pt-[65px] pb-20 relative h-full overflow-hidden">
-            <h2 className="text-4xl leading-[1.2em] tracking-[-0.02em] font-medium text-center mb-5 font-clash-display text-white">{heading}</h2>
+        <div className="flex-1 bg-black pt-10 lg:pt-[65px] pb-20 relative h-full overflow-hidden">
+            <h2
+                className={`
+    font-medium font-clash-display text-white text-center
+    tracking-[-0.02em] leading-[1.2em] mb-5
+    text-2xl sm:text-3xl lg:text-4xl
+    ${activeSection === "OVERVIEW" ? "hidden lg:block" : ""}
+  `}
+            >
+                {heading}
+            </h2>
 
             {activeSection === "OVERVIEW" && (
                 <div className="hidden lg:block absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-20">

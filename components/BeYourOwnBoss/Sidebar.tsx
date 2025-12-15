@@ -33,6 +33,18 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
 
     const stopDrag = () => setIsDragging(false);
 
+    const MENU_LABELS: Record<string, string> = {
+        overview: "Overview",
+        "booming bulls": "Booming Bulls",
+        "bb finserv": "BB FinServ",
+        "booming realm": "Booming Realm",
+        "market genius": "Market Genius",
+        "traders cafe": "Traders Cafe",
+        favourites: "Favourites",
+        referrals: "Referrals",
+        telegrams: "Telegrams",
+    };
+
     return (
         <>
             {/* ================= DESKTOP SIDEBAR ================= */}
@@ -181,8 +193,8 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                     style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}
                 />
 
-                <div className="relative z-10 p-4">
-                    <h1 className="text-xl text-white/70 font-krona mb-3">
+                <div className="relative z-10 p-4 pt-8">
+                    <h1 className="text-[32px] text-white leading-[1.2em] tracking-[-0.01em] font-clash-display font-medium mb-6">
                         Projects.
                     </h1>
 
@@ -197,20 +209,25 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                         onTouchEnd={stopDrag}
                         className="flex gap-3 overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing pb-2"
                     >
-                        {menuItems.map((item) => {
+                        {menuItems.map((item, index) => {
                             const isActive = activeSection === item;
                             return (
-                                <button
-                                    key={item}
-                                    onClick={() => setActiveSection(item)}
-                                    className={`shrink-0 px-4 py-2 rounded-lg font-semibold transition
-                    ${isActive
-                                            ? "bg-white text-black"
-                                            : "text-white/60 hover:text-white"
-                                        }`}
-                                >
-                                    {item}
-                                </button>
+                                <div key={item} className="flex items-center shrink-0">
+                                    <button
+                                        onClick={() => setActiveSection(item)}
+                                        className={`px-0 pr-2 py-2 font-medium text-[16px] leading-[1.4em] tracking-[-0.02em] transition font-clash-display
+          ${isActive
+                                                ? "text-white/90"
+                                                : "text-white/60 hover:text-white"
+                                            }`}
+                                    >
+                                        {MENU_LABELS[item.toLowerCase()] ?? item}
+                                    </button>
+
+                                    {index !== menuItems.length - 1 && (
+                                        <span className="mx-2 h-5 w-px bg-white/40"></span>
+                                    )}
+                                </div>
                             );
                         })}
                     </div>

@@ -92,7 +92,7 @@ const HeroStats: React.FC = () => {
             url="https://www.youtube.com/@BoomingBulls"
             isStatic={true}
             imageSrc="/Anish-Singh-Thakur-youtube.png"
-            className="text-[#BB2215] no-underline! font-normal px-2 text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
+            className="text-[#BB2215] no-underline! font-normal px-2 text-[20px] md:text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
           >
             Booming Bulls
           </LinkPreview>
@@ -111,7 +111,7 @@ const HeroStats: React.FC = () => {
                 <Counter target={75} suffix="k+" />
               </div>
               {/* label bigger on md */}
-              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+              <span className="text-black/70 text-[22px] md:text-[22px] leading-[1.2em] tracking-[-0.05em]">
                 Students Mentored
               </span>
             </div>
@@ -126,7 +126,7 @@ const HeroStats: React.FC = () => {
               <div className="text-3xl md:text-4xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
                 <Counter target={336} suffix="M+" />
               </div>
-              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+              <span className="text-black/70 text-[22px] md:text-[22px] leading-[1.2em] tracking-[-0.05em]">
                 Youtube Views
               </span>
             </div>
@@ -141,7 +141,7 @@ const HeroStats: React.FC = () => {
               <div className="text-3xl md:text-4xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
                 <Counter target={100} suffix="+" />
               </div>
-              <span className="text-gray-700 text-[18px] md:text-[20px] leading-[1.2em] tracking-[-0.05em]">
+              <span className="text-black/70 text-[22px] md:text-[22px] leading-[1.2em] tracking-[-0.05em]">
                 Youtube Videos
               </span>
             </div>
