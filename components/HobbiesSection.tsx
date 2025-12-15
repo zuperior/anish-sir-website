@@ -59,7 +59,7 @@ export default function HobbiesSection() {
                 <div
                   className={`absolute bottom-0 left-0 right-0 text-white font-clash-grotesk transition-all duration-400 ${
                     isActive
-                      ? "opacity-100 translate-y-0 pointer-events-none bg-gradient-to-t from-black to-transparent px-10 pb-10"
+                      ? "opacity-100 translate-y-0 pointer-events-none bg-gradient-to-t from-black to-transparent px-12 pb-10"
                       : "opacity-0 translate-y-6"
                   }`}
                 >
@@ -89,11 +89,11 @@ export default function HobbiesSection() {
                 className="object-cover"
               />
 
-              <div className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
-                <h2 className="text-[36px] md:text-[52px] font-medium leading-tight uppercase mb-3">
+              <div className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk leading-tight  bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
+                <h2 className="text-[22px] lg:text-[36px] bg-red- font-medium uppercase mb-3">
                   {s.title}
                 </h2>
-                <p className="text-white/70 font-medium text-[16px] md:leading-relaxed">
+                <p className="text-white/70 font-medium text-[16px]">
                   {s.content}
                 </p>
               </div>

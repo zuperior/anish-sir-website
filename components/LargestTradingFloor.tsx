@@ -108,10 +108,10 @@ export default function LargestTradingFloor() {
   };
 
   return (
-    <div className="md:min-h-screen bg-[#151515] flex items-center justify-center md:p-4 overflow-hidden">
+    <div className="md:min-h-screen bg-[#151515] flex items-center px-2 justify-center md:p-4 overflow-hidden">
       <div className="max-w-7xl w-full my-8 md:my-2">
         <div className="text-center mb-8 lg:mb-2 px-4">
-          <h1 className="text-[52px] font-medium text-white leading-tight mb-4 ">
+          <h1 className="text-[36px] lg:text-[52px] font-medium text-white leading-tight mb-4 ">
             Asia&apos;s Largest Trading Floor
           </h1>
           <p
@@ -199,8 +199,8 @@ export default function LargestTradingFloor() {
               <Image
                 src="/leftArrow.png"
                 alt="Prev Slide"
-                width={56}
-                height={56}
+                width={50}
+                height={50}
                 onClick={viewState === "rightExpanded" ? undefined : prevSlide}
                 className={`transition-all duration-300 ${
                   viewState === "rightExpanded"
@@ -214,8 +214,8 @@ export default function LargestTradingFloor() {
               <Image
                 src="/leftArrow.png"
                 alt="Prev Slide"
-                width={56}
-                height={56}
+                width={50}
+                height={50}
                 onClick={prevMobileSlide}
                 className="hover:opacity-70 cursor-pointer transition-all duration-300"
               />
@@ -225,8 +225,8 @@ export default function LargestTradingFloor() {
               <Image
                 src="/rightArrow.png"
                 alt="Next Slide"
-                width={56}
-                height={56}
+                width={50}
+                height={50}
                 onClick={viewState === "leftExpanded" ? undefined : nextSlide}
                 className={`transition-all duration-300 ${
                   viewState === "leftExpanded"
@@ -240,8 +240,8 @@ export default function LargestTradingFloor() {
               <Image
                 src="/rightArrow.png"
                 alt="Next Slide"
-                width={56}
-                height={56}
+                width={50}
+                height={50}
                 onClick={nextMobileSlide}
                 className="hover:opacity-70 cursor-pointer transition-all duration-300"
               />
