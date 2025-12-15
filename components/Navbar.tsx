@@ -22,38 +22,20 @@ const Navbar = () => {
   ) => {
     e.preventDefault();
 
-    const hash = href; // like "#about"
-
-    // If already on homepage —
     if (window.location.pathname === "/") {
-      if (window.lenis) window.lenis.scrollTo(hash);
+      window.lenis?.scrollTo(href);
       setIsMenuOpen(false);
       return;
     }
 
-    // If on another page —
-    router.push("/" + hash);
+    router.push("/" + href);
 
-    // Wait for next tick, then scroll after route loads
     setTimeout(() => {
-      if (window.lenis) window.lenis.scrollTo(hash);
+      window.lenis?.scrollTo(href);
     }, 500);
 
     setIsMenuOpen(false);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById("beYourOwnBoss");
-      if (section) {
-        const rect = section.getBoundingClientRect();
-        setIsInBeYourOwnBoss(rect.top < window.innerHeight && rect.bottom > 0);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,34 +59,35 @@ const Navbar = () => {
   return (
     <div
       className={`fixed top-2.5 left-1/2 -translate-x-1/2 w-full h-[74px] z-50 will-change-transform
-  transition-all duration-800 
-  ${navVisible ? "translate-y-0" : "-translate-y-[120%]"}`}
+      transition-all duration-800 
+      ${navVisible ? "translate-y-0" : "-translate-y-[120%]"}`}
     >
       <div className="flex-none w-auto h-auto relative opacity-100">
-        <div className="w-full flex justify-between items-center py-[15px] px-[50px] relative">
+        <div className="w-full flex justify-between items-center md:py-[15px] md:px-[50px] py-2.5 px-2.5 relative">
           {/* Logo */}
           <Link
             href="/"
             onClick={() => setIsMenuOpen(false)}
-            className={`font-krona text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215] transition-opacity duration-300 ${isInBeYourOwnBoss ? "opacity-0" : "opacity-100"
-              }`}
+            className={`font-krona text-[24px] md:text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215] transition-opacity duration-300 ${
+              isInBeYourOwnBoss ? "opacity-0" : "opacity-100"
+            }`}
           >
             ANISH.
           </Link>
 
           <div className="relative">
-            {/* <div
-              className="bg-white hover:bg-[#BB2215] rounded-[100px] h-[44px] w-[44px] flex justify-center items-center cursor-pointer transition-colors duration-300 group
-              "
-              onClick={() => setIsMenuOpen(!isMenuOpen)
-                
-              }
-            > */}
             <div
-              className={`group absolute top-0 right-0 bg-white hover:bg-[#BB2215] rounded-full h-11 w-11 flex justify-center items-center cursor-pointer transition-transform duration-300 ${isMenuOpen
-                  ? "-translate-x-[300px] translate-y-[30px]"
-                  : "translate-x-0 translate-y-0"
-                }`}
+              className={`group
+                rounded-full h-11 w-11 flex justify-center items-center cursor-pointer
+                transition-transform duration-300
+                ${
+                  isMenuOpen
+                    ? "-translate-x-[260px] translate-y-5 md:-translate-x-[300px] md:translate-y-[30px]"
+                    : "translate-x-0 translate-y-0"
+                }
+                bg-transparent md:bg-white
+                md:hover:bg-[#BB2215]
+              `}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Image
@@ -112,18 +95,20 @@ const Navbar = () => {
                 alt="Menu"
                 width={20}
                 height={14}
-                className="transition-all duration-300 group-hover:invert group-hover:brightness-0"
+                className="transition-all duration-300
+                  md:group-hover:invert md:group-hover:brightness-0
+                  filter invert brightness-100 md:filter-none"
               />
             </div>
 
             <div
               className={`absolute top-0 flex flex-col gap-[25px]
-  right-0 w-[347px] h-[530px]
-  bg-black text-white pt-[25px] pr-[25px] pb-[50px] pl-[45px]
-  rounded-lg shadow-lg transform 
-  transition-transform duration-300 ease-in-out
-  ${isMenuOpen ? "translate-x-0" : "translate-x-[120%]"}
-`}
+                right-0 w-[90vw] max-w-[347px] h-[530px]
+                bg-black text-white pt-[25px] pr-[25px] pb-[50px] pl-[45px]
+                rounded-lg shadow-lg transform 
+                transition-transform duration-300 ease-in-out
+                ${isMenuOpen ? "translate-x-0" : "translate-x-[120%]"}
+              `}
             >
               <div className=" relative w-full h-[50px]  flex flex-col gap-2.5 justify-end items-end">
                 <div className="relative w-full h-[50px] flex flex-col justify-end items-end">
@@ -142,7 +127,7 @@ const Navbar = () => {
               </div>
               <Link
                 href="#"
-                className="font-krona text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#F9432D]"
+                className="font-krona text-[24px] md:text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#F9432D]"
               >
                 ANISH.
               </Link>
