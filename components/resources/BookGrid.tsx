@@ -56,7 +56,7 @@ const books = [
 const BookGrid = () => {
   return (
     <div className="bg-[#151515] w-full min-h-screen p-[100px]">
-      <div className="grid grid-cols-4 justify-items-center gap-16 w-fit mx-auto">
+      <div className="grid  md:grid-cols-4 grid-cols-1 lg:grid-cols-4 justify-items-center gap-16 w-fit mx-auto">
         {books.map((book) => (
           <div
             key={book.title}

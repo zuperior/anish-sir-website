@@ -29,7 +29,7 @@ const AmazonButton = () => {
 
   return (
     <Link
-      className="relative w-[191px] h-[62px] cursor-pointer select-none flex items-center justify-center"
+      className="relative lg:w-[191px] lg:h-[62px] md:w-[150px] md:h-[50px] w-[150px] h-[50px] cursor-pointer select-none flex items-center justify-center"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       href={"#"} // To Do: Add Amazon link
@@ -55,7 +55,7 @@ const AmazonButton = () => {
       )}
 
       <button
-        className={`absolute inset-0 flex items-center justify-center text-xl pointer-events-none transition-colors duration-150
+        className={`absolute inset-0 flex items-center justify-center md:text-xl text-lg lg:text-xl pointer-events-none transition-colors duration-150
           ${isHover ? "text-black" : "text-white"} font-delicious`}
       >
         Buy From Amazon
