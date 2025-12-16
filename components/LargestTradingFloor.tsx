@@ -17,7 +17,7 @@ export default function LargestTradingFloor() {
   const rightCardRef = useRef<HTMLDivElement>(null);
 
   const leftImage = "/left.jpg";
-  const centerImage = "/center.png";
+  const centerImage = "/footer/2.jpg";
   const rightImage = "/right.jpg";
 
   const images = [leftImage, centerImage, rightImage];
