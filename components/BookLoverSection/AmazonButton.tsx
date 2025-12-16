@@ -32,7 +32,7 @@ const AmazonButton = () => {
       className="relative lg:w-[191px] lg:h-[62px] md:w-[150px] md:h-[50px] w-[150px] h-[50px] cursor-pointer select-none flex items-center justify-center"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      href={"#"} // To Do: Add Amazon link
+      href={"/resources"} // To Do: Add Amazon link
     >
       {!isHover && (
         <Image
@@ -58,7 +58,7 @@ const AmazonButton = () => {
         className={`absolute inset-0 flex items-center justify-center md:text-xl text-lg lg:text-xl pointer-events-none transition-colors duration-150
           ${isHover ? "text-black" : "text-white"} font-delicious`}
       >
-        Buy From Amazon
+        View all Resources{" "}
       </button>
     </Link>
   );
