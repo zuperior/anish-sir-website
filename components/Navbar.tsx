@@ -68,7 +68,7 @@ const Navbar = () => {
           <Link
             href="/"
             onClick={() => setIsMenuOpen(false)}
-            className={`font-krona text-[24px] md:text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215] transition-opacity duration-300 ${
+            className={`font-krona text-[24px] -mt-4 md:text-[34px] tracking-[-0.08em] leading-[0.9em] text-[#BB2215] transition-opacity duration-300 ${
               isInBeYourOwnBoss ? "opacity-0" : "opacity-100"
             }`}
           >

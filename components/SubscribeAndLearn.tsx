@@ -71,7 +71,7 @@ const SubscribeAndLearn = () => {
       </div>
 
       {/* video slider */}
-      <div className="w-full flex flex-col gap-12.5 overflow-visible">
+      <div className="w-full flex flex-col md:px-10 px-0 lg:px-10 gap-12.5 overflow-visible">
         <div
           ref={sliderRef}
           className="flex md:gap-5 gap-[15px] overflow-x-scroll no-scrollbar scroll-smooth snap-x snap-mandatory"

@@ -80,7 +80,7 @@ const ManBehindBusiness = () => {
           opacity: 0.3
         }}
       />
-      <motion.div
+ <motion.div
         initial={{ x: -150, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{
@@ -103,9 +103,9 @@ const ManBehindBusiness = () => {
           rotate: smoothRotate,
           transformOrigin: "50% 50%"
         }}
-        className="absolute  bottom-[-50px] lg:bottom-[-130px]  right-0 lg:right-28  "
+        className="absolute  bottom-[-50px] lg:bottom-[-130px]  right-0 lg:right-50  "
       >
-        <Image src={circle} alt="circle" width={426} height={426} className="w-[201px] h-[201px] lg:w-[426px] lg:h-[426px]" />
+        <Image src={circle} alt="circle" width={426} height={426} className="w-[201px] h-[201px] lg:w-[410px] lg:h-[426px]" />
       </motion.div>
       <Image
         src={tower1}
@@ -123,7 +123,7 @@ const ManBehindBusiness = () => {
         </h2>
         <p
           ref={paragraphRef}
-          className=" text-[12px] lg:text-[20px] text-[#FFFFFF]/70 w-full  lg:w-[1000px] min-h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium px-[15px] lg:px-0"
+          className=" text-[12px] lg:text-[20px] text-[#FFFFFF]/70 w-full  -mt-2 lg:w-[1000px] min-h-[106px] font-clash-grotesk opacity-100 leading-[1.1] tracking-[-0.02em] font-medium px-[15px] lg:px-0"
         >
           Anish lives by a powerful belief: “The size of the fish doesn’t matter; the pond it swims in matters the most.”  This is why he chooses to live in fast-paced, high-growth cities; environments that challenge him, push him, and align with his ambition to build something global.
         </p>

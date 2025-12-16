@@ -55,7 +55,7 @@ const HeroSection = () => {
             <TextAnimate
               as={"div"}
               animation="blurInUp"
-              className="text-[48px] lg:text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona px-5 lg:px-0 w-[253px] h-[158px] lg:w-full lg:h-[216px] "
+              className="text-[48px] lg:text-[80px] tracking-[-0.08em] leading-[0.9em] text-white font-krona px-5 lg:px-0 w-[253px] h-[158px] lg:w-full lg:h-[216px] mt-1.5 "
             >
               ANISH SINGH THAKUR<span className="text-[#BB2215]">.</span>
             </TextAnimate>

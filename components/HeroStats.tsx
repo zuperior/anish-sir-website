@@ -92,12 +92,12 @@ const HeroStats: React.FC = () => {
             url="https://www.youtube.com/@BoomingBulls"
             isStatic={true}
             imageSrc="/Anish-Singh-Thakur-youtube.png"
-            className="text-[#BB2215] no-underline! font-normal px-2 text-[20px] md:text-[32px] leading-[1.5em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
+            className="text-[#BB2215] no-underline! font-normal px-4 text-[20px] md:text-[32px] leading-[1.3em] tracking-[-0.08em] font-krona cursor-pointer decoration-transparent hover:decoration-[#BB2215] transition"
           >
             Booming Bulls
           </LinkPreview>
           one of the world’s largest and most impactful trading education
-          ecosystems. Trusted by over 3 Million learners globally, he has built
+          ecosystems. Trusted by over 3Million learners globally, he has built
           a high-performance platform
         </BlurText>
 
@@ -152,7 +152,7 @@ const HeroStats: React.FC = () => {
         {/* Desktop (>= lg): row with vertical dividers */}
         <div className="hidden lg:flex items-center justify-center gap-12 px-4 py-13 font-clash-display">
           {/* Students */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={75} suffix="k+" />
             </div>
@@ -171,7 +171,7 @@ const HeroStats: React.FC = () => {
           </div>
 
           {/* Views */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={336} suffix="M+" />
             </div>
@@ -190,7 +190,7 @@ const HeroStats: React.FC = () => {
           </div>
 
           {/* Videos */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-4xl lg:text-5xl font-bold font-raleway leading-[1em] tracking-[-2.4px]">
               <Counter target={100} suffix="+" />
             </div>

@@ -46,7 +46,7 @@ const page = () => {
       </div>
 
       {/* Links Section */}
-      <div className="flex flex-col md:flex-row justify-center md:gap-12 gap-8 z-10 items-center md:items-stretch w-full max-w-6xl">
+      <div className="flex flex-col md:flex-row justify-center md:gap-12 gap-8 z-10 items-center md:items-stretch w-full max-w-7xl">
         {platforms.map((item, index) => (
           <React.Fragment key={item.name}>
             {/* Link Block */}

@@ -74,7 +74,7 @@ const RootedInValues = () => {
 
         <p
           ref={paraRef}
-          className="font-medium h-[155px] lg:h-full lg:w-[1050px] mx-auto text-[16px] lg:text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 text-black/70 p-4 lg:p-0 lg:px-4"
+          className="font-medium h-[155px] lg:h-full lg:w-[1080px] mx-auto text-[16px] lg:text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 text-black/70 p-4 lg:p-0 lg:px-4"
         >
           Anish draws inspiration from Anthony Robbins and Sadhguru, two figures
           who shaped his thinking around human potential, inner mastery, and

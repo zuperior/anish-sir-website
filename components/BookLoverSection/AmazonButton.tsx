@@ -55,7 +55,7 @@ const AmazonButton = () => {
       )}
 
       <button
-        className={`absolute inset-0 flex items-center justify-center md:text-xl text-lg lg:text-xl pointer-events-none transition-colors duration-150
+        className={`absolute inset-0 flex items-center justify-center md:text-xl text-lg lg:text-[22px] pointer-events-none transition-colors duration-150
           ${isHover ? "text-black" : "text-white"} font-delicious`}
       >
         View all Resources{" "}

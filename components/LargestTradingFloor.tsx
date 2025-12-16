@@ -160,7 +160,7 @@ export default function LargestTradingFloor() {
                     src={leftImage}
                     alt="Left view"
                     fill
-                    className="object-cover"
+  className="object-cover rounded-2xl transition-all duration-300 group-hover:brightness-35 cursor-pointer"
                   />
                 </div>
               </div>
@@ -169,12 +169,12 @@ export default function LargestTradingFloor() {
                 ref={centerCardRef}
                 className="w-[575px] h-[350px] shrink-0 relative group"
               >
-                <Image
-                  src={centerImage}
-                  alt="Center view"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
+           <Image
+  src={centerImage}
+  alt="Center view"
+  fill
+  className="object-cover rounded-2xl transition-all duration-300 group-hover:brightness-35 cursor-pointer"
+/>
               </div>
 
               <div
@@ -186,7 +186,7 @@ export default function LargestTradingFloor() {
                     src={rightImage}
                     alt="Right view"
                     fill
-                    className="object-cover"
+  className="object-cover rounded-2xl transition-all duration-300 group-hover:brightness-35 cursor-pointer"
                   />
                 </div>
               </div>
