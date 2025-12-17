@@ -49,10 +49,10 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
         <>
             {/* ================= DESKTOP SIDEBAR ================= */}
             <aside className="hidden lg:flex w-80 max-w-[300px] bg-[#8A1A0E] relative p-8 pt-[50px] flex-col overflow-y-auto no-scrollbar">
-                <div
+                {/* <div
                     className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-screen pointer-events-none"
                     style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}
-                />
+                /> */}
 
                 <div className="relative z-10 flex flex-col grow">
                     <h1 className="text-4xl mb-10 text-white/70 font-krona tracking-[-0.08em] leading-[1.3em]">
@@ -188,10 +188,10 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
 
             {/* ================= MOBILE / TABLET BOTTOM BAR ================= */}
             <div className="lg:hidden shrink-0 bg-[#8A1A0E] relative">
-                <div
+                {/* <div
                     className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-screen pointer-events-none"
                     style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}
-                />
+                /> */}
 
                 <div className="relative z-10 p-4 pt-8">
                     <h1 className="text-[32px] text-white leading-[1.2em] tracking-[-0.01em] font-clash-display font-medium mb-6">

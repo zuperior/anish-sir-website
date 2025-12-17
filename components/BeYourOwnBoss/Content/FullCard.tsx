@@ -307,11 +307,9 @@ export const FullCard = React.memo(({ cardId, activeSection }: { cardId: string;
                                     </div>
                                     <p className="text-white/65 text-sm leading-[1.2em] tracking-[0.01em] font-clash-grotesk mb-4">{data.description}</p>
                                     {data.website && (
-                                        <a href={`https://${data.website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline font-clash-display leading-[1.2em]">
+                                        <a href={`https://${data.website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-2 underline font-clash-display leading-[1.2em]">
                                             {data.website}
-                                            <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
+                                            <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45" />
                                         </a>
                                     )}
                                 </motion.div>

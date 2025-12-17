@@ -301,7 +301,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
 
     if (["BOOMING BULLS", "BB FINSERV", "BOOMING REALM"].includes(activeSection)) {
         return (
-            <div ref={scrollContainerRef} className="flex-1 bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar">
+            <div ref={scrollContainerRef} className="flex-1 bg-black lg:bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar border-[#8A1A0E] rounded-xl lg:rounded-none relative" style={{ pointerEvents: "auto" }}>
                 <div className="max-w-5xl xl:max-w-6xl mx-auto">
                     <FullCard cardId={cardMap[activeSection]} activeSection={activeSection} />
                 </div>
@@ -310,11 +310,11 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     }
 
     return (
-        <div className="flex-1 bg-black pt-10 lg:pt-[65px] pb-20 relative h-full overflow-hidden">
+        <div className="flex-1 bg-black pt-2 border-[#8A1A0E] lg:border-0 rounded-xl lg:rounded-none lg:pt-[65px] pb-0 lg:pb-20 relative h-full overflow-hidden">
             <h2
                 className={`
     font-medium font-clash-display text-white text-center
-    tracking-[-0.02em] leading-[1.2em] mb-5
+    tracking-[-0.02em] leading-[1.2em] mb-5 pt-4 lg:pt-0
     text-2xl sm:text-3xl lg:text-4xl
     ${activeSection === "OVERVIEW" ? "hidden lg:block" : ""}
   `}
@@ -328,10 +328,10 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 </div>
             )}
 
-            <div ref={scrollContainerRef} className="pt-0 px-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
+            <div ref={scrollContainerRef} className="pt-0 pl-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
                 {activeSection === "OVERVIEW" && (
-                    <div className="space-y-5 pb-20">
-                        <section>
+                    <div className="space-y-5 pb-5 lg:pb-20">
+                        <section className="pt-4 lg:pt-0">
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
                             <div
                                 className="
@@ -374,7 +374,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 )}
 
                 {activeSection === "FAVOURITES" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4 items-start justify-center">
@@ -382,20 +382,18 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                                     const detailed = businessesDetailedData[item.id];
                                     const description = detailed?.fullDescription || item.text;
                                     return (
-                                        <div key={item.id} className="rounded-[22px] p-5 text-white w-full cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
+                                        <div key={item.id} className="rounded-[22px] lg:rounded-none p-5 text-white w-[calc(100%-1rem)] md:w-full mr-4 md:mr-0 cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
                                             <div className="flex items-start gap-1 mb-2">
                                                 {item.icon}
                                                 <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] flex-1">
-                                                    {item.title} <span className="text-white/60">↗</span>
+                                                    {item.title} <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45 inline ml-2" />
                                                 </span>
                                             </div>
                                             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="text-white/65 text-[14px] font-clash-grotesk tracking-[-0.03em] leading-[1.2em] mb-3">{description}</motion.p>
                                             {detailed?.website && (
-                                                <a href={detailed.website} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
+                                                <a href={detailed.website} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-2 underline">
                                                     {detailed.website}
-                                                    <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                    </svg>
+                                                    <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45" />
                                                 </a>
                                             )}
                                         </div>
@@ -426,25 +424,23 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 )}
 
                 {activeSection === "TELEGRAMS" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Telegram Channels</p>
                             <div className="flex flex-wrap gap-[15px]">
                                 {telegramChannels.map((item) => (
-                                    <div key={item.id} className="rounded-[22px] p-[22px] pt-[30px] pl-6 text-white w-full sm:w-[350px] cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
+                                    <div key={item.id} className="rounded-[22px] lg:rounded-none p-[22px] pt-[30px] pl-6 text-white w-[calc(100%-1rem)] sm:max-w-[350px] mr-4 sm:mr-0 cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
                                         <div className="flex items-start gap-1 mb-2">
                                             {typeof item.icon === "function" ? <item.icon /> : item.icon}
                                             <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] flex-1">
-                                                {item.title} <span className="text-white/60">↗</span>
+                                                {item.title} <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45 inline ml-2" />
                                             </span>
                                         </div>
                                         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="text-white/70 text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] mb-4">{businessesDetailedData[item.id]?.fullDescription}</motion.p>
                                         {businessesDetailedData[item.id]?.website && (
-                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
+                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-2 underline">
                                                 {businessesDetailedData[item.id].website}
-                                                <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
+                                                <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45" />
                                             </a>
                                         )}
                                     </div>
@@ -460,20 +456,18 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
                             <div className="flex flex-wrap gap-[15px]">
                                 {[myBusinesses[1]].map((item) => (
-                                    <div key={item.id} className="rounded-[22px] p-[22px] pt-[30px] pl-6 text-white w-full sm:w-[350px] cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
+                                    <div key={item.id} className="rounded-[22px] lg:rounded-none p-[22px] pt-[30px] pl-6 text-white w-full sm:w-[350px] cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02] mr-4 lg:mr-0" style={cardStyle}>
                                         <div className="flex items-start gap-1 mb-2">
                                             {item.icon}
                                             <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] flex-1">
-                                                {item.title} <span className="text-white/60">↗</span>
+                                                {item.title} <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45 inline ml-2" />
                                             </span>
                                         </div>
                                         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="text-white/70 text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] mb-4">{businessesDetailedData[item.id]?.fullDescription}</motion.p>
                                         {businessesDetailedData[item.id]?.website && (
-                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
+                                            <a href={`https://${businessesDetailedData[item.id].website.replace("www.", "")}`} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-2 underline">
                                                 {businessesDetailedData[item.id].website}
-                                                <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
+                                                <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45" />
                                             </a>
                                         )}
                                     </div>
@@ -489,20 +483,18 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
                             <div className="flex flex-wrap gap-[15px]">
                                 {[myBusinesses[2]].map((item) => (
-                                    <div key={item.id} className="rounded-[22px] p-[22px] pt-[30px] pl-6 text-white w-full sm:w-[350px] cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02]" style={cardStyle}>
+                                    <div key={item.id} className="rounded-[22px] lg:rounded-none p-[22px] pt-[30px] pl-6 text-white w-[calc(100%-1rem)] sm:max-w-[350px] cursor-pointer transition-all duration-300 hover:border-[#BB2215] hover:scale-[1.02] mr-4" style={cardStyle}>
                                         <div className="flex items-start gap-1 mb-2">
                                             {item.icon}
                                             <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] flex-1">
-                                                {item.title} <span className="text-white/60">↗</span>
+                                                {item.title} <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45 inline ml-2" />
                                             </span>
                                         </div>
                                         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="text-white/70 text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] mb-4">{businessesDetailedData[item.id]?.fullDescription}</motion.p>
                                         {businessesDetailedData[item.id]?.website && (
-                                            <a href={businessesDetailedData[item.id].website} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-1 underline">
+                                            <a href={businessesDetailedData[item.id].website} target="_blank" rel="noopener noreferrer" className="text-[#DCB5B2] hover:text-[#BB2215] transition-colors text-sm font-medium inline-flex items-center gap-2 underline">
                                                 {businessesDetailedData[item.id].website.replace("https://", "")}
-                                                <svg className="w-3 h-3 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
+                                                <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45" />
                                             </a>
                                         )}
                                     </div>

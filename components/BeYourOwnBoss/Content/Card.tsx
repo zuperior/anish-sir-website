@@ -1,5 +1,6 @@
 // BeYourOwnBoss/Content/Card.tsx
 import React, { CSSProperties } from "react";
+import Image from "next/image";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Card = ({ id, icon, title, text, activeSection, onSectionChange }: any) => {
@@ -45,10 +46,10 @@ export const Card = ({ id, icon, title, text, activeSection, onSectionChange }: 
             style={cardStyle}
             onClick={handleClick}
         >
-            <div className="flex items-start gap-1 mb-2">
+            <div className="flex items-start gap-2 mb-2">
                 {IconComponent ? <IconComponent /> : icon}
                 <span className="font-medium font-clash-display text-[19px] leading-[1.2em] tracking-[-0.02em] pt-[5px] flex-1 text-white/80">
-                    {title} <span className="text-white/60">↗</span>
+                    {title} <Image src="/arrow.svg" width={9} height={15} alt="arrow" className="rotate-45 inline ml-2" />
                 </span>
             </div>
             <p className="text-white/65 font-normal text-sm font-clash-grotesk tracking-[0.01em] leading-[1.2em] max-w-[300px]">{text}</p>
