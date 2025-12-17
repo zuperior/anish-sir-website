@@ -132,7 +132,7 @@ const Index = () => {
   return (
     <section className="bg-[#151515] relative w-full" id="resources">
       {/* Sticky Div */}
-      <div className="w-full sticky top-0 flex-center flex-col gap-[70px] py-20">
+      <div className="w-full sticky top-0 flex-center flex-col gap-[70px] py-10">
         <div className="w-full flex flex-col items-center gap-2.5">
           <h2 className="-tracking-[0.01em] leading-[1.2em] md:w-full w-[180px] lg:w-full font-medium md:text-[47px] text-[20px] lg:text-[52px] text-white text-center">
             Lover of Books & Writer at Heart
