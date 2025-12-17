@@ -359,29 +359,60 @@ const BookLoverSection = () => {
 
     if (bookIndex === activeIndex) return "0px";
     if (bookIndex === activeIndex - 1) return "0px";
-    if (bookIndex === activeIndex + 1) return isMobile ? "30px" : "60px";
+    if (bookIndex === activeIndex + 1) return isMobile ? "15px" : "60px";
 
     return "-2px";
   };
 
   const getBookWidth = (bookIndex: number) => {
     const book = books[bookIndex];
-    return book.isOpen ? (isMobile ? "200px" : "279px") : (isMobile ? "30px" : "44px");
+    // Further reduced dimensions for mobile
+    return book.isOpen ? (isMobile ? "120px" : "279px") : (isMobile ? "20px" : "44px");
   };
 
+  // ⭐ FIXED: Perfect mobile container transform calculation
   const getContainerTransform = () => {
-    const bookWidth = isMobile ? 10 : 44;
-    const openBookWidth = isMobile ? 100 : 279;
-    const activeBookWidth = books[activeIndex]?.isOpen
-      ? openBookWidth
-      : bookWidth;
+    if (isMobile) {
+      // Mobile calculation
+      const bookWidth = 20; // Closed book width on mobile
+      const openBookWidth = 120; // Open book width on mobile
+      const activeBookWidth = books[activeIndex]?.isOpen ? openBookWidth : bookWidth;
+      
+      // Calculate total width needed for all books
+      const totalBooksWidth = books.reduce((total, book, index) => {
+        const width = book.isOpen ? 120 : 20;
+        return total + width - (index > 0 ? 2 : 0); // Subtract 2px for overlap
+      }, 0);
+      
+      // Calculate viewport width (subtract padding)
+      const viewportWidth = window.innerWidth;
+      const containerPadding = 30; // 15px on each side
+      const availableWidth = viewportWidth - containerPadding;
+      
+      // If total width fits in available space, center it
+      if (totalBooksWidth <= availableWidth) {
+        const centerOffset = (availableWidth - totalBooksWidth) / 2;
+        return `translateX(${centerOffset}px)`;
+      }
+      
+      // Otherwise, position active book with proper bounds
+      const offset = activeIndex * (bookWidth - 2);
+      const maxOffset = Math.max(0, totalBooksWidth - availableWidth);
+      const boundedOffset = Math.min(offset, maxOffset);
+      
+      return `translateX(${-boundedOffset}px)`;
+    }
+    
+    // Desktop calculation (unchanged)
+    const bookWidth = 44;
+    const openBookWidth = 279;
+    const activeBookWidth = books[activeIndex]?.isOpen ? openBookWidth : bookWidth;
     const offset = activeIndex * (bookWidth - 2);
-
     return `translateX(calc(50vw - ${offset + activeBookWidth / 2}px))`;
   };
 
   //-------------------------------------------
-  // UI SECTION - RESPONSIVE
+  // UI SECTION - RESPONSIVE (FIXED FOR MOBILE)
   //-------------------------------------------
   return (
     <div 
@@ -389,8 +420,10 @@ const BookLoverSection = () => {
       className="bg-[#151515] w-full flex justify-center items-center px-4"
       style={{
         position: "relative",
-        minHeight: isMobile ? "200px" : "320px",
+        minHeight: isMobile ? "160px" : "320px",
         overflow: "hidden",
+        width: "100%",
+        maxWidth: "100vw",
       }}
     >
       <div
@@ -399,9 +432,11 @@ const BookLoverSection = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          width: "100%",
+          width: isMobile ? "max-content" : "100%",
           position: "relative",
           userSelect: "none",
+          overflow: "hidden",
+          height: "100%",
         }}
       >
         <div
@@ -409,14 +444,14 @@ const BookLoverSection = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             height: "100%",
             position: "relative",
             transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             transform: getContainerTransform(),
             willChange: "transform",
-            padding: isMobile ? "0 20px" : "0 50px",
-            gap: isMobile ? "10px" : "20px",
+            padding: isMobile ? "0 15px" : "0 50px",
+            gap: isMobile ? "5px" : "20px",
           }}
         >
           {books.map((book, index) => (
@@ -424,22 +459,23 @@ const BookLoverSection = () => {
               key={book.id}
               style={{
                 position: "relative",
-                height: isMobile ? "240px" : "380px",
+                height: isMobile ? "160px" : "380px",
                 width: getBookWidth(index),
                 marginLeft: getBookSpacing(book.id),
                 perspective: "1400px",
                 zIndex: book.isOpen ? 1000 : books.length - index,
                 transition: "width 0.4s ease, margin 0.4s ease",
                 willChange: "width, margin, z-index",
+                flexShrink: 0,
               }}
             >
               {/* SIDE */}
               <div
                 style={{
                   position: "absolute",
-                  top: isMobile ? "35px" : "56px",
-                  width: isMobile ? "40px" : "54px",
-                  height: isMobile ? "180px" : "307px",
+                  top: isMobile ? "20px" : "56px",
+                  width: isMobile ? "25px" : "54px",
+                  height: isMobile ? "120px" : "307px",
                   transformOrigin: "right center",
                   transform: `rotateY(${book.sideRotate}deg)`,
                   transition:
@@ -464,10 +500,10 @@ const BookLoverSection = () => {
               <div
                 style={{
                   position: "absolute",
-                  left: isMobile ? "18px" : "28px",
-                  top: isMobile ? "35px" : "56px",
-                  width: isMobile ? "220px" : "305px",
-                  height: isMobile ? "180px" : "307px",
+                  left: isMobile ? "12px" : "28px",
+                  top: isMobile ? "20px" : "56px",
+                  width: isMobile ? "135px" : "305px",
+                  height: isMobile ? "120px" : "307px",
                   transformOrigin: "left center",
                   transform: `rotateY(${book.frontRotate}deg)`,
                   backfaceVisibility: "hidden",

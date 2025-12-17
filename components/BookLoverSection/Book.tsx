@@ -30,13 +30,13 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
 
   useEffect(() => {
     // Set responsive dimensions based on screen size
-    const containerWidth = isMobile ? "30px" : "44px";
-    const openContainerWidth = isMobile ? "160px" : "235px";
+    const containerWidth = isMobile ? "20px" : "44px";
+    const openContainerWidth = isMobile ? "120px" : "235px";
     
     const spineRotation = isMobile ? -35 : -40;
     const frontRotation = isMobile ? 25 : 30;
-    const frontLeftOpen = isMobile ? "18px" : "22px";
-    const frontLeftClosed = isMobile ? "3px" : "4px";
+    const frontLeftOpen = isMobile ? "12px" : "22px";
+    const frontLeftClosed = isMobile ? "2px" : "4px";
     const frontRotationClosed = 90;
 
     // Animation from closed to open state or vice versa
@@ -83,24 +83,24 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
     }
   }, [open, isMobile]);
 
-  // Responsive dimensions
-  const containerHeight = isMobile ? "180px" : "267px";
-  const spineWidth = isMobile ? "30px" : "44px";
-  const frontWidth = isMobile ? "150px" : "235px";
+  // Responsive dimensions - REDUCED FOR MOBILE
+  const containerHeight = isMobile ? "140px" : "267px";
+  const spineWidth = isMobile ? "20px" : "44px";
+  const frontWidth = isMobile ? "110px" : "235px";
   
   // Image dimensions - maintain aspect ratio
-  const spineImageWidth = isMobile ? 30 : 44;
-  const spineImageHeight = isMobile ? 180 : 267;
-  const frontImageWidth = isMobile ? 160 : 235;
-  const frontImageHeight = isMobile ? 180 : 267;
+  const spineImageWidth = isMobile ? 20 : 44;
+  const spineImageHeight = isMobile ? 140 : 267;
+  const frontImageWidth = isMobile ? 120 : 235;
+  const frontImageHeight = isMobile ? 140 : 267;
 
   return (
     <div
       ref={containerRef}
-      className="relative"
+      className="relative flex-shrink-0" // Added flex-shrink-0
       style={{
         height: containerHeight,
-        width: isMobile ? "10px" : "44px",
+        width: isMobile ? "20px" : "44px", // Adjusted for mobile
         perspective: "1400px",
         transformStyle: "preserve-3d",
       }}
@@ -121,7 +121,7 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
           width={spineImageWidth}
           height={spineImageHeight}
           className="h-full w-full object-cover"
-          priority={id <= 3} // Priority load first few books
+          priority={id <= 3}
         />
       </div>
 
@@ -143,7 +143,7 @@ const Book: React.FC<BookProps> = ({ id, open = false }) => {
           width={frontImageWidth}
           height={frontImageHeight}
           className="h-full w-full object-cover"
-          priority={id <= 3} // Priority load first few books
+          priority={id <= 3}
         />
       </div>
     </div>
