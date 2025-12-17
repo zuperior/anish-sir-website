@@ -53,7 +53,7 @@ const RootedInValues = () => {
 
   return (
     <div
-      className="relative w-full py-[100px] flex flex-col gap-[50px] overflow-hidden"
+      className="relative w-full  py-[70px] lg:py-[100px] flex flex-col gap-[50px] overflow-hidden"
       id="personal"
     >
       {/* 🔽 Image overlays ON TOP of white bg */}
@@ -68,7 +68,7 @@ const RootedInValues = () => {
 
       <div className="flex-center flex-col gap-[10px] lg:gap-[15px] w-full relative h-[272px] px-4 lg:px-0 lg:h-full">
         {/* 🔼 Text stays above image */}
-        <h2 className="font-clash-display text-[36px] lg:text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium text-center relative z-10 ">
+        <h2 className="font-clash-display text-[32px] lg:text-[52px] -tracking-[0.01em] leading-[1.2em] font-medium text-center relative z-10 ">
           Rooted in Values, guided by Role Models
         </h2>
 
