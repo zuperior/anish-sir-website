@@ -171,7 +171,7 @@ const Navbar = () => {
                   Resources
                 </Link>
               </div>
-              <div className="relative w-full flex flex-col h-[91px] gap-[25px]">
+              <div className="relative w-full flex flex-col h-[91px] gap-[25px] pt-5 sm:pt-0">
                 <div className="w-[191px] p-0  justify-center items-center  self-center flex flex-row h-5 gap-[25px]">
                   <Link
                     href="https://www.instagram.com/anishsinghthakur/"
