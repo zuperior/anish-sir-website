@@ -85,10 +85,20 @@ export const FullCard = React.memo(({ cardId, activeSection }: { cardId: string;
     if (!data) return null;
 
     const cardStyle: CSSProperties = {
-        background: "linear-gradient(360deg, rgb(48, 3, 3) 0%, rgb(31, 4, 4) 100%)",
+        background: `
+    linear-gradient(
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.02)
+    ),
+    linear-gradient(360deg, rgb(48, 3, 3) 0%, rgb(31, 4, 4) 100%)
+  `,
         borderRadius: "22px",
-        boxShadow:
-            "rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(255, 255, 255, 0.07) 1px 0px 0px inset, rgba(0, 0, 0, 0.02) 0px -1px 0px inset, rgba(0, 0, 0, 0.02) -1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px 2px 8px"
+        boxShadow: `
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 16px 8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 1px 0 0 rgba(255, 255, 255, 0.04)
+  `
     };
 
     const descriptionRef = useRef<HTMLParagraphElement>(null);

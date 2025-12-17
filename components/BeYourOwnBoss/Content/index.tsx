@@ -99,10 +99,20 @@ const headingText: Record<string, string> = {
 
 // Card style
 const cardStyle: CSSProperties = {
-    background: "linear-gradient(360deg, rgb(48, 3, 3) 0%, rgb(31, 4, 4) 100%)",
+    background: `
+    linear-gradient(
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.02)
+    ),
+    linear-gradient(360deg, rgb(48, 3, 3) 0%, rgb(31, 4, 4) 100%)
+  `,
     borderRadius: "22px",
-    boxShadow:
-        "rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(255, 255, 255, 0.07) 1px 0px 0px inset, rgba(0, 0, 0, 0.02) 0px -1px 0px inset, rgba(0, 0, 0, 0.02) -1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px 2px 8px"
+    boxShadow: `
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 16px 8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 1px 0 0 rgba(255, 255, 255, 0.04)
+  `
 };
 
 export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activeSection: string; onSectionChange?: (section: string) => void }) => {
@@ -318,7 +328,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 </div>
             )}
 
-            <div ref={scrollContainerRef} className="pt-0 px-4 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
+            <div ref={scrollContainerRef} className="pt-0 px-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5 pb-20">
                         <section>
