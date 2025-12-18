@@ -35,6 +35,11 @@ const HeroSection = () => {
     { title: "Resources", id: "resources" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    window.lenis?.scrollTo(`#${id}`);
+  };
+
   return (
     <div className="relative h-screen w-full overflow-hidden bg-[url('/heroSection.png')] bg-cover bg-top bg-no-repeat">
       {/* Center Content */}
@@ -61,8 +66,7 @@ const HeroSection = () => {
             </TextAnimate>
           </div>
 
-         
-          <div className="hidden lg:flex  items-start justify-center">
+          <div className="hidden lg:flex items-start justify-center">
             <motion.div className="flex flex-col gap-0 text-[32px] font-medium font-clash-display text-right">
               {links.map((link, index) => {
                 let delay = 0;
@@ -75,10 +79,11 @@ const HeroSection = () => {
                   <motion.a
                     key={link.title}
                     href={`#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay }}
-                    className="text-[#ffffff]/25 hover:text-[#FFDAD6]/45 transition-colors duration-300 -tracking-[0.04em] leading-[1.3em]"
+                    className="text-[#ffffff]/25 hover:text-[#FFDAD6]/45 transition-colors duration-300 -tracking-[0.04em] leading-[1.3em] cursor-pointer"
                   >
                     {link.title}
                   </motion.a>
@@ -89,7 +94,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-{/*  */}
+      {/*  */}
 
 
     </div>
