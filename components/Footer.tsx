@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
           </h1>
 
           <Link
-            className="py-[15px] px-[25px] rounded-full bg-white font-clash-grotesk font-medium text-black lg:text-xl text-base tracking-tight leading-[0.9em]"
+            className="py-[15px] px-[25px] rounded-full bg-white font-clash-grotesk font-medium text-black lg:text-xl text-[18px] tracking-tight leading-[0.9em]"
             href={"/connect-with-me"}
           >
             Connect with Anish
