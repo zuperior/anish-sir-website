@@ -23,7 +23,10 @@ export default function HobbiesSection() {
       title: "A MAN WITH A LEGACY, NOT JUST A GOAL",
       content:
         "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.  A movement that stands for:  • courage  • discipline  • mindset  • self-belief  • financial literacy  • personal transformation  His goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
+      mobileContent:
+        "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
     },
+
     {
       image: "/leader.jpg",
       title: "A LEADER WHO BUILDS LEADERS",
@@ -94,7 +97,7 @@ export default function HobbiesSection() {
                   {s.title}
                 </h2>
                 <p className="text-white/70 font-medium text-[16px]">
-                  {s.content}
+                  {s.mobileContent ?? s.content}
                 </p>
               </div>
             </div>
