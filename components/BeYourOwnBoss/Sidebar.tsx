@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface SidebarProps {
@@ -73,13 +72,17 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                                             }`}
                                     >
                                         <span>{item}</span>
-                                        <ArrowRight
-                                            className={`w-4 h-4 -rotate-45 transition-all
-                        ${isActive
-                                                    ? "opacity-100 text-white"
-                                                    : "opacity-0 group-hover:opacity-100 text-white/60"
+                                        <svg
+                                            width="10"
+                                            height="17"
+                                            viewBox="0 0 10 17"
+                                            fill="currentColor"
+                                            className={`transition-all rotate-45 ${isActive
+                                                ? "opacity-100 text-white"
+                                                : "opacity-0 group-hover:opacity-100 group-hover:text-white/55"
                                                 }`}
-                                        />
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="15" fill="none" overflow="visible"><path d="M 0 5 C 0.477 5 1.189 4.542 1.787 4.078 C 2.559 3.482 3.232 2.769 3.745 1.952 C 4.13 1.34 4.5 0.597 4.5 0 M 4.5 0 C 4.5 0.597 4.87 1.341 5.255 1.952 C 5.769 2.769 6.442 3.482 7.212 4.078 C 7.811 4.542 8.524 5 9 5 M 4.5 0 L 4.5 15" fill="transparent" strokeWidth="2" stroke="currentColor" strokeMiterlimit="10" strokeDasharray=""></path></svg>                                        </svg>
                                     </div>
 
                                     {index !== menuItems.length - 1 && (
