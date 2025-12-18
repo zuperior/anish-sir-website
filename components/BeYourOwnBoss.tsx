@@ -32,7 +32,7 @@ const BeYourOwnBoss = () => {
       />
 
       {/* Content */}
-      <div className="flex-1 bg-[#8A1A0E] overflow-hidden border-8 lg:border-0 rounded-[10px] lg:rounded-none" style={{ borderColor: '#8A1A0E' }}>
+      <div className="flex-1 bg-[#8A1A0E] overflow-hidden border-10 lg:border-0 rounded-[10px] lg:rounded-none" style={{ borderColor: '#8A1A0E' }}>
         <BeYourOwnBossContent
           activeSection={activeSection}
           onSectionChange={setActiveSection}

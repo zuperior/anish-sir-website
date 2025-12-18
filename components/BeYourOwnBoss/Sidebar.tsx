@@ -196,7 +196,7 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                     style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}
                 /> */}
 
-                <div className="relative z-10 p-4 pt-8">
+                <div className="relative z-10 p-4 pt-8 pb-0 md:pb-4">
                     <h1 className="text-[32px] text-white leading-[1.2em] tracking-[-0.01em] font-clash-display font-medium mb-6">
                         Projects.
                     </h1>
