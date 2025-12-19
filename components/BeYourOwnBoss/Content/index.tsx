@@ -332,7 +332,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5 pb-5 lg:pb-20">
                         <section className="pt-4 lg:pt-0">
-                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
+                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Projects</p>
                             <div
                                 className="
     flex gap-[15px]

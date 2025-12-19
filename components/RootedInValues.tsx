@@ -74,7 +74,7 @@ const RootedInValues = () => {
 
         <p
           ref={paraRef}
-          className="font-medium h-[155px] lg:h-full lg:w-[1080px] mx-auto text-[16px] lg:text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 text-black/70 p-4 lg:p-0 lg:px-4"
+          className="font-medium h-[155px] lg:h-full lg:w-[1050px] mx-auto text-[16px] lg:text-[20px] font-clash-grotesk tracking-[-0.02em] leading-[1.1em] text-center relative z-10 text-black/70 p-4 lg:px-0 "
         >
           Anish draws inspiration from Anthony Robbins and Sadhguru, two figures
           who shaped his thinking around human potential, inner mastery, and
@@ -84,14 +84,14 @@ const RootedInValues = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-[984px] h-[500px] mx-auto flex items-stretch gap-2.5 relative z-10 ">
+      <div className="w-full max-w-[984px] h-[400px] lg:h-[500px] mx-auto flex items-stretch gap-2.5 relative z-10 ">
         <motion.div
           className="flex-1 h-full  flex justify-end items-end"
           initial={{ x: -150, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="absolute w-[199px] h-[131px] lg:w-[322px] lg:h-[213px] top-[290px]  md:top-[248px] lg:top-auto lg:bottom-0 -translate-x-[-180px]  md:translate-x-0 z-10 md:z-0">
+          <div className="absolute w-[199px] h-[131px] lg:w-[300px] lg:h-[213px] top-[290px] md:top-[248px] lg:top-auto lg:bottom-0 -translate-x-[-150px]  md:translate-x-0 z-10 md:z-0">
             <Image
               src="/manWithMic.png"
               alt=""

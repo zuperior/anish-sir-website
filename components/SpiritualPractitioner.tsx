@@ -67,8 +67,8 @@ function SpiritualPractitioner() {
       <div className="flex sticky top-0 z-1 w-full max-w-[1350px] flex-none flex-col lg:flex-row justify-center items-center gap-0  py-[100px]   overflow-hidden">
 
         {/* Left Section */}
-        <div className="flex-1 w-full h-auto lg:h-[422px] flex flex-col gap-[15px] lg:gap-[25px] justify-start outline-none py-0 lg:py-0 px-5 lg:px-0">
-          <h2 className=" text-[32px]  whitespace-nowrap h-auto font-clash-display font-medium lg:text-[52px] lg:h-[125px] tracking-[-0.01em] leading-[1.2]">
+        <div className=" w-full h-auto lg:h-[422px] flex flex-col gap-[15px] lg:gap-[25px]  outline-nonepy-0 lg:py-0 px-5 ">
+          <h2 className=" text-[32px] xl:text-[52px] font-clash-display font-medium  lg:h-[125px] tracking-[-0.01em] leading-[1.2]">
             A Spiritual Practitioner<br />at Heart
           </h2>
           <p
@@ -85,10 +85,10 @@ function SpiritualPractitioner() {
           </p>
 
           {/* Mobile Images - Inside left section, below paragraph */}
-          <div className="lg:hidden flex flex-row justify-end items-end gap-[10px] w-full h-[300px] relative  mt-[20px] md:mt-0">
+          <div className="xl:hidden flex flex-row justify-end items-end  w-full h-[300px] relative px-5 mt-[20px]">
             {/* Left image - Temple/spiritual image */}
             <motion.div
-              className="absolute   -bottom-18  md:-bottom-14  left-1/2 -translate-x-[140px]  w-[160px] h-[160px]   rounded-[8px] z-[15] md:left-1/2 md:-translate-x-[130px]"
+              className="absolute   -bottom-18  md:-bottom-14 lg:-bottom-20  left-1/2 -translate-x-[140px]  w-[160px] h-[160px] lg:w-[200px] lg:h-[200px]  z-15 md:-translate-x-[130px]  lg:translate-x-[100px]"
               initial={{ x: -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{
@@ -101,13 +101,13 @@ function SpiritualPractitioner() {
               <Image
                 src={spritual}
                 alt="Temple Image"
-                className="w-full h-full object-cover rounded-[8px]"
+                className="w-full h-full object-cover rounded-xl"
               />
             </motion.div>
 
             {/* Right image - Family/group photo */}
             <motion.div
-              className="absolute bottom-0  left-1/2 translate-x-[20px] w-[200px] h-[300px]  md:w-[180px] md:h-[280px] rounded-xl z-[2]"
+              className="absolute bottom-0  left-1/2 translate-x-[20px] w-[200px] h-[300px]  md:w-[180px] md:h-[280px] lg:w-[270px] lg:h-[400px] rounded-xl z-2"
               style={{ left: '100px' }}
               initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -121,16 +121,16 @@ function SpiritualPractitioner() {
               <Image
                 src={content}
                 alt="Family Image"
-                className="w-full h-full object-cover rounded-xl md:left-1/2 md:translate-x-[250px]"
+                className="w-full h-full object-cover rounded-xl md:left-1/2 md:translate-x-[250px] lg:translate-x-[600px]"
               />
             </motion.div>
           </div>
         </div>
 
         {/* Right Section - Desktop Image Grid (unchanged) */}
-        <div className="hidden lg:flex flex-row flex-none justify-end items-end gap-[10px] w-min h-min p-0 relative overflow-visible">
+        <div className="hidden xl:flex flex-row flex-none justify-end items-end gap-[10px] w-min h-min p-0 relative overflow-visible">
           <div className="flex flex-row flex-none justify-end items-center self-stretch gap-[10px] w-min min-w-[267px] h-auto p-0 relative overflow-visible">
-            <motion.div className="absolute bottom-[-25px] left-[5px] right-[-38px] h-[330px] z-2 rounded-[10px] flex-none bg-gray-200"
+            <motion.div className="absolute bottom-[-25px] left-[5px] right-[-38px] h-[330px] z-2 rounded-[10px] flex-none "
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{
@@ -182,6 +182,3 @@ function SpiritualPractitioner() {
   );
 }
 export default SpiritualPractitioner;
-
-
-
