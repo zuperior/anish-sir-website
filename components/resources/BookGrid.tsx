@@ -1,8 +1,18 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-const books = [
+type Book = {
+  id: number;
+  title: string;
+  author: string;
+  link: string;
+};
+
+const ITEMS = 4;
+
+const books: Book[] = [
   {
     id: 1,
     title: "Buy Back Your Time",
@@ -53,17 +63,67 @@ const books = [
   },
 ];
 
-const BookGrid = () => {
+const BookSection = ({ title, books }: { title: string; books: Book[] }) => {
+  const [index, setIndex] = useState(0);
+
+  const isPrevDisabled = index === 0;
+  const isNextDisabled = index >= books.length - ITEMS;
+
   return (
-    <div className="bg-[#151515] w-full min-h-screen md:p-[70px] p-[40px] lg:p-[100px] ">
-      <div className="grid  md:grid-cols-4 grid-cols-2 lg:grid-cols-4 justify-items-center gap-16 w-fit mx-auto">
-        {books.map((book) => (
+    <div className="relative w-full md:w-fit mx-auto ">
+      <h2 className="text-white text-center font-medium text-[30px] lg:text-[36px] leading-[1.2] tracking-[-0.02em] mb-[50px] lg:text-left lg:-ml-[80px] xl:-ml-[140px]">
+        {title}
+      </h2>
+
+
+      {/* Prev */}
+      <Image
+        src="/leftArrow.png"
+        alt="prev"
+        onClick={() => !isPrevDisabled && setIndex((p) => p - 1)}
+        className={`
+    z-20
+    cursor-pointer
+    ${isPrevDisabled ? "opacity-30 pointer-events-none" : "opacity-100"}
+    absolute
+    -bottom-15 right-[50px]   
+    md:bottom-auto md:right-auto
+    md:left-[-50px] md:top-1/2 md:-translate-y-1/2
+  `}
+        width={40}
+        height={40}
+      />
+
+      {/* Next */}
+      <Image
+        src="/rightArrow.png"
+        alt="next"
+        onClick={() => !isNextDisabled && setIndex((p) => p + 1)}
+        className={`
+    z-20 cursor-pointer
+    ${isNextDisabled ? "opacity-30 pointer-events-none" : "opacity-100"} absolute -bottom-15 right-[8px] md:bottom-auto md:left-auto md:right-[-50px] md:top-1/2 md:-translate-y-1/2`}
+        width={40}
+        height={40}
+      />
+
+      <div
+        className="  flex md:grid  gap-6  overflow-x-auto md:overflow-visible  w-full md:w-fit md:grid-cols-2 lg:grid-cols-4"
+      >
+        {books.slice(index, index + ITEMS).map((book) => (
           <div
             key={book.title}
-            className="flex flex-col items-start justify-between gap-4 w-[160px] md:w-[200px] lg:w-[190px]"
+            className="
+            flex flex-col justify-between gap-4
+            min-w-[150px]
+            md:min-w-0
+            md:w-[200px]
+            lg:w-[190px]
+            shrink-0
+          "
           >
             <div className="space-y-4">
               {/* Book Image */}
+
               <Image
                 src={`/resources/books/book-${book.id}.png`}
                 alt={book.title}
@@ -88,7 +148,7 @@ const BookGrid = () => {
               href={book.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center border border-gray-700 rounded-full px-2 md:px-0 lg:px-4 py-2 text-white hover:bg-white/10 transition tracking-tight 
+              className="flex items-center border border-gray-700 rounded-full px-2 md:px-0 lg:px-4 py-2 text-white hover:bg-white/10 transition tracking-tight
                 font-clash-grotesk font-medium text-[15px]  w-full md:max-w-[160px] lg:w-full justify-center whitespace-nowrap"
             >
               Buy from Amazon
@@ -102,6 +162,18 @@ const BookGrid = () => {
             </Link>
           </div>
         ))}
+      </div>
+    </div>
+  );
+};
+const BookGrid = () => {
+  return (
+    <div className="bg-[#151515] w-full  min-h-screen md:p-[70px] p-[50px] lg:p-[100px] flex flex-col gap-[100px] pb-20 ">
+      <BookSection title="Financial Choices" books={books} />
+
+      {/* Next 4 books */}
+      <div className="w-[1125px] mx-auto max-w-full">
+        <BookSection title="Mind & Discipline" books={books} />
       </div>
     </div>
   );

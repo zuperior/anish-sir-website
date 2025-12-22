@@ -99,10 +99,12 @@ const ManBehindBusiness = () => {
       </motion.div>
 
       <motion.div
-        style={{
-          rotate: smoothRotate,
-          transformOrigin: "50% 50%"
-        }}
+         animate={{ rotate: 360 }}
+         transition={{
+           repeat: Infinity,
+           duration: 12,
+           ease: "linear",
+         }}
         className="absolute  bottom-[-40px] lg:bottom-[-70px]  right-0 lg:right-50  "
       >
         <Image src={circle} alt="circle" width={426} height={426} className="w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px]" />
