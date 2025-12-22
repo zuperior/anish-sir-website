@@ -55,12 +55,12 @@ const books = [
 
 const BookGrid = () => {
   return (
-    <div className="bg-[#151515] w-full min-h-screen md:p-[90px] p-[40px] lg:p-[100px] ">
+    <div className="bg-[#151515] w-full min-h-screen md:p-[70px] p-[40px] lg:p-[100px] ">
       <div className="grid  md:grid-cols-4 grid-cols-2 lg:grid-cols-4 justify-items-center gap-16 w-fit mx-auto">
         {books.map((book) => (
           <div
             key={book.title}
-            className="flex flex-col items-start justify-between gap-4 md:w-[190px] w-[160px] lg:w-[190px]"
+            className="flex flex-col items-start justify-between gap-4 w-[160px] md:w-[200px] lg:w-[190px]"
           >
             <div className="space-y-4">
               {/* Book Image */}
@@ -73,8 +73,8 @@ const BookGrid = () => {
               />
 
               {/* Title + Author */}
-              <div className="text-left space-y-1">
-                <h3 className="font-medium text-white lg:text-lg md:text-lg text-[15px] leading-tight">
+              <div className="text-left space-y-1 md:space-y-2">
+                <h3 className="font-medium text-white lg:text-lg  text-[13px] leading-tight">
                   {book.title}
                 </h3>
                 <p className="font-clash-grotesk lg:text-base md:text-base text-[13px] text-white/70">
@@ -88,7 +88,8 @@ const BookGrid = () => {
               href={book.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center border border-gray-700 rounded-full md:px-4 px-2 lg:px-4 py-2 text-white hover:bg-white/10 transition tracking-tight font-clash-grotesk font-medium text-[15px] w-full justify-center"
+              className="flex items-center border border-gray-700 rounded-full px-2 md:px-0 lg:px-4 py-2 text-white hover:bg-white/10 transition tracking-tight 
+                font-clash-grotesk font-medium text-[15px]  w-full md:max-w-[160px] lg:w-full justify-center whitespace-nowrap"
             >
               Buy from Amazon
               <Image

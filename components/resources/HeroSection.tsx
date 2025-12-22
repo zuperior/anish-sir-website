@@ -50,7 +50,8 @@ const HeroSection = () => {
                   alt='Anish Singh Thakur on Magazine Cover' 
                   width={300} 
                   height={331}
-                  className='lg:w-[300px] -bottom-5 left-0 absolute lg:relative lg:h-[331px] w-[200px] h-[220px] object-contain'
+                  // className='lg:w-[300px] -bottom-5 left-0 absolute lg:relative lg:h-[331px] w-[200px] h-[220px] object-contain'
+                  className='lg:w-[300px] -bottom-5 left-0 lg:-bottom-5 lg:left-0 absolute lg:relative lg:h-[331px] w-[200px] h-[220px] md:left-[80px] object-contain'
                 />
               </motion.div>  
 
