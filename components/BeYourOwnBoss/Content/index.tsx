@@ -345,7 +345,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                             </div>
                         </section>
                         <section>
-                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
+                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Recommended Brokers</p>
                             <div
                                 className="
     flex gap-[15px]
