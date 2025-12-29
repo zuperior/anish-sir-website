@@ -280,9 +280,9 @@ export const FullCard = React.memo(({ cardId, activeSection }: { cardId: string;
                                 website: "www.boomingbulls.com"
                             },
                             "Booming Bulls FinServe": {
-                                logo: "/icons/booming-bulls-logo.png",
+                                logo: "/icons/BB-finserv.png",
                                 description: "The financial services extension of Booming Bulls. It operates as a SEBI-registered Research Analyst firm and offers data-driven, technically grounded market research, trade-setup signals, and resources to help self-directed traders make informed decisions.",
-                                website: "www.bbvip.com"
+                                website: "boomingbullsfinserv.com"
                             },
                             "Booming Realm": {
                                 logo: "/icons/booming-realm.png",
