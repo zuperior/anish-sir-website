@@ -165,7 +165,7 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
                         </a>
 
                         <a
-                            href="https://www.youtube.com/@BoomingBulls"
+                            href="https://www.youtube.com/@AnishVlogs"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="transition text-white/85 hover:text-white transform hover:scale-115 ease-in"

@@ -5,7 +5,7 @@ const page = () => {
   const platforms = [
     {
       name: "Youtube",
-      url: "https://www.youtube.com/@BoomingBulls",
+      url: "https://www.youtube.com/@AnishVlogs",
       stat: "4M+ Subscribers",
     },
     {
@@ -54,6 +54,8 @@ const page = () => {
               <Link
                 href={item.url}
                 className="font-semibold text-black/70 hover:text-[#BB2215] text-[24px] md:text-[32px] tracking-tighter leading-[1.3em] underline"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {item.name}
               </Link>

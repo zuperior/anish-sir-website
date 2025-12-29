@@ -31,8 +31,7 @@ const SubscribeAndLearn = () => {
   const scroll = (dir: "left" | "right") => {
     if (!sliderRef.current || !cardRef.current) return;
 
-    const cardWidth =
-      cardRef.current.getBoundingClientRect().width + 15; // gap
+    const cardWidth = cardRef.current.getBoundingClientRect().width + 15; // gap
 
     sliderRef.current.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
@@ -65,9 +64,15 @@ const SubscribeAndLearn = () => {
           </h1>
           <div className="h-px md:w-[60px] w-10 bg-white/40" />
         </div>
-        <h2 className="lg:text-[52px] md:text-[40px] text-[32px] -tracking-[0.01em] leading-[1.2em] font-medium">
-          Subscribe & Learn
-        </h2>
+        <Link
+          href="https://www.youtube.com/@AnishVlogs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className="lg:text-[52px] md:text-[40px] text-[32px] -tracking-[0.01em] leading-[1.2em] font-medium">
+            Subscribe & Learn
+          </h2>
+        </Link>
       </div>
 
       {/* video slider */}
@@ -113,7 +118,9 @@ const SubscribeAndLearn = () => {
               width={50}
               onClick={() => canScrollRight && scroll("right")}
               className={`md:w-[50px] md:h-[50px] w-9 h-9 cursor-pointer transition-opacity ${
-                canScrollRight ? "opacity-100" : "opacity-30 pointer-events-none"
+                canScrollRight
+                  ? "opacity-100"
+                  : "opacity-30 pointer-events-none"
               }`}
             />
           </div>
@@ -138,30 +145,29 @@ const PlayCutout = () => (
   </svg>
 );
 
-const VideoThumbnail = forwardRef<
-  HTMLAnchorElement,
-  { id: string }
->(({ id }, ref) => (
-  <Link
-    ref={ref}
-    href={`https://www.youtube.com/watch?v=${id}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-4/5 md:w-[420px] lg:w-[525px] aspect-525/325 shrink-0 rounded-[15px] overflow-hidden group relative block snap-start"
-  >
-    <Image
-      src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
-      alt="Video thumbnail"
-      fill
-      className="object-cover group-hover:brightness-35 transition-all duration-300"
-    />
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
-        <PlayCutout />
+const VideoThumbnail = forwardRef<HTMLAnchorElement, { id: string }>(
+  ({ id }, ref) => (
+    <Link
+      ref={ref}
+      href={`https://www.youtube.com/watch?v=${id}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-4/5 md:w-[420px] lg:w-[525px] aspect-525/325 shrink-0 rounded-[15px] overflow-hidden group relative block snap-start"
+    >
+      <Image
+        src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+        alt="Video thumbnail"
+        fill
+        className="object-cover group-hover:brightness-35 transition-all duration-300"
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+          <PlayCutout />
+        </div>
       </div>
-    </div>
-  </Link>
-));
+    </Link>
+  )
+);
 
 VideoThumbnail.displayName = "VideoThumbnail";
 
