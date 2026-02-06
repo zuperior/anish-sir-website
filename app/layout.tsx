@@ -3,7 +3,8 @@ import "./globals.css";
 import { clashDisplay, clashGrotesk, delicious, geistSans, kronaOne, nataSans, raleway } from "./_fonts";
 import Navbar from "../components/Navbar";
 import { LenisWrapper } from "../components/LenisWrapper";
-
+import { Analytics} from "@vercel/analytics/next";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 export const metadata: Metadata = {
   title: "Anish Singh Thakur",
   description: "Explore the professional work and journey of Anish Singh Thakur."
@@ -24,6 +25,8 @@ export default function RootLayout({
           <Navbar />
           {children}
         </LenisWrapper>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
