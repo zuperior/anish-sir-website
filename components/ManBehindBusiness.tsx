@@ -153,23 +153,8 @@ const ManBehindBusiness = () => {
         <Image src={person} alt="The Man" width={527} height={446} />
       </motion.div>
 
-      {/* <div className="absolute bottom-[-98px] lg:bottom-[-206px] right-0 lg:right-50">
-        <div className="relative w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px] rounded-full overflow-hidden">
-          {imageData.map((item, i) => (
-            <div key={i} className=" w-[522px] h-[524px] ">
-              <Image
-                src="/circleBooming.jpg"
-                alt=""
-                fill
-                className="object-cover "
-              />
-            </div>
-          ))}
-        </div>
-      </div> */}
-
       {/* SINGLE MAIN DIV */}
-      <div className="absolute bottom-[-98px] lg:bottom-[-206px] right-0 md:right-20 lg:right-30 xl:right-50 w-[522px] h-[680px]">
+      <div className="absolute bottom-[-98px] lg:bottom-[-206px] right-0 md:right-30 lg:right-30 xl:right-60 w-[522px] h-[680px]">
         {/* TEXT + ARROW */}
         <div className="  hidden md:flex absolute lg:top-[200px] xl:top-[130px] md:top-[380px] left-1/2 translate-x-25 lg:left-[68%] lg:-translate-x-1/2 xl:left-1/2 xl:-translate-x-8 z-20 flex-col items-center  pointer-events-none">
           <p className="text-white text-[16px] xl:text-[20px] leading-[1.2em] tracking-[-0.03em] uppercase">

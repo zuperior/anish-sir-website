@@ -1,9 +1,25 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function HobbiesSection() {
   const [active, setActive] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    sliderRef.current?.scrollBy({
+      left: -320,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current?.scrollBy({
+      left: 320,
+      behavior: "smooth",
+    });
+  };
 
   const slides = [
     {
@@ -22,7 +38,7 @@ export default function HobbiesSection() {
       image: "/legacy.jpg",
       title: "A MAN WITH A LEGACY, NOT JUST A GOAL",
       content:
-        "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.  A movement that stands for:  • courage  • discipline  • mindset  • self-belief  • financial literacy  • personal transformation  His goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
+        "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.  A movement that stands for  • courage  • discipline  • mindset  • self-belief  • financial literacy  • personal transformation  His goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
       mobileContent:
         "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
     },
@@ -66,7 +82,7 @@ export default function HobbiesSection() {
                       : "opacity-0 translate-y-6"
                   }`}
                 >
-                  <h2 className="text-4xl font-medium leading-tight uppercase mb-3">
+                  <h2 className="text-[36px] font-medium leading-tight uppercase mb-3">
                     {s.title}
                   </h2>
                   <p className="text-white/70 font-medium text-base leading-5">
@@ -79,29 +95,49 @@ export default function HobbiesSection() {
         </div>
 
         {/* Mobile View - Vertical Stacked Cards */}
-        <div className="md:hidden space-y-4">
-          {slides.map((s, i) => (
-            <div
-              key={i}
-              className="relative rounded-3xl overflow-hidden h-[550px]"
-            >
-              <Image
-                src={s.image}
-                alt={s.title}
-                fill
-                className="object-cover"
-              />
+        <div className="md:hidden relative">
+          {/* LEFT ARROW */}
 
-              <div className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk leading-tight  bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
-                <h2 className="text-[22px] lg:text-[36px] bg-red- font-medium uppercase mb-3">
-                  {s.title}
-                </h2>
-                <p className="text-white/70 font-medium text-[16px]">
-                  {s.mobileContent ?? s.content}
-                </p>
-              </div>
+          {/* SLIDER */}
+          <div ref={sliderRef} className="overflow-x-auto no-scrollbar">
+            <div className="flex gap-4 px-4">
+              {slides.map((s, i) => (
+                <div
+                  key={i}
+                  className="group relative flex-shrink-0 w-[85%] rounded-3xl overflow-hidden h-[550px]"
+                >
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    className="object-cover"
+                  />
+
+                  {/* REVEAL CONTENT */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 text-white font-clash-grotesk leading-tight  bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16"
+                  >
+                    <h2 className="text-[22px] font-medium uppercase mb-3">
+                      {s.title}
+                    </h2>
+                    <p className="text-white/80 font-medium text-[16px]">
+                      {s.mobileContent ?? s.content}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="flex justify-center gap-2.5 pt-10">
+            <button onClick={scrollLeft}>
+              <Image src="/leftArrow.png" alt="left" width={50} height={50} />
+            </button>
+
+            <button onClick={scrollRight}>
+              <Image src="/rightArrow.png" alt="right" width={50} height={50} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
