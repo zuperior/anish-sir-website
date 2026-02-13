@@ -44,15 +44,6 @@ const ManBehindBusiness = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [isHovered]);
 
-  useEffect(() => {
-    let animationFrame: number;
-    const rotate = () => {
-      setRotation((prev) => (prev + 0.2) % 360); // adjust speed here
-      animationFrame = requestAnimationFrame(rotate);
-    };
-    rotate();
-    return () => cancelAnimationFrame(animationFrame);
-  }, []);
 
   const containerRef = useRef(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
@@ -154,7 +145,7 @@ const ManBehindBusiness = () => {
       </motion.div>
 
       {/* SINGLE MAIN DIV */}
-      <div className="absolute bottom-[-98px] lg:bottom-[-206px] right-0 md:right-30 lg:right-30 xl:right-60 w-[522px] h-[680px]">
+      <div className="absolute bottom-[-98px] lg:bottom-[-206px] right-0 md:right-30 lg:right-30  xl:right-[450px] w-[522px] h-[680px]">
         {/* TEXT + ARROW */}
         <div className="  hidden md:flex absolute lg:top-[200px] xl:top-[130px] md:top-[380px] left-1/2 translate-x-25 lg:left-[68%] lg:-translate-x-1/2 xl:left-1/2 xl:-translate-x-8 z-20 flex-col items-center  pointer-events-none">
           <p className="text-white text-[16px] xl:text-[20px] leading-[1.2em] tracking-[-0.03em] uppercase">
@@ -179,11 +170,21 @@ const ManBehindBusiness = () => {
             width={61}
             className="absolute top-[-20px] left-1/2 -translate-x-1/2 z-[999]"
           />
-          <div className="relative w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px] rounded-full overflow-hidden">
+          <div
+            className="relative w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px] rounded-full overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             {/* Circle */}
-            <div className=" w-[522px] h-[524px] ">
+            <div
+              className="w-full h-full"
+              style={{
+                transform: `rotate(${rotation}deg)`,
+                transformOrigin: "center center",
+              }}
+            >
               <Image
-                src="/circleBooming.jpg"
+                src="/spinner.jpg"
                 alt=""
                 fill
                 className="object-cover z-10"
@@ -192,6 +193,8 @@ const ManBehindBusiness = () => {
           </div>
         </div>
       </div>
+
+      
 
       {/* Modal */}
       {/* {activeItem && (
