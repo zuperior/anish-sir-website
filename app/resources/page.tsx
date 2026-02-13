@@ -1,14 +1,12 @@
-import BookGrid from '@/components/resources/BookGrid'
-import HeroSection from '@/components/resources/HeroSection'
-import React from 'react'
+// app/resources/page.tsx
+import HeroSection from '../resources/HeroSection';
+import BookGrid from '@/components/resources/BookGrid';
 
-const page = () => {
+export default function ResourcesPage() {
   return (
-    <main>
-        <HeroSection />
-        <BookGrid />
-    </main>
-  )
+    <>
+    <HeroSection />
+      <BookGrid />
+    </>
+  );
 }
-
-export default page
