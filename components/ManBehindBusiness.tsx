@@ -184,7 +184,7 @@ const ManBehindBusiness = () => {
               }}
             >
               <Image
-                src="/spinner.jpg"
+                src="/spinner-new.png"
                 alt=""
                 fill
                 className="object-cover z-10"
