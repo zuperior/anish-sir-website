@@ -8,6 +8,7 @@ import person from "../public/anish-singh.png";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,27 +23,19 @@ const ManBehindBusiness = () => {
   // const [currentRotation, setCurrentRotation] = useState(0);
 
   const [rotation, setRotation] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const rotationRef = useRef(rotation);
-
-  useEffect(() => {
-    rotationRef.current = rotation;
-  }, [rotation]);
 
   useEffect(() => {
     let animationFrame: number;
 
     const rotate = () => {
-      if (!isHovered) {
-        setRotation((prev) => (prev + 0.5) % 360); // adjust speed here
-      }
+      setRotation((prev) => (prev + 0.5) % 360); // adjust speed here
       animationFrame = requestAnimationFrame(rotate);
     };
 
     rotate();
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [isHovered]);
+  }, []);
 
 
   const containerRef = useRef(null);
@@ -90,31 +83,31 @@ const ManBehindBusiness = () => {
     {
       src: "/icons/booming-bulls-logo.png",
       description: "asasasasascs .",
-      link: "https://boomingbulls.com",
+      link: "www.boomingbulls.com",
     },
     {
       src: "/icons/market-genius.png",
       description:
         "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "https://boomingbulls.com",
+      link: "www.boomingbulls.com",
     },
     {
       src: "/icons/booming-realm.png",
       description:
         "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "https://boomingbulls.com",
+      link: "www.boomingbulls.com",
     },
     {
       src: "/icons/BB-finserv.png",
       description:
         "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "https://boomingbulls.com",
+      link: "www.boomingbulls.com",
     },
     {
       src: "/icons/traders-cafe.png",
       description:
         "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "https://boomingbulls.com",
+      link: "www.boomingbulls.com",
     },
   ];
 
@@ -171,9 +164,15 @@ const ManBehindBusiness = () => {
             className="absolute top-[-20px] left-1/2 -translate-x-1/2 z-[999]"
           />
           <div
-            className="relative w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px] rounded-full overflow-hidden"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="relative w-[201px] h-[201px] lg:w-[350px] lg:h-[350px] xl:w-[410px] xl:h-[426px] rounded-full overflow-hidden cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setActiveItem({
+                src: "/icons/booming-bulls-logo.png",
+                description: "Booming Bulls Group is the umbrella organisation created and led by Anish Singh Thakur, built around the mission of transforming how people learn trading, finance, discipline, and personal growth. It is not just one brand, it is a multi-vertical ecosystem consisting of education, financial research, real-estate, community spaces, market updates, and strategic partnerships.",
+                link: "https://boomingbulls.com",
+              });
+            }}
           >
             {/* Circle */}
             <div
@@ -197,36 +196,42 @@ const ManBehindBusiness = () => {
       
 
       {/* Modal */}
-      {/* {activeItem && (
+      {activeItem && (
         <div
           className="fixed inset-0 z-[999] bg-black/70 flex items-center justify-center px-4"
           onClick={() => setActiveItem(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-[520px] w-full p-6 space-y-4"
+            className="flex flex-col flex-none items-start gap-[15px] w-[350px] h-[305px] px-[25px] py-[25px] rounded-[22px] overflow-hidden relative"
+            style={{
+              background: "linear-gradient(360deg, rgb(48, 3, 3) 0%, rgb(31, 4, 4) 100%)",
+              boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 0px inset, rgba(255, 255, 255, 0.07) 1px 0px 0px inset, rgba(0, 0, 0, 0.02) 0px -1px 0px inset, rgba(0, 0, 0, 0.02) -1px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px 2px 8px"
+            }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-[260px] rounded-xl overflow-hidden">
+            <div className="relative flex flex-row flex-none items-center justify-start gap-[10px] w-full h-min p-0 overflow-visible">
               <Image
                 src={activeItem.src}
                 alt=""
-                fill
+                width={40}
+                height={40}
                 className="object-cover"
               />
+              <h3 className="text-[19px] font-medium tracking-[-0.02em] text-white/80 font-clash-display">Booming Bulls Academy</h3>
             </div>
-            <p className="text-[15px] leading-relaxed text-gray-700">
+            <p className="relative flex-none w-[300px] h-auto break-words text-[14px] tracking-[0.01em] text-left text-white/65 leading-snug font-clash-grotesk">
               {activeItem.description}
             </p>
             <a
               href={activeItem.link}
               target="_blank"
-              className="inline-block text-red-600 font-medium hover:underline"
+              className="inline-flex items-center text-white/75 font-medium underline gap-2"
             >
-              Visit Website →
+             www.boomingbulls.com <ArrowUpRight size={18} />
             </a>
           </div>
         </div>
-      )} */}
+      )}
 
       <Image
         src={tower1}

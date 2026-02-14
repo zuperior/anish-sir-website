@@ -7,7 +7,10 @@ import { Analytics} from "@vercel/analytics/next";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 export const metadata: Metadata = {
   title: "Anish Singh Thakur",
-  description: "Explore the professional work and journey of Anish Singh Thakur."
+  description: "Explore the professional work and journey of Anish Singh Thakur.",
+  icons: {
+    icon: "/favicon",
+  },
 };
 
 export default function RootLayout({
