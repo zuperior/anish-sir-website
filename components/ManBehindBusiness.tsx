@@ -356,7 +356,7 @@ const ManBehindBusiness = () => {
               {activeItem.description}
             </p>
             <a
-              href={activeItem.link}
+              href={`https://${activeItem.link.replace("www.", "")}`}
               target="_blank"
               className="inline-flex items-center text-white/75 font-medium underline gap-2"
             >
