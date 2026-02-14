@@ -360,7 +360,7 @@ const ManBehindBusiness = () => {
               target="_blank"
               className="inline-flex items-center text-white/75 font-medium underline gap-2"
             >
-              www.boomingbulls.com <ArrowUpRight size={18} />
+              {activeItem.link} <ArrowUpRight size={18} />
             </a>
           </div>
         </div>
