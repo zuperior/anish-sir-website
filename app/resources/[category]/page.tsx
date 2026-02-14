@@ -25,9 +25,10 @@ export default async function CategoryPage({ params }: Props) {
 
 
   return (
-    <div className="bg-[#151515] min-h-screen">
+    <div className="bg-[#151515] min-h-screen ">
       {/* Back to Resources Link */}
-      <div className="px-4 py-6 md:px-[70px] lg:px-[100px] lg:pt-20">
+      <div className="lg:ml-40"> 
+      <div className="px-4 py-6 md:px-[70px] lg:px-[100px] lg:pt-20 ">
         <Link 
           href="/resources"
           className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
@@ -53,7 +54,7 @@ export default async function CategoryPage({ params }: Props) {
           Showing all {section.books.length} books
         </p>
       </div>
-
+</div>
       {/* Books Grid - All Books */}
       <div className="px-4 md:px-[70px] lg:px-[100px] pb-20 max-w-6xl mx-auto">
         {section.books.length > 0 ? (

@@ -18,15 +18,15 @@ console.log("sectionId" , sectionId);
   return (
     <div className="relative w-full mx-auto px-4 md:px-0">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-[30px] md:mb-[50px]">
-        <h2 className="text-white font-medium text-[30px] lg:text-[36px] leading-[1.2] tracking-[-0.02em] max-w-[70%] sm:max-w-[60%] lg:max-w-[70%]">
+      <div className="flex flex-col md:px-13 sm:flex-row sm:items-center justify-between gap-4 mb-[30px] md:mb-[50px]">
+        <h2 className="text-white font-medium text-[30px] lg:text-[36px] leading-[1.2] tracking-[-0.02em]  ">
           {title}
         </h2>
         
         {/* View All button - links to new page using ID */}
         <Link
             href={`/resources/${sectionId}`}
-          className="self-start cursor-pointer sm:self-auto px-5 py-2.5 text-sm font-medium text-white bg-transparent border border-gray-600 rounded-full hover:bg-white/10 hover:border-gray-500 transition-all duration-200 whitespace-nowrap flex items-center gap-2 group"
+          className="self-start cursor-pointer md:mr-24 sm:self-auto px-5 py-2.5 text-sm font-medium text-white bg-transparent border border-gray-600 rounded-full hover:bg-white/10 hover:border-gray-500 transition-all duration-200 whitespace-nowrap flex items-center gap-2 group"
         >
           <span>View All ({books.length})</span>
           <svg 
@@ -52,7 +52,7 @@ console.log("sectionId" , sectionId);
               ${isPrevDisabled ? "opacity-30 pointer-events-none" : "opacity-100 hover:opacity-80"}
               absolute -bottom-12 right-[50px]
               md:bottom-auto md:right-auto
-              md:left-0 lg:left-[-30px] xl:left-[-50px]
+              md:left-0 lg:left-[2px] 
               md:top-1/2 md:-translate-y-1/2
             `}
             width={40}
@@ -68,7 +68,7 @@ console.log("sectionId" , sectionId);
               ${isNextDisabled ? "opacity-30 pointer-events-none" : "opacity-100 hover:opacity-80"}
               absolute -bottom-12 right-[8px]
               md:bottom-auto md:left-auto
-              md:right-0 lg:right-[-30px] xl:right-[-50px]
+              md:right-0 lg:right-[98px]
               md:top-1/2 md:-translate-y-1/2
             `}
             width={40}
@@ -78,7 +78,7 @@ console.log("sectionId" , sectionId);
       )}
 
       {/* Books Grid */}
-      <div className="max-w-5xl mx-auto flex gap-6 overflow-x-auto md:overflow-visible md:grid md:grid-cols-4 lg:grid-cols-4 pb-4 md:pb-0">
+      <div className="max-w-6xl mx-auto flex md:gap-0  lg:gap-0 gap-6 overflow-x-auto md:overflow-visible md:grid md:grid-cols-4 lg:grid-cols-4 pb-4 md:pb-0">
         {displayedBooks.map((book) => (
           <div
             key={`${book.title}-${book.id}`}
@@ -109,7 +109,7 @@ console.log("sectionId" , sectionId);
               href={book.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center border border-gray-700 rounded-full px-3 md:px-4 py-2 text-white hover:bg-white/10 hover:border-gray-500 transition-all duration-200 group"
+              className="flex w-fit items-center justify-center border border-gray-700 rounded-full px-3 md:px-9 py-2 text-white hover:bg-white/10 hover:border-gray-500 transition-all duration-200 group"
             >
               <span className="text-xs md:text-sm font-medium whitespace-nowrap">
                 Buy from Amazon
