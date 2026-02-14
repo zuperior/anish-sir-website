@@ -116,8 +116,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     const gsapInstanceRef = useRef<any>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [isHorizontalScrolling, setIsHorizontalScrolling] = useState(false);
-    const scrollTimeoutRef = useRef<NodeJS.Timeout>();
-
+const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     // GSAP animation effect
     useEffect(() => {
         const element = descriptionRef.current;
