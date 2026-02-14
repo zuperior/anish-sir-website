@@ -52,13 +52,43 @@ export default function HobbiesSection() {
       image: "/legacy.jpg",
       title: "A MAN WITH A LEGACY, NOT JUST A GOAL",
       content:
-        "Anish is building something much larger than a business, he is building a movement. Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.  A movement that stands for:  • courage  • discipline  • mindset  • self-belief  • financial literacy  • personal transformation  ",
+        "Anish is building something much larger than a business — he is building a movement. His mission is to help people become the best version of themselves mentally, emotionally, financially, and spiritually. Everything he builds carries this deeper purpose.A movement that stands for:• Courage• Discipline• Mindset• Self-belief• Financial literacy• Personal transformation\nHis goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually, and ensure everything he builds reflects this purpose.",
       mobileContent:
         "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
       pdf: "/sample.pdf",
     },
 
+    {
+      image: "/fitnes.jpg",
+      title: "FITNESS, DISCIPLINE& DAILY RITUALS",
+      content: [
+        " 1. Pointer 1",
+        " 2. Pointer 2",
+        " 3.Pointer 3",
+        " 4.Pointer 4",
+      ],
+      pdf: "/sample.pdf",
+    },
+    {
+      image: "/mindset.jpg",
+      title: "A MINDSET BUILT FOR GROWTH",
+      content:
+        "Anish is led by a belief that fuels his purpose: He often says: “Money doesn’t change you; it amplifies who you already are.” This philosophy guides his vision of wealth as a tool for evolution, contribution, and expansion.",
+      pdf: "/sample.pdf",
+    },
 
+
+
+
+    {
+      image: "/legacy.jpg",
+      title: "A MAN WITH A LEGACY, NOT JUST A GOAL",
+      content:
+         "Anish is building something much larger than a business — he is building a movement. His mission is to help people become the best version of themselves mentally, emotionally, financially, and spiritually. Everything he builds carries this deeper purpose.A movement that stands for:• Courage• Discipline• Mindset• Self-belief• Financial literacy• Personal transformation\nHis goal is simple: Help people become the best version of themselves mentally, emotionally, financially, and spiritually, and ensure everything he builds reflects this purpose.",
+      mobileContent:
+        "Anish is building something much larger than a business, he is building a movement.  Help people become the best version of themselves mentally, emotionally, financially, and spiritually And everything he builds carries this purpose.",
+      pdf: "/sample.pdf",
+    },
     {
       image: "/leader.jpg",
       title: "A LEADER WHO BUILDS LEADERS",
@@ -66,6 +96,7 @@ export default function HobbiesSection() {
         "For Anish, success is not personal, it is collective. He believes deeply in training, upgrading, and empowering his team to stay aligned with global standards. He invests his time into mentoring his people, ensuring they grow in knowledge, mindset, and discipline, just like his students.",
       pdf: "/sample.pdf",
     },
+
   ];
 
   return (
@@ -102,9 +133,15 @@ export default function HobbiesSection() {
                   <h2 className="text-[36px] font-medium leading-tight uppercase mb-3">
                     {s.title}
                   </h2>
-                  <p className="text-white/70 font-medium text-base leading-5">
-                    {s.content}
-                  </p>
+                  <div className="text-white/70 font-medium text-base leading-5 whitespace-pre-line">
+                    {Array.isArray(s.content) ? (
+                      s.content.map((point, idx) => (
+                        <p key={idx}>{point}</p>
+                      ))
+                    ) : (
+                      <p>{s.content}</p>
+                    )}
+                  </div>
                   <a
                     href={s.pdf}
                     target="_blank"
@@ -158,12 +195,12 @@ export default function HobbiesSection() {
 
         </div>
 
-        <div className="flex justify-center gap-2.5 pt-10">
-          <button onClick={scrollLeft}>
+        <div className="flex justify-center cursor-pointer gap-2.5 pt-10">
+          <button onClick={scrollLeft} className="cursor-pointer">
             <Image src="/leftArrow.png" alt="left" width={50} height={50} />
           </button>
 
-          <button onClick={scrollRight}>
+          <button onClick={scrollRight} className="cursor-pointer">
             <Image src="/rightArrow.png" alt="right" width={50} height={50} />
           </button>
         </div>

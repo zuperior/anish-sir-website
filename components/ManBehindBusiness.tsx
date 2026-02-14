@@ -13,11 +13,14 @@ import { ArrowUpRight } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const ManBehindBusiness = () => {
+
   const [activeItem, setActiveItem] = useState<null | {
     src: string;
+    title: string;
     description: string;
     link: string;
   }>(null);
+
 
   // const [isHovered, setIsHovered] = useState(false);
   // const [currentRotation, setCurrentRotation] = useState(0);
@@ -82,34 +85,36 @@ const ManBehindBusiness = () => {
   const imageData = [
     {
       src: "/icons/booming-bulls-logo.png",
-      description: "asasasasascs .",
-      link: "www.boomingbulls.com",
-    },
-    {
-      src: "/icons/market-genius.png",
-      description:
-        "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
+      description: "Booming Bulls Group is the umbrella organisation created and led by Anish Singh Thakur, built around the mission of transforming how people learn trading, finance, discipline, and personal growth. It is not just one brand, it is a multi-vertical ecosystem consisting of education, financial research, real-estate, community spaces, market updates, and strategic partnerships.",
       link: "www.boomingbulls.com",
     },
     {
       src: "/icons/booming-realm.png",
       description:
-        "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "www.boomingbulls.com",
+        "Founded under the vision of Anish Sir, Booming Realm is the Dubai-focused real-estate vertical of the Booming Bulls ecosystem. It represents trust, transparency, and smart investment connecting financial growth with premium real-estate opportunities across Dubai's most promising developments.",
+      link: "www.boomingrealmllc.com",
+    },
+    {
+      src: "/icons/market-genius.png",
+      description:
+        "Market Genius is the trading-market updates hub of the Booming Bulls ecosystem, delivering timely, data-backed alerts, market analysis, and trade setup notifications to help traders stay informed and act with clarity.",
+      link: "www.marketgenius.com",
     },
     {
       src: "/icons/BB-finserv.png",
       description:
-        "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "www.boomingbulls.com",
+        "The financial services extension of Booming Bulls. It operates as a SEBI-registered Research Analyst firm and offers data-driven, technically grounded market research, trade-setup signals, and resources to help self-directed traders make informed decisions.",
+      link: "boomingbullsfinserv.com",
     },
     {
       src: "/icons/traders-cafe.png",
       description:
-        "With hundreds of thousands of traders learning together every day, the Booming Bulls Telegram community represents one of the strongest educational movements in India's trading landscape.",
-      link: "www.boomingbulls.com",
+        "Trader's Café is a vibrant concept brought to life under the vision of Anish Sir and the Booming Bulls ecosystem. It is India's first trading-themed café where market learners and professionals come together to experience trading, discussions, and collaboration in a creative, community-driven space.",
+      link: "www.instagram.com/thetraderscafe__",
     },
   ];
+
+
 
   return (
     <div
@@ -169,12 +174,16 @@ const ManBehindBusiness = () => {
               e.stopPropagation();
               setActiveItem({
                 src: "/icons/booming-bulls-logo.png",
-                description: "Booming Bulls Group is the umbrella organisation created and led by Anish Singh Thakur, built around the mission of transforming how people learn trading, finance, discipline, and personal growth. It is not just one brand, it is a multi-vertical ecosystem consisting of education, financial research, real-estate, community spaces, market updates, and strategic partnerships.",
+                title: "Booming Bulls",
+                description:
+                  "Booming Bulls Group is the umbrella organisation created and led by Anish Singh Thakur, built around the mission of transforming how people learn trading, finance, discipline, and personal growth. It is not just one brand, it is a multi-vertical ecosystem consisting of education, financial research, real-estate, community spaces, market updates, and strategic partnerships.",
                 link: "https://boomingbulls.com",
               });
             }}
           >
             {/* Circle */}
+
+            {/* CUSTOM SVG SPINNER — FINAL EXACT */}
             <div
               className="w-full h-full"
               style={{
@@ -182,18 +191,142 @@ const ManBehindBusiness = () => {
                 transformOrigin: "center center",
               }}
             >
-              <Image
-                src="/spinner-new.png"
-                alt=""
-                fill
-                className="object-cover z-10"
-              />
+              <svg viewBox="0 0 500 500" className="w-full h-full">
+                <g transform="translate(250,250)">
+                  {[
+                    { color: "#FF69B4", title: "Booming Bulls", year: "2019" },
+                    { color: "#FFA500", title: "Booming Realm", year: "2021" },
+                    { color: "#1E90FF", title: "Market Genius", year: "2023" },
+                    { color: "#FFD700", title: "Trader's Cafe", year: "2025" },
+                    { color: "#9370DB", title: "Booming Bulls", year: "2019" },
+                    { color: "#FFA500", title: "Booming Realm", year: "2021" },
+                    { color: "#FF69B4", title: "BB Finserv", year: "2025" },
+                    { color: "#FFD700", title: "Trader's Cafe", year: "2025" },
+                  ].map((item, i) => {
+                    const startAngle = i * 45;
+                    const endAngle = startAngle + 45;
+                    const midAngle = startAngle + 22.5;
+                    const largeArc = 0;
+
+                    const polar = (r: number, angle: number) => {
+                      const rad = ((angle - 90) * Math.PI) / 180;
+                      return [r * Math.cos(rad), r * Math.sin(rad)];
+                    };
+
+                    const [x1, y1] = polar(220, startAngle);
+                    const [x2, y2] = polar(220, endAngle);
+                    const [x3, y3] = polar(90, endAngle);
+                    const [x4, y4] = polar(90, startAngle);
+
+                    const path = `
+          M ${x1} ${y1}
+          A 220 220 0 ${largeArc} 1 ${x2} ${y2}
+          L ${x3} ${y3}
+          A 90 90 0 ${largeArc} 0 ${x4} ${y4}
+          Z
+        `;
+
+                    const [iconX, iconY] = polar(155, midAngle);
+                    const [textX, textY] = polar(180, midAngle);
+
+
+                    return (
+                      <g
+                        key={i}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const matched =
+                            imageData.find((d) => {
+                              if (item.title === "Booming Bulls") return d.src.includes("booming-bulls");
+                              if (item.title === "Booming Realm") return d.src.includes("booming-realm");
+                              if (item.title === "Market Genius") return d.src.includes("market-genius");
+                              if (item.title === "BB Finserv") return d.src.includes("BB-finserv");
+                              if (item.title === "Trader's Cafe") return d.src.includes("traders-cafe");
+                              return false;
+                            }) || imageData[0];
+
+                          setActiveItem({
+                            src: matched.src,
+                            title: item.title,
+                            description: matched.description,
+                            link: matched.link,
+                          });
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {/* ARC */}
+                        <path d={path} fill={item.color} />
+
+                        {/* ICON INSIDE ARC */}
+                        {/* ICON + TEXT + YEAR (STRAIGHT) */}
+                        <g
+                          transform={`
+    translate(${iconX}, ${iconY})
+    rotate(${midAngle})
+  `}
+                        >
+                          {/* HEADING */}
+                          <text
+                            x="0"
+                            y="-28"
+                            fontSize="13"
+                            fill="#111"
+                            fontWeight="700"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                          >
+                            {item.title}
+                          </text>
+
+                          {/* YEAR */}
+                          <text
+                            x="0"
+                            y="-10"
+                            fontSize="11"
+                            fill="#111"
+                            fontWeight="500"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                          >
+                            {item.year}
+                          </text>
+
+                          {/* LOGO */}
+                          <image
+                            href="/icons/booming-bulls-logo.png"
+                            x="-14"
+                            y="2"
+                            width="28"
+                            height="28"
+                          />
+                        </g>
+
+
+
+                      </g>
+                    );
+                  })}
+                </g>
+
+                <circle cx="250" cy="250" r="52" fill="#111" />
+                {/* CENTER ICON IMAGE */}
+                <image
+                  href="/icons/booming-bulls-logo.png"
+                  x="200"
+                  y="200"
+                  width="100"
+                  height="100"
+                />
+              </svg>
             </div>
+
+
           </div>
         </div>
       </div>
 
-      
+
+
 
       {/* Modal */}
       {activeItem && (
@@ -217,7 +350,7 @@ const ManBehindBusiness = () => {
                 height={40}
                 className="object-cover"
               />
-              <h3 className="text-[19px] font-medium tracking-[-0.02em] text-white/80 font-clash-display">Booming Bulls Academy</h3>
+              <h3 className="text-[19px] font-medium tracking-[-0.02em] text-white/80 font-clash-display"> {activeItem.title}</h3>
             </div>
             <p className="relative flex-none w-[300px] h-auto break-words text-[14px] tracking-[0.01em] text-left text-white/65 leading-snug font-clash-grotesk">
               {activeItem.description}
@@ -227,7 +360,7 @@ const ManBehindBusiness = () => {
               target="_blank"
               className="inline-flex items-center text-white/75 font-medium underline gap-2"
             >
-             www.boomingbulls.com <ArrowUpRight size={18} />
+              www.boomingbulls.com <ArrowUpRight size={18} />
             </a>
           </div>
         </div>
