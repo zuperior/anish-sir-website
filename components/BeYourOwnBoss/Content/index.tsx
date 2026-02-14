@@ -424,7 +424,7 @@ const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
                                 className="
                                     flex gap-[15px]
                                     overflow-x-auto overflow-y-visible no-scrollbar
-                                    pr-[50px] pb-2
+                                    pr-[50px] -mb-3
                                     lg:flex-wrap lg:overflow-visible lg:pr-0
                                 "
                                 style={{
@@ -449,7 +449,7 @@ const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
                                 className="
                                     flex gap-[15px]
                                     overflow-x-auto overflow-y-visible no-scrollbar
-                                    pr-[50px] pb-2
+                                    pr-[50px] -mb-3
                                     lg:flex-wrap lg:overflow-visible lg:pr-0
                                 "
                                 style={{
