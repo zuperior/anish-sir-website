@@ -47,7 +47,7 @@ export const BeYourOwnBossSidebar: React.FC<SidebarProps> = ({
     return (
         <>
             {/* ================= DESKTOP SIDEBAR ================= */}
-            <aside className="hidden lg:flex w-80 max-w-[300px] bg-[#8A1A0E] relative p-8 pt-[50px] flex-col overflow-y-auto no-scrollbar">
+            <aside className="hidden lg:flex w-80 max-w-[250px] bg-[#8A1A0E] relative p-8 pt-[50px] flex-col overflow-y-auto no-scrollbar">
                 {/* <div
                     className="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-screen pointer-events-none"
                     style={{ backgroundImage: "url('/Photo-wall-texture.png')" }}

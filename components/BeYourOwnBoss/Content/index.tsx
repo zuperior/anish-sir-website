@@ -399,7 +399,7 @@ const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
                                 className="
                                     flex gap-[15px]
                                     overflow-x-auto overflow-y-visible no-scrollbar
-                                    pr-[50px] pb-2
+                                    pr-[50px] -mb-3
                                     lg:flex-wrap lg:overflow-visible lg:pr-0
                                 "
                                 style={{
@@ -474,7 +474,7 @@ const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
                     <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4 items-start justify-center">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-x-4 gap-y-4 items-start justify-center">
                                 {favouriteBrokers.map((item) => {
                                     const detailed = businessesDetailedData[item.id];
                                     const description = detailed?.fullDescription || item.text;
