@@ -384,93 +384,93 @@ const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
  </div>
  )}
 
- <div 
- ref={scrollContainerRef} 
- className="pt-0 pl-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden "
- style={{ 
- pointerEvents: "auto",
- maxHeight: "calc(100vh - 120px)",
- overscrollBehavior: "auto" // Changed from "contain" to "auto"
- }}
- >
- {activeSection === "OVERVIEW" && (
- <div className="space-y-5 pb-5 lg:pb-20">
- <section className="pt-4 lg:pt-0">
- <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Projects</p>
- <div
- className="
- flex gap-[15px]
- overflow-x-auto overflow-y-visible no-scrollbar
- pr-[50px] -mb-3
- lg:flex-wrap lg:overflow-visible lg:pr-0
- "
- style={{
- WebkitOverflowScrolling: "touch",
- scrollBehavior: "smooth"
- }}
- >
- {myBusinesses.map((item) => (
- <Card 
- key={item.id} 
- {...item} 
- activeSection={activeSection} 
- onSectionChange={onSectionChange} 
- />
- ))}
- </div>
- </section>
- 
- <section>
- <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Recommended Brokers</p>
- <div
- className="
- flex gap-[15px]
- overflow-x-auto overflow-y-visible no-scrollbar
- pr-[50px] -mb-3
- lg:flex-wrap lg:overflow-visible lg:pr-0
- "
- style={{
- WebkitOverflowScrolling: "touch",
- scrollBehavior: "smooth"
- }}
- >
- {favouriteBrokers.map((item) => (
- <Card 
- key={item.id} 
- {...item} 
- activeSection={activeSection} 
- onSectionChange={onSectionChange} 
- />
- ))}
- </div>
- </section>
- 
- <section>
- <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Telegram Channels</p>
- <div
- className="
- flex gap-[15px]
- overflow-x-auto overflow-y-visible no-scrollbar
- pr-[50px] -mb-3
- lg:flex-wrap lg:overflow-visible lg:pr-0
- "
- style={{
- WebkitOverflowScrolling: "touch",
- scrollBehavior: "smooth"
- }}
- >
- {telegramChannels.map((item) => (
- <Card 
- key={item.id} 
- {...item} 
- activeSection={activeSection} 
- onSectionChange={onSectionChange} 
- />
- ))}
- </div>
- </section>
- </div>
- )}
+            <div 
+                ref={scrollContainerRef} 
+                className="pt-0 pl-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden "
+                style={{ 
+                    pointerEvents: "auto",
+                    maxHeight: "calc(100vh - 120px)",
+                    overscrollBehavior: "auto" // Changed from "contain" to "auto"
+                }}
+            >
+                {activeSection === "OVERVIEW" && (
+                    <div className="space-y-5 pb-5 lg:pb-20">
+                        <section className="pt-4 lg:pt-0">
+                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Projects</p>
+                            <div
+                                className="
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] -mb-3
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
+                            >
+                                {myBusinesses.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                        
+                        <section>
+                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Recommended Brokers</p>
+                            <div
+                                className="
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] -mb-3
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
+                            >
+                                {favouriteBrokers.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                        
+                        <section>
+                            <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Telegram Channels</p>
+                            <div
+                                className="
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] -mb-3
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
+                            >
+                                {telegramChannels.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                )}
 
  {activeSection === "FAVOURITES" && (
  <div className="space-y-5 pb-20">
