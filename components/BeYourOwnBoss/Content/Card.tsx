@@ -42,7 +42,7 @@ export const Card = ({ id, icon, title, text, activeSection, onSectionChange }: 
 
     return (
         <div
-            className={`rounded-[22px] p-[22px] pt-[30px] pl-6 text-white w-full sm:w-[350px] shrink-0 cursor-pointer transition-all duration-200 hover:border-[#BB2215] hover:scale-[1.02] ease-in-out ${isClickable ? "cursor-pointer" : "cursor-default"}`}
+            className={`rounded-[22px] p-[15px] pt-[30px] pl-6 text-white w-full sm:w-[350px] shrink-0 cursor-pointer transition-all duration-200 hover:border-[#BB2215] hover:scale-[1.02] ease-in-out ${isClickable ? "cursor-pointer" : "cursor-default"}`}
             style={cardStyle}
             onClick={handleClick}
         >

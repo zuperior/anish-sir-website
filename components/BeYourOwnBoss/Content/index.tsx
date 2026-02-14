@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { gsap, ScrollTrigger } from "gsap/all";
 import { FullCard } from "./FullCard";
 import { Card } from "./Card";
 
-declare global {
-    interface Window {
-        lenisDisabled?: boolean;
-    }
-}
+
 
 // Business data
 const businessesDetailedData: Record<string, any> = {
@@ -119,7 +115,10 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     const descriptionRef = useRef<HTMLParagraphElement>(null);
     const gsapInstanceRef = useRef<any>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isHorizontalScrolling, setIsHorizontalScrolling] = useState(false);
+    const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
+    // GSAP animation effect
     useEffect(() => {
         const element = descriptionRef.current;
 
@@ -191,6 +190,82 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
         };
     }, [activeSection]);
 
+    // Improved scroll handling - only intercept when absolutely necessary
+    useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleWheel = (e: WheelEvent) => {
+            // Clear any existing timeout
+            if (scrollTimeoutRef.current) {
+                clearTimeout(scrollTimeoutRef.current);
+            }
+
+            // Check if we're in a horizontally scrollable section
+            const isHorizontalScrollArea = activeSection === "OVERVIEW" || activeSection === "FAVOURITES" || activeSection === "REFERRALS";
+            
+            if (isHorizontalScrollArea) {
+                // Check if mouse is over a horizontal scroll container
+                const horizontalContainers = container.querySelectorAll('.overflow-x-auto');
+                let isOverHorizontal = false;
+                
+                horizontalContainers.forEach((horizontalContainer) => {
+                    const rect = horizontalContainer.getBoundingClientRect();
+                    if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                        isOverHorizontal = true;
+                        
+                        // If scrolling horizontally, prevent default and handle it
+                        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                            e.preventDefault();
+                            horizontalContainer.scrollLeft += e.deltaX;
+                            setIsHorizontalScrolling(true);
+                        }
+                    }
+                });
+
+                // Update horizontal scrolling state
+                if (isOverHorizontal && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    setIsHorizontalScrolling(true);
+                } else {
+                    setIsHorizontalScrolling(false);
+                }
+            }
+
+            // Reset horizontal scrolling state after scroll ends
+            scrollTimeoutRef.current = setTimeout(() => {
+                setIsHorizontalScrolling(false);
+            }, 150);
+        };
+
+        container.addEventListener("wheel", handleWheel, { passive: false });
+
+        return () => {
+            container.removeEventListener("wheel", handleWheel);
+            if (scrollTimeoutRef.current) {
+                clearTimeout(scrollTimeoutRef.current);
+            }
+        };
+    }, [activeSection]);
+
+    // Handle Lenis - only stop when actively horizontally scrolling
+    useEffect(() => {
+        if (window.lenis) {
+            if (isHorizontalScrolling) {
+                window.lenis.stop();
+            } else {
+                window.lenis.start();
+            }
+        }
+    }, [isHorizontalScrolling]);
+
+    // Reset on section change
+    useEffect(() => {
+        setIsHorizontalScrolling(false);
+        if (window.lenis) {
+            window.lenis.start();
+        }
+    }, [activeSection]);
+
     const heading = headingText[activeSection] || "Be your own Boss";
 
     const myBusinesses = [
@@ -259,40 +334,6 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
         }
     ];
 
-    useEffect(() => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
-
-        const handleWheel = (e: WheelEvent) => {
-            e.stopPropagation();
-
-            const scrollTop = container.scrollTop;
-            const scrollHeight = container.scrollHeight;
-            const clientHeight = container.clientHeight;
-            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-            const isAtTop = scrollTop === 0;
-
-            if ((isAtBottom && e.deltaY > 0) || (isAtTop && e.deltaY < 0)) {
-                if (window.lenis) {
-                    window.lenisDisabled = false;
-                }
-            } else {
-                if (window.lenis) {
-                    window.lenisDisabled = true;
-                }
-            }
-        };
-
-        container.addEventListener("wheel", handleWheel, { passive: false });
-
-        return () => {
-            container.removeEventListener("wheel", handleWheel);
-            if (window.lenis) {
-                window.lenisDisabled = false;
-            }
-        };
-    }, [activeSection]);
-
     const cardMap: Record<string, string> = {
         "BOOMING BULLS": "booming-bulls-group",
         "BB FINSERV": "booming-bulls-group",
@@ -301,7 +342,15 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
 
     if (["BOOMING BULLS", "BB FINSERV", "BOOMING REALM"].includes(activeSection)) {
         return (
-            <div ref={scrollContainerRef} className="flex-1 bg-black lg:bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar border-[#8A1A0E] rounded-xl lg:rounded-none relative" style={{ pointerEvents: "auto" }}>
+            <div 
+                ref={scrollContainerRef} 
+                className="flex-1 bg-black lg:bg-black pt-[65px] pb-16 px-4 lg:px-6 h-full overflow-y-auto no-scrollbar relative" 
+                style={{ 
+                    pointerEvents: "auto",
+                    maxHeight: "100vh",
+                    overscrollBehavior: "contain"
+                }}
+            >
                 <div className="max-w-5xl xl:max-w-6xl mx-auto">
                     <FullCard cardId={cardMap[activeSection]} activeSection={activeSection} />
                 </div>
@@ -310,64 +359,113 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
     }
 
     return (
-        <div className="flex-1 bg-black pt-2 border-[#8A1A0E] lg:border-0 rounded-xl lg:rounded-none lg:pt-[65px] pb-0 lg:pb-20 relative h-full overflow-hidden">
+        <div className="flex-1 bg-black pt-2 lg:pt-[25px] pb-0 lg:pb-20 relative h-full overflow-hidden">
             <h2
                 className={`
-    font-medium font-clash-display text-white text-center
-    tracking-[-0.02em] leading-[1.2em] mb-5 pt-4 lg:pt-0
-    text-2xl sm:text-3xl lg:text-4xl
-    ${activeSection === "OVERVIEW" ? "hidden lg:block" : ""}
-  `}
+                    font-medium font-clash-display text-white text-center
+                    tracking-[-0.02em] leading-[1.2em] mb-4 pt-4 lg:pt-0 
+                    text-2xl sm:text-3xl lg:text-4xl
+                    ${activeSection === "OVERVIEW" ? "hidden lg:block" : ""}
+                `}
             >
                 {heading}
             </h2>
 
             {activeSection === "OVERVIEW" && (
                 <div className="hidden lg:block absolute bottom-0 right-0 w-[260px] h-[476px] pointer-events-none overflow-hidden z-20">
-                    <Image src="/anish-sir-beyourownboss.png" alt="Anish Sir" fill className="object-cover object-right opacity-100 brightness-110 translate-x-4" priority />
+                    <Image 
+                        src="/anish-sir-beyourownboss.png" 
+                        alt="Anish Sir" 
+                        fill 
+                        className="object-cover object-right opacity-100 brightness-110 translate-x-4" 
+                        priority 
+                    />
                 </div>
             )}
 
-            <div ref={scrollContainerRef} className="pt-0 pl-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden no-scrollbar" style={{ pointerEvents: "auto" }}>
+            <div 
+                ref={scrollContainerRef} 
+                className="pt-0 pl-4 md:px-8 relative z-10 h-full overflow-y-auto overflow-x-hidden "
+                style={{ 
+                    pointerEvents: "auto",
+                    maxHeight: "calc(100vh - 120px)",
+                    overscrollBehavior: "auto" // Changed from "contain" to "auto"
+                }}
+            >
                 {activeSection === "OVERVIEW" && (
                     <div className="space-y-5 pb-5 lg:pb-20">
                         <section className="pt-4 lg:pt-0">
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Projects</p>
                             <div
                                 className="
-    flex gap-[15px]
-    overflow-x-auto no-scrollbar
-    pr-[50px]
-    lg:flex-wrap lg:overflow-visible lg:pr-0
-  "
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] pb-2
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
                             >
-                                {myBusinesses.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
+                                {myBusinesses.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
                             </div>
                         </section>
+                        
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Recommended Brokers</p>
                             <div
                                 className="
-    flex gap-[15px]
-    overflow-x-auto no-scrollbar
-    pr-[50px]
-    lg:flex-wrap lg:overflow-visible lg:pr-0
-  "
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] pb-2
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
                             >
-                                {favouriteBrokers.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
+                                {favouriteBrokers.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
                             </div>
                         </section>
+                        
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Telegram Channels</p>
                             <div
                                 className="
-    flex gap-[15px]
-    overflow-x-auto no-scrollbar
-    pr-[50px]
-    lg:flex-wrap lg:overflow-visible lg:pr-0
-  "
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[50px] pb-2
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
                             >
-                                {telegramChannels.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
+                                {telegramChannels.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
                             </div>
                         </section>
                     </div>
@@ -405,19 +503,29 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 )}
 
                 {activeSection === "REFERRALS" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">Favourite Brokers</p>
                             <div
                                 className="
-    flex gap-[15px]
-    overflow-x-auto no-scrollbar
-    pr-[70px]
-    lg:flex-wrap lg:overflow-visible lg:pr-0
-  "
+                                    flex gap-[15px]
+                                    overflow-x-auto overflow-y-visible no-scrollbar
+                                    pr-[70px] pb-2
+                                    lg:flex-wrap lg:overflow-visible lg:pr-0
+                                "
+                                style={{
+                                    WebkitOverflowScrolling: "touch",
+                                    scrollBehavior: "smooth"
+                                }}
                             >
-
-                                {favouriteBrokers.map((item) => <Card key={item.id} {...item} activeSection={activeSection} onSectionChange={onSectionChange} />)}
+                                {favouriteBrokers.map((item) => (
+                                    <Card 
+                                        key={item.id} 
+                                        {...item} 
+                                        activeSection={activeSection} 
+                                        onSectionChange={onSectionChange} 
+                                    />
+                                ))}
                             </div>
                         </section>
                     </div>
@@ -451,7 +559,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 )}
 
                 {activeSection === "MARKET GENIUS" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
                             <div className="flex flex-wrap gap-[15px]">
@@ -478,7 +586,7 @@ export const BeYourOwnBossContent = ({ activeSection, onSectionChange }: { activ
                 )}
 
                 {activeSection === "TRADERS CAFE" && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 pb-20">
                         <section>
                             <p className="text-white/75 text-sm tracking-[-0.01em] leading-[1.3em] font-clash-grotesk font-normal mb-3">My Businesses</p>
                             <div className="flex flex-wrap gap-[15px]">
