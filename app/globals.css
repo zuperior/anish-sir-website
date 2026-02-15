@@ -220,5 +220,37 @@ body {
 
 .no-scrollbar {
   scrollbar-width: none;
-  
 }
+
+/* Overall scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 12px; /* scrollbar thickness */
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.544);
+  border-radius: 12px;
+}
+
+/* Thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 10px;
+
+  border: 5px solid transparent; 
+  background-clip: padding-box;
+}
+
+/* Hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d1d1d1;
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: rgba(255,255,255,0.9) rgba(255,255,255,0.12);
+}
+
+
